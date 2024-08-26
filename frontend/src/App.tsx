@@ -1,15 +1,16 @@
-import { Login, Home } from './components'
+import { Login, Home, Layout } from './components'
 import { useAuth } from './hooks/useAuth'
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 const App = () => {
-  const { handleLogin, loading } = useAuth();
-
+  const { handleLogin, loggedIn } = useAuth();
   return (
     <Routes>
-      <Route path="/" element={<Login onLogin={handleLogin} />} />
-      <Route path="/home" element={ <Home /> } />
+      <Route path="/" element={loggedIn ? <Navigate to="/home" /> : <Login onLogin={handleLogin} />} />
 
+      <Route element={<Layout />} >
+        <Route path="/home" element={loggedIn ? <Home /> : <Navigate to="/" />} />
+      </Route>
     </Routes>
   )
 }

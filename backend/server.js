@@ -21,7 +21,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 // Routes
 
-const usersRoute = require('./routes/UsersRoutes');
+const usersRoute = require('./routes/usersRoutes');
 app.use('/users', usersRoute);
 
 // Start the server
