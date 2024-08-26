@@ -128,9 +128,32 @@ const logout = (req, res) => {
   })
 }
 
+// Add user
+const addUser = async (req, res) => {
+  try {
+      const { name_user, username, pass_user, mail_user} = req.body
+
+      const result = await pool.query(`select from users where username = $1`, [username])
+      if(result.rows.length > 0){
+          res.status(401).send('User already exists')
+          return;
+      }
+
+      const hashedPassword = await bcrypt.hash(pass_user, 12)
+
+      await pool.query(`INSERT INTO users (name_user, username, mail_user, pass_user) VALUES ($1, $2, $3, $4)`, [name_user, username, mail_user, hashedPassword]);
+
+      res.status(201).send('User created!')
+  } catch (err) {
+      console.log(err.message)
+      res.status(500).send(err.message)
+  }
+}
+
 module.exports = {
   login,
   checkLoggedIn,
   getMenuAccess,
-  logout
+  logout,
+  addUser
 }

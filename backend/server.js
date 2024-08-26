@@ -23,6 +23,8 @@ app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 const usersRoute = require('./routes/usersRoutes');
 app.use('/users', usersRoute);
+const warehousesRoute = require('./routes/warehousesRoutes')
+app.use('/warehouses', warehousesRoute);
 
 // Start the server
 const PORT = process.env.BACKEND_PORT || 8000;

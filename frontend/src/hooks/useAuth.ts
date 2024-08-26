@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { LoginForm } from "../types/types";
+import { useNavigate } from "react-router-dom";
 
 const useAuth = () => {
+  const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [userId, setUserId] = useState<number>(0);
   const [username, setUsername] = useState<string>("");
@@ -21,9 +23,11 @@ const useAuth = () => {
           setLoggedIn(data.loggedIn);
           setUsername(data.username);
           setUserId(data.userId);
-        } 
+        }
       } catch (err) {
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     };
     checkUserCookie();
@@ -68,6 +72,7 @@ const useAuth = () => {
       setUsername("");
       setUserId(0);
       setLoggedIn(false);
+      window.location.href = '/';
     } catch (err) {
       console.error(err);
     }

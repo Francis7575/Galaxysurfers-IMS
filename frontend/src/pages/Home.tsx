@@ -1,7 +1,10 @@
+import HomeGraph from "../components/HomeGraph"
 
 const Home = () => {
   return (
-    <div>Hello World</div>
+    <>
+      <HomeGraph />
+    </>
   )
 }
 

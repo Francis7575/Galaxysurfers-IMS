@@ -3,6 +3,7 @@ import CloseMenu from '/assets/close-menu.svg';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LogOut, LayoutDashboard, User, Warehouse, Book, Boxes } from "lucide-react";
+import { useAuth } from '../../hooks/useAuth';
 
 interface SubMenuItem {
   idmm2: number;
@@ -16,7 +17,7 @@ interface SubMenuItem {
 const Header = () => {
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
   const [menus, setMenus] = useState<SubMenuItem[]>([]);
-
+  const { handleLogout } = useAuth()
   const handleToggleMenu = () => {
     setIsMenuOpened(!isMenuOpened);
   };
@@ -94,10 +95,11 @@ const Header = () => {
             })}
           </div>
           <h2 className='text-[.75rem] text-gray font-medium uppercase my-4'>Support</h2>
-          <Link to="/" className='flex items-center gap-[8px] pl-4'>
+          <button onClick={handleLogout}
+            className='flex items-center gap-[8px] pl-4'>
             <LogOut className='w-4' />
             <span>Log Out</span>
-          </Link>
+          </button>
         </div>
         <button onClick={handleToggleMenu}>
           <img src={isMenuOpened ? CloseMenu : OpenMenu} alt="Menu Icon" className={`transition-all z-50 relative ${isMenuOpened ? 'w-[1.2rem] ' : 'w-[2rem] '}`} />
