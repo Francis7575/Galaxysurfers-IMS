@@ -21,3 +21,9 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
 	-moz-appearance: textfield;
 }
+
+.bg-active {
+  background-color: rgba(108, 117, 125, 0.1);
+  padding: .3rem 1rem;
+  border-radius: 20px;
+}
