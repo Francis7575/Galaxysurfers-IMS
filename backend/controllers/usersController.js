@@ -39,7 +39,7 @@ const login = async (req, res) => {
 
         res.cookie('userId', userId, {
           httpOnly: true,
-          maxAge: 60000 * 10, // expires in 10 min
+          maxAge: 60000 * 60, // expires in 1 hour
           signed: true,
           sameSite: 'Strict',
         });
@@ -150,10 +150,84 @@ const addUser = async (req, res) => {
   }
 }
 
+// Get user
+const getUserList = async (req, res) => {
+  try {
+
+      const result = await pool.query(`select * from users where status_user = 1`);
+
+      res.status(200).json(result.rows)
+  } catch (err) {
+      console.log(err.message)
+      res.status(500).send(err.message)
+  }
+}
+
+const deleteUser = async (req, res) => {
+  try {
+      const { iduser } = req.params
+
+      await pool.query(`UPDATE users SET status_user = 0 WHERE iduser = $1`, [iduser])
+
+      res.status(201).send('User deleted!')
+  } catch (err) {
+      console.log(err.message)
+      res.status(500).send(err.message)
+  }
+}
+
+// Update user
+const updateUser = async (req, res) => {
+  try {
+      const { iduser } = req.params
+      let { name_user, username, pass_user, mail_user} = req.body
+      
+      const hashedPassword = await bcrypt.hash(pass_user, 12)
+
+      await pool.query(`UPDATE users set name_user = $1, username = $2, pass_user = $3, mail_user = $4 where iduser = $5`, [name_user, username, hashedPassword, mail_user, iduser])
+
+      res.status(201).send('User updated!')
+  } catch (err) {
+      console.log(err.message)
+      res.status(500).send(err.message)
+  }
+}
+
+// Update Menu Access
+const updateMenuAccess = async (req, res) => {
+  try {
+      const { iduser } = req.params;
+      const { idmm2, access } = req.body;
+      const val = await pool.query(
+          'SELECT idmm_mmu2 FROM navbar_menu_user WHERE idmm_mmu2 = $1 AND iduser_mmu2 = $2',
+          [idmm2, iduser]
+      );
+      if (val.rows.length > 0) {
+          await pool.query(
+              'UPDATE navbar_menu_user SET access_mmu2 = $1 WHERE idmm_mmu2 = $2 AND iduser_mmu2 = $3',
+              [access, idmm2, iduser]
+          );
+      } else {
+          await pool.query(
+              'INSERT INTO navbar_menu_user (iduser_mmu2, idmm_mmu2, access_mmu2) VALUES ($1, $2, $3)',
+              [iduser, idmm2, access]
+          );
+      }
+      res.status(201).send('User Access updated!')
+  } catch (err) {
+      console.log(err.message)
+      res.status(500).send(err.message)
+  }
+}
+
 module.exports = {
   login,
   checkLoggedIn,
   getMenuAccess,
   logout,
-  addUser
+  addUser,
+  getUserList,
+  deleteUser,
+  updateUser,
+  updateMenuAccess
 }

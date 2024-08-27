@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { LogOut, LayoutDashboard, User, Warehouse, Book, Boxes } from "lucide-react";
 import { useAuth } from '../../hooks/useAuth';
 
@@ -14,9 +14,8 @@ interface SubMenuItem {
 
 const Navbar = () => {
   const { userId, handleLogout } = useAuth();
-  console.log('User', userId)
-  //const [userIdAux, setUserId] = useState(userId);
   const [menus, setMenus] = useState<SubMenuItem[]>([]);
+  const location = useLocation();
 
   const icons = [
     {
@@ -38,21 +37,20 @@ const Navbar = () => {
   ]
 
   useEffect(() => {
-    const fetchItems = async () => {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/get-access-menus?responseType=allowed`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
+    if (userId) {
+      const fetchItems = async () => {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/get-access-menus?userId=${userId}&responseType=allowed`, {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        const data = await response.json();
+        if (data.length > 0) {
+          setMenus(data[0].subMenus);
         }
-      });
-      const data = await response.json();
-
-      if (data.length > 0) {
-        setMenus(data[0].subMenus);
-      }
+      };
+      fetchItems();
     }
-    fetchItems();
-  }, []);
+  }, [userId]);
 
   return (
     <nav className="bg-lightblue hidden 930:block max-w-[225px] lg:max-w-[250px] xl:max-w-[292px] min-h-screen">
@@ -60,7 +58,9 @@ const Navbar = () => {
         <div className="mb-8 pt-8">
           <h2 className='text-[.75rem] text-gray font-medium uppercase mb-4'>General</h2>
           <div className='flex flex-col gap-[1rem]'>
-            <Link to="/home" className='flex items-center gap-[8px] pl-4'>
+            <Link
+              to="/home"
+              className='flex items-center gap-[8px] pl-4'>
               <LayoutDashboard className='w-4' />
               <span>Dashboard</span>
             </Link>
