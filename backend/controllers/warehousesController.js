@@ -1,7 +1,7 @@
-const pool = require('../models/connection')
+import pool from '../models/connection.js'
 
 // NEW WAREHOUSE
-const warehouseNew = async (req, res) => {
+export const warehouseNew = async (req, res) => {
   try {
 
     let { code_warehouse, name_warehouse } = req.body;
@@ -22,7 +22,7 @@ const warehouseNew = async (req, res) => {
 }
 
 // UPDATE WAREHOUSE
-const warehouseUpdate = async (req, res) => {
+export const warehouseUpdate = async (req, res) => {
   try {
 
     let { idwarehouse } = req.params;
@@ -46,7 +46,7 @@ const warehouseUpdate = async (req, res) => {
 }
 
 // DELETE-CANCEL WAREHOUSE
-const warehouseCancel = async (req, res) => {
+export const warehouseCancel = async (req, res) => {
   try {
 
     const { idwarehouse } = req.params;
@@ -63,7 +63,7 @@ const warehouseCancel = async (req, res) => {
 }
 
 // GET ALL ACTIVE WAREHOUSES
-const getWarehouses = async (req, res) => {
+export const getWarehouses = async (req, res) => {
   try {
     const result = await pool.query(`
           SELECT * FROM warehouses WHERE status_warehouse = $1`, [1])
@@ -75,7 +75,7 @@ const getWarehouses = async (req, res) => {
 }
 
 // SAVE LOCATIONS
-const saveLocations = async (req, res) => {
+export const saveLocations = async (req, res) => {
 
   const { idwarehouse } = req.params;
   const { figures } = req.body;
@@ -106,7 +106,7 @@ const saveLocations = async (req, res) => {
 }
 
 // GET ALL ACTIVE WAREHOUSES
-const getLocations = async (req, res) => {
+export const getLocations = async (req, res) => {
 
   const { idwarehouse } = req.params;
 
@@ -121,7 +121,7 @@ const getLocations = async (req, res) => {
 }
 
 // dashboard
-const getDashboard = async (req, res) => {
+export const getDashboard = async (req, res) => {
   try {
     const result = await pool.query(`
           SELECT count(idinventory) as units, count(distinct iditem) as items
@@ -148,12 +148,3 @@ const getDashboard = async (req, res) => {
   }
 }
 
-module.exports = {
-  getDashboard,
-  warehouseNew,
-  warehouseUpdate,
-  warehouseCancel,
-  getWarehouses,
-  saveLocations,
-  getLocations
-}

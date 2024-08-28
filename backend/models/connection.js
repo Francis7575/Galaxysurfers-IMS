@@ -1,4 +1,5 @@
-const { Pool } = require('pg')
+import pkg from 'pg';  
+const { Pool } = pkg;
 
 // Create a new instance of a pool connection
 const pool = new Pool({
@@ -19,4 +20,4 @@ const pool = new Pool({
 //   pool.end();
 // });
 
-module.exports = pool
+export default pool
