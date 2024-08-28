@@ -2,8 +2,6 @@ import express from 'express'
 import cors from "cors"
 import dotenv from "dotenv"
 import cookieParser from 'cookie-parser'
-import usersRoute from './routes/usersRoutes.js'
-import warehousesRoute  from './routes/warehousesRoutes.js'
 
 dotenv.config();
 
@@ -22,8 +20,9 @@ app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 // Routes
-
+import usersRoute from './routes/usersRoutes.js'
 app.use('/users', usersRoute);
+import warehousesRoute  from './routes/warehousesRoutes.js'
 app.use('/warehouses', warehousesRoute);
 
 // Start the server

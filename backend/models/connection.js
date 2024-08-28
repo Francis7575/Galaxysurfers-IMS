@@ -1,5 +1,7 @@
 import pkg from 'pg';  
 const { Pool } = pkg;
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Create a new instance of a pool connection
 const pool = new Pool({
@@ -10,7 +12,7 @@ const pool = new Pool({
   port: process.env.DB_PORT,// The port on which PostgreSQL is listening (5432 is the default port).
 })
 
-// Test the connection
+
 // pool.query('SELECT NOW()', (err, res) => {
 //   if (err) {
 //     console.error('Error connecting to PostgreSQL:', err);
