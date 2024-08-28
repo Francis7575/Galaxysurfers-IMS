@@ -60,7 +60,7 @@ const Navbar = () => {
           <div className='flex flex-col gap-[1rem]'>
             <Link
               to="/home"
-              className={`flex items-center gap-[8px] pl-4 ${location.pathname === '/home' ? 'bg-active' : ''}
+              className={`hover:opacity-70 flex items-center gap-[8px] pl-4 ${location.pathname === '/home' ? 'bg-active' : ''}
                 }`}
             >
               <LayoutDashboard className='w-4' />
@@ -75,19 +75,17 @@ const Navbar = () => {
 
               return (
                 <div key={item.idmm2}>
-                  <div className="flex items-center gap-[8px] cursor-pointer">
-                    <Link key={item.idmm2} to={item.link_mm2} className={`pl-4 flex w-full items-center gap-[8px] 
+                  <Link key={item.idmm2} to={item.link_mm2} className={`hover:opacity-70 pl-4 text-[.85rem] flex w-full items-center gap-[8px] 
                         ${location.pathname === item.link_mm2 ? 'bg-active' : ''}`}>
-                      {IconComponent}
-                      <span>{item.name_mm2}</span>
-                    </Link>
-                  </div>
+                    <span>{IconComponent}</span>
+                    <span className="leading-none">{item.name_mm2}</span>
+                  </Link>
                 </div>
               )
             })}
             <h2 className='text-[.75rem] text-gray font-medium uppercase mb-4'>Support</h2>
             <button onClick={handleLogout}
-              className='flex items-center gap-[8px] pl-4'>
+              className='flex items-center gap-[8px] pl-4 hover:opacity-50'>
               <LogOut className='w-4' />
               <span>Log Out</span>
             </button>

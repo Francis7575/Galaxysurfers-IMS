@@ -33,6 +33,7 @@ const CardContent: React.FC<CardProps> = ({ children }) => (
 const CustomTooltip = ({ active, payload }: any) => {
 	if (active && payload && payload.length) {
 		const { name, size, root } = payload[0].payload;
+		console.log('hi', size)	
 		return (
 			<div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc' }}>
 				<p className="label"><strong>Warehouse:</strong> {root.name}</p>
@@ -45,7 +46,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 	return null;
 };
 
-const DashboardHome: React.FC = () => {
+const DashboardHome = () => {
 	const [inventoryData, setInventoryData] = useState<InventoryData[]>([]);
 	const [inventoryOcupancy, setInventoryOcupancy] = useState([]);
 	const [inventoryIndicators, setInventoryIndicators] = useState({
@@ -68,7 +69,6 @@ const DashboardHome: React.FC = () => {
 		fetchInventoryData();
 	}, []);
 
-	console.log(inventoryData)
 
 	useEffect(() => {
 		const fetchItems = async () => {
@@ -85,7 +85,7 @@ const DashboardHome: React.FC = () => {
 					};
 
 					if (warehouse) {
-						warehouse.children.push(itemData);
+						warehouse.children.push(itemData);	
 					} else {
 						acc.push({
 							name: item.name_warehouse,
@@ -116,7 +116,6 @@ const DashboardHome: React.FC = () => {
 									stroke="#fff"
 									fill="#8884d8"
 								>
-
 									<Tooltip content={<CustomTooltip />} />
 								</Treemap>
 							</ResponsiveContainer>

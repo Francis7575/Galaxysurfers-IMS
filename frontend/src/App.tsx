@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Login, Home, Layout, AddUser, CreateUser, EditUser, UserPermissions } from './components'
+import { Login, Home, Layout, AddUser, CreateUser, EditUser, UserPermissions, AddWarehouse, CreateWarehouse, EditWarehouse } from './components'
 import { useAuth } from './hooks/useAuth'
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
@@ -27,10 +27,15 @@ const App = () => {
 
         <Route element={<Layout />} >
           <Route path="/home" element={<Home />} />
+
           <Route path="/adduser" element={<AddUser />} />
           <Route path="/createuser" element={<CreateUser />} />
           <Route path="/edituser" element={<EditUser />} />
           <Route path="/user-permissions" element={<UserPermissions />} />
+
+          <Route path="/addwarehouse" element={<AddWarehouse />} />
+          <Route path="/createwarehouse" element={<CreateWarehouse />} />
+          <Route path="/editwarehouse" element={<EditWarehouse />} />
         </Route>
       </Routes>
     </>

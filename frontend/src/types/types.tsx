@@ -31,3 +31,26 @@ export type CreateUserErrors = {
 
 export type EditUserData = CreateUserData
 export type EditUserErrors = CreateUserErrors
+
+export type EditWarehouseData = {
+  code: string;
+  name: string;
+}
+
+export type EditWarehouseErrors = {
+  code?: string;
+  name?: string;
+  capacity?: number;
+}
+
+export type CreateWarehouseData = EditWarehouseData
+
+export type CreateWarehouseErrors = {
+  address?: string;
+  zipcode?: string;
+  city?: string;
+  code?: string
+  name?: string
+  capacity?: number
+}
+
