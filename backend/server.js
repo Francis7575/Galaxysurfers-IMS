@@ -1,36 +1,34 @@
-import express from 'express'
-import cors from "cors"
-import dotenv from "dotenv"
-import cookieParser from 'cookie-parser'
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
 const app = express();
 
-const FRONTEND_URL = process.env.FRONTEND_URL
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
+// CORS options
 const corsOptions = {
-  origin: FRONTEND_URL || 'http://localhost:5173', 
-  credentials: true, // important for cookies
-  optionsSuccessStatus: 200 // for older browser support
+  origin: FRONTEND_URL, // Allow requests from this origin
+  credentials: true,    // Enable cookies to be sent and received
+  optionsSuccessStatus: 200 // For older browsers
 };
 
-// Middleware
+// Use CORS middleware with options
 app.use(cors(corsOptions));
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', FRONTEND_URL);
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Combine headers
-  next();
-});
+// Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 // Routes
-import usersRoute from './routes/usersRoutes.js'
+import usersRoute from './routes/usersRoutes.js';
 app.use('/users', usersRoute);
-import warehousesRoute  from './routes/warehousesRoutes.js'
+
+import warehousesRoute from './routes/warehousesRoutes.js';
 app.use('/warehouses', warehousesRoute);
 
 // Start the server
