@@ -53,7 +53,7 @@ const DashboardHome = () => {
 		units: 0,
 		items: 0
 	});
-
+console.log(inventoryData)
 	useEffect(() => {
 		const fetchInventoryData = () => {
 			const data: InventoryData[] = [

@@ -16,11 +16,13 @@
     "@react-three/fiber": "^8.17.6",
     "dotenv": "^16.4.5",
     "formik": "^2.4.6",
+    "lucide-react": "^0.436.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
     "react-toastify": "^10.0.5",
     "react-use": "^17.5.1",
+    "recharts": "^2.12.7",
     "three": "^0.167.1",
     "yup": "^1.4.0",
     "zod": "^3.23.8"

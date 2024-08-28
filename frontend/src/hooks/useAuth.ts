@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import { LoginForm } from "../types/types";
-import { useNavigate } from "react-router-dom";
 
 const useAuth = () => {
-  const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [userId, setUserId] = useState<number>(0);
   const [username, setUsername] = useState<string>("");
