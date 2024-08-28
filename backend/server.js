@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173', // use environment variable for frontend URL
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173', 
   credentials: true, // important for cookies
   optionsSuccessStatus: 200 // for older browser support
 };
