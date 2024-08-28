@@ -1,0 +1,109 @@
+CREATE TABLE users (
+    iduser SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL DEFAULT '',
+    name_user VARCHAR(50) NOT NULL DEFAULT '',
+    mail_user VARCHAR(75) NOT NULL DEFAULT '',
+    pass_user VARCHAR(255) NOT NULL DEFAULT '',
+    status_user INT DEFAULT 1
+);
+
+CREATE TABLE main_menu (
+    idmm SERIAL PRIMARY KEY,
+    name_mm VARCHAR(50) NOT NULL DEFAULT '',
+    link_mm VARCHAR(50) NOT NULL DEFAULT '',
+    order_mm INT DEFAULT 1,
+    fa_mm VARCHAR(50) NOT NULL DEFAULT '',
+    type_mm INT DEFAULT 1,
+    status_mm INT DEFAULT 1
+);
+
+CREATE TABLE main_menu2 (
+    idmm2 SERIAL PRIMARY KEY,
+    idmm_mm2 INT DEFAULT 0,
+    name_mm2 VARCHAR(50) NOT NULL DEFAULT '',
+    link_mm2 VARCHAR(50) NOT NULL DEFAULT '',
+    order_mm2 INT DEFAULT 1,
+    status_mm2 INT DEFAULT 1
+);
+
+
+CREATE TABLE main_menu_user2 (
+    idmmu2 SERIAL PRIMARY KEY,
+    iduser_mmu2 INT DEFAULT 0,
+    idmm_mmu2 INT DEFAULT 0,
+    access_mmu2 INT DEFAULT 1
+);
+
+CREATE TABLE warehouses (
+    idwarehouse SERIAL PRIMARY KEY,
+    code_warehouse VARCHAR(50) NOT NULL DEFAULT '',
+    name_warehouse VARCHAR(50) NOT NULL DEFAULT '',
+    capacitym3_warehouse DECIMAL(15,6) DEFAULT 0,
+    status_warehouse INT DEFAULT 1
+);
+
+CREATE TABLE items(
+    iditem SERIAL PRIMARY KEY,
+    code_item VARCHAR(50) NOT NULL DEFAULT '',
+    name_item VARCHAR(50) NOT NULL DEFAULT '',
+    description_item VARCHAR(255) NOT NULL DEFAULT '',
+    type_item VARCHAR(50) NOT NULL DEFAULT '',
+    idunit_item VARCHAR(50) NOT NULL DEFAULT '',
+    imgurl_item VARCHAR(150) NOT NULL DEFAULT '',
+    createdat_item TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    batch_ctrl_item INT DEFAULT 0,
+    expiration_ctrl_item INT DEFAULT 0,
+    status_item INT DEFAULT 1
+);
+
+CREATE TABLE locations(
+    idloc SERIAL PRIMARY KEY, 
+    idwarehouse_loc INT DEFAULT 0,
+    name_loc VARCHAR(50) NOT NULL DEFAULT '', 
+    color_loc VARCHAR(50) NOT NULL DEFAULT '', 
+    position_loc VARCHAR(50) NOT NULL DEFAULT '', 
+    size_loc VARCHAR(50) NOT NULL DEFAULT '', 
+    status_loc INT DEFAULT 0
+);
+
+
+
+CREATE TABLE inventory_batch(
+    idbatch SERIAL PRIMARY KEY,
+    iditem_bc INT DEFAULT 0,
+    lot_bc VARCHAR(100) NOT NULL DEFAULT '',
+    quantity_bc DECIMAL(15,6) DEFAULT 0.00,
+    createdat_bc TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    expirationdate_bc TIMESTAMP DEFAULT NULL, 
+    status_bc INT DEFAULT 1
+);
+
+CREATE TABLE inventory(
+    idinventory SERIAL PRIMARY KEY,
+    iditem_in INT DEFAULT 0,
+    idbatch_in INT DEFAULT 0,
+    idwarehouse_in INT DEFAULT 0,
+    idlocation_in INT DEFAULT 0,
+    quantity_in DECIMAL(15,6) DEFAULT 0.00,
+    status_in INT DEFAULT 1,
+    createdat_in TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE inventory_log(
+    idinventorylog SERIAL PRIMARY KEY,
+    idgroup_inlog VARCHAR(200) NOT NULL DEFAULT '',
+    type_inlog VARCHAR(50) NOT NULL DEFAULT '',
+    iditem_inlog INT DEFAULT 0,
+    idbatch_inlog INT DEFAULT 0,
+    idwarehouse_inlog INT DEFAULT 0,
+    idlocation_inlog INT DEFAULT 0,
+    quantity_inlog DECIMAL(15,6) DEFAULT 0.00,
+    iduser_inlog INT DEFAULT 0,
+    createdat_inlog TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    idmovtype_inlog INT DEFAULT 0,
+    idsubmovtype_inlog INT DEFAULT 0,
+    iddoc_inlog INT DEFAULT 0,
+    iddocdet_inlog INT DEFAULT 0,
+    lastquantity_inlog DECIMAL(15,6) DEFAULT 0.00,
+    obs_inlog VARCHAR(255) NOT NULL DEFAULT ''
+);
