@@ -20,10 +20,10 @@ app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 // Routes
-import usersRoute from './routes/usersRoutes.js'
-app.use('/users', usersRoute);
 import warehousesRoute  from './routes/warehousesRoutes.js'
 app.use('/warehouses', warehousesRoute);
+import usersRoute from './routes/usersRoutes.js'
+app.use('/users', usersRoute);
 
 // Start the server
 const PORT = process.env.BACKEND_PORT || 8000;
