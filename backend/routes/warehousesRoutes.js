@@ -1,9 +1,10 @@
-const express = require('express')
-const router = express.Router()
-const {
+import express from 'express'
+import {
   getDashboard, warehouseNew, warehouseUpdate, warehouseCancel, getWarehouses, saveLocations, getLocations
 }
-  = require('../controllers/warehousesController')
+  from '../controllers/warehousesController.js'
+
+const router = express.Router()
 
 router.post('/warehouse-new', warehouseNew)
 router.put('/warehouse-update/:idwarehouse', warehouseUpdate)
@@ -14,4 +15,4 @@ router.get('/get-locations/:idwarehouse', getLocations)
 
 router.get('/dashboard', getDashboard)
 
-module.exports = router
+export default router

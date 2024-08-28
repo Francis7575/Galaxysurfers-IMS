@@ -1,7 +1,9 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
+import express from 'express'
+import cors from "cors"
+import dotenv from "dotenv"
+import cookieParser from 'cookie-parser'
+import usersRoute from './routes/usersRoutes.js'
+import warehousesRoute  from './routes/warehousesRoutes.js'
 
 dotenv.config();
 
@@ -21,9 +23,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 // Routes
 
-const usersRoute = require('./routes/usersRoutes');
 app.use('/users', usersRoute);
-const warehousesRoute = require('./routes/warehousesRoutes')
 app.use('/warehouses', warehousesRoute);
 
 // Start the server

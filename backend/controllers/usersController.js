@@ -1,8 +1,8 @@
-const pool = require('../models/connection')
-const bcrypt = require('bcrypt')
+import pool from '../models/connection.js'
+import bcrypt from 'bcrypt';
 
 // Checks for a specific cookie 
-const checkLoggedIn = async (req, res) => {
+export const checkLoggedIn = async (req, res) => {
   if (req.signedCookies.userId) {
     // Fetch user info based on userId
     try {
@@ -21,7 +21,7 @@ const checkLoggedIn = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
+export const login = async (req, res) => {
   const { username, password } = req.body; 
   console.log('Request body:', req.body);
 
@@ -67,7 +67,7 @@ const login = async (req, res) => {
 };
 
 // get menus with access
-const getMenuAccess = async (req, res) => {
+export const getMenuAccess = async (req, res) => {
   try {
       /*
       3 types of response
@@ -120,7 +120,7 @@ const getMenuAccess = async (req, res) => {
 }
 
 //logout
-const logout = (req, res) => {
+export const logout = (req, res) => {
   res.clearCookie('userId') 
   res.json({
       userId: '',
@@ -129,7 +129,7 @@ const logout = (req, res) => {
 }
 
 // Add user
-const addUser = async (req, res) => {
+export const addUser = async (req, res) => {
   try {
       const { name_user, username, pass_user, mail_user} = req.body
 
@@ -151,7 +151,7 @@ const addUser = async (req, res) => {
 }
 
 // Get user
-const getUserList = async (req, res) => {
+export const getUserList = async (req, res) => {
   try {
 
       const result = await pool.query(`select * from users where status_user = 1`);
@@ -163,7 +163,7 @@ const getUserList = async (req, res) => {
   }
 }
 
-const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
   try {
       const { iduser } = req.params
 
@@ -177,7 +177,7 @@ const deleteUser = async (req, res) => {
 }
 
 // Update user
-const updateUser = async (req, res) => {
+export const updateUser = async (req, res) => {
   try {
       const { iduser } = req.params
       let { name_user, username, pass_user, mail_user} = req.body
@@ -194,7 +194,7 @@ const updateUser = async (req, res) => {
 }
 
 // Update Menu Access
-const updateMenuAccess = async (req, res) => {
+export const updateMenuAccess = async (req, res) => {
   try {
       const { iduser } = req.params;
       const { idmm2, access } = req.body;
@@ -220,14 +220,3 @@ const updateMenuAccess = async (req, res) => {
   }
 }
 
-module.exports = {
-  login,
-  checkLoggedIn,
-  getMenuAccess,
-  logout,
-  addUser,
-  getUserList,
-  deleteUser,
-  updateUser,
-  updateMenuAccess
-}

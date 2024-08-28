@@ -1,8 +1,9 @@
-const express = require('express')
-const router = express.Router()
-const {
+import express from 'express'
+import {
   login, checkLoggedIn, getMenuAccess, logout, addUser, deleteUser, updateUser, getUserList, updateMenuAccess
-} = require('../controllers/usersController')
+} from '../controllers/usersController.js'
+
+const router = express.Router()
 
 router.post('/login', login)
 router.get('/check-logged-in', checkLoggedIn)
@@ -15,4 +16,5 @@ router.put('/user-update/:iduser', updateUser)
 router.put('/update-menu-access/:iduser', updateMenuAccess)
 
 
-module.exports = router
+export default router;
+
