@@ -14,3 +14,5 @@ export { default as CheckboxList } from './userpermissions/CheckBoxList'
 export { default as AddWarehouse } from './warehouses-crud/AddWarehouse'
 export { default as CreateWarehouse } from './warehouses-crud/CreateWarehouse'
 export { default as EditWarehouse } from './warehouses-crud/EditWarehouse'
+
+export { default as Threejs } from './drags/Threejs'

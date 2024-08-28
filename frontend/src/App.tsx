@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
-import { Login, Home, Layout, AddUser, CreateUser, EditUser, UserPermissions, AddWarehouse, CreateWarehouse, EditWarehouse } from './components'
+import {
+  Login, Home, Layout, AddUser, CreateUser, EditUser, UserPermissions, AddWarehouse, CreateWarehouse, EditWarehouse,
+Threejs} from './components'
 import { useAuth } from './hooks/useAuth'
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
@@ -36,6 +38,8 @@ const App = () => {
           <Route path="/addwarehouse" element={<AddWarehouse />} />
           <Route path="/createwarehouse" element={<CreateWarehouse />} />
           <Route path="/editwarehouse" element={<EditWarehouse />} />
+
+          <Route path="/locations" element={<Threejs />} />
         </Route>
       </Routes>
     </>
