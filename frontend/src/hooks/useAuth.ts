@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { LoginForm } from "../types/types";
 
+const BACKEND_URL = import.meta.env.VITE_REACT_BACKEND_URL
+
 const useAuth = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [userId, setUserId] = useState<number>(0);
@@ -11,7 +13,7 @@ const useAuth = () => {
     const checkUserCookie = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/users/check-logged-in`,
+          `${BACKEND_URL}/users/check-logged-in`,
           {
             credentials: "include",
           }
@@ -34,7 +36,7 @@ const useAuth = () => {
   const handleLogin = async (formData: LoginForm) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/users/login`,
+        `${BACKEND_URL}/users/login`,
         { 
           method: "POST",
           headers: {
@@ -60,7 +62,7 @@ const useAuth = () => {
   const handleLogout = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/users/logout`,
+        `${BACKEND_URL}/users/logout`,
         {
           credentials: "include",
         }
