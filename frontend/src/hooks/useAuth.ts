@@ -12,8 +12,7 @@ const useAuth = () => {
   useEffect(() => {
     const checkUserCookie = async () => {
       try {
-        const response = await fetch(
-          `${BACKEND_URL}/users/check-logged-in`,
+        const response = await fetch(`${BACKEND_URL}/users/check-logged-in`,
           {
             credentials: "include",
           }
@@ -35,9 +34,7 @@ const useAuth = () => {
 
   const handleLogin = async (formData: LoginForm) => {
     try {
-      const response = await fetch(
-        `${BACKEND_URL}/users/login`,
-        { 
+      const response = await fetch(`${BACKEND_URL}/users/login`, { 
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -61,8 +58,7 @@ const useAuth = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch(
-        `${BACKEND_URL}/users/logout`,
+      const response = await fetch(`${BACKEND_URL}/users/logout`,
         {
           credentials: "include",
         }
