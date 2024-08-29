@@ -1,22 +1,20 @@
 import React, { useRef, useState } from 'react';
-import { Mesh,  } from 'three';
-import { ThreeEvent } from '@react-three/fiber';
+import { Mesh } from 'three';
+import { ThreeEvent, useThree } from '@react-three/fiber';
 import { Edges } from '@react-three/drei';
-
+import * as THREE from 'three';
 interface DraggableBoxProps {
   position: [number, number, number];
-  // rotation: [number, number, number];
   size: [number, number, number];
   color: string;
   name: string;
   setPosition: (position: [number, number, number]) => void;
-  // setRotation: (position: [number, number, number]) => void;
   otherBoxes: [number, number, number][];
   onDragStart: () => void;
   onDragEnd: () => void;
   isDragging: boolean;
   setIsDragging: (value: boolean) => void;
-  onClick: (event: ThreeEvent<MouseEvent>) => void; // Use the Three.js event type
+  onClick: (event: ThreeEvent<MouseEvent>) => void;
 }
 
 const DraggableBox: React.FC<DraggableBoxProps> = ({
@@ -29,18 +27,18 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({
   isDragging,
   setIsDragging,
   onClick,
-  // rotation
 }) => {
   const [hasMoved, setHasMoved] = useState(false);
   const meshRef = useRef<Mesh>(null);
-  const SCENE_BOUNDARY = 10;
+  const planeRef = useRef<Mesh>(null); // Reference to the plane
+  const { camera } = useThree();
 
   const handlePointerDown = (event: ThreeEvent<PointerEvent>) => {
     event.stopPropagation();
     (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
     onDragStart();
     setIsDragging(true);
-    setHasMoved(false); // Reset the movement state when starting a drag
+    setHasMoved(false);
   };
 
   const handlePointerUp = (event: ThreeEvent<PointerEvent>) => {
@@ -58,52 +56,63 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({
   const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
     if (!meshRef.current || !isDragging) return;
 
-    // Calculate the movement deltas based on the mouse movement
-    const deltaX = event.movementX / 50;
-    const deltaZ = event.movementY / 50;
 
-    // Keep the y position fixed to ensure the box stays on the platform
-    const newPosition: [number, number, number] = [
-      position[0] + deltaX,
-      position[1], // y position remains unchanged
-      position[2] + deltaZ,
-    ];
+    // Convert screen movement to world space
+    const planeNormal = new THREE.Vector3(0, 1, 0); 
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    if (planeRef.current) {
+      const intersects = raycaster.intersectObject(planeRef.current);
 
-    // Ensure the box doesn't go out of bounds on the x and z axes
-    const clampedPosition: [number, number, number] = [
-      Math.min(Math.max(newPosition[0], -SCENE_BOUNDARY), SCENE_BOUNDARY),
-      position[1], // y position remains unchanged
-      Math.min(Math.max(newPosition[2], -SCENE_BOUNDARY), SCENE_BOUNDARY),
-    ];
+      if (intersects.length > 0) {
+        const intersectPoint = intersects[0].point;
 
-    // Update the position state only if there's an actual movement
-    if (
-      clampedPosition[0] !== position[0] ||
-      clampedPosition[2] !== position[2] // Only check x and z positions
-    ) {
-      setPosition(clampedPosition);
-      setHasMoved(true);
+        // Compute new position based on intersection point
+        const newPosition: [number, number, number] = [
+          intersectPoint.x,
+          position[1],
+          intersectPoint.z,
+        ];
+
+        setPosition(newPosition);
+        setHasMoved(true);
+      }
     }
   };
 
   return (
-    <mesh
-      ref={meshRef}
-      position={position}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onClick={(e) => {
-        e.stopPropagation();
-        onClick(e); // Pass the event to the handler
-      }}
-      castShadow
-      receiveShadow
-    >
-      <boxGeometry args={size} />
-      <meshStandardMaterial color={color} />
-      <Edges color="black" />
-    </mesh>
+    <>
+      <mesh
+        ref={planeRef} // Assign ref to the plane
+        position={[0, -0.5, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        receiveShadow
+      >
+        <planeGeometry args={[20, 20]} />
+        <meshStandardMaterial color="lightblue" />
+        <Edges color="black" />
+      </mesh>
+      <mesh
+        ref={meshRef}
+        position={position}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick(e);
+        }}
+        castShadow
+        receiveShadow
+      >
+        <boxGeometry args={size} />
+        <meshStandardMaterial color={color} />
+        <Edges color="black" />
+      </mesh>
+    </>
   );
 };
 
