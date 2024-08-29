@@ -24,12 +24,6 @@ const CardContent: React.FC<CardProps> = ({ children }) => (
 	<div className="text-gray-700">{children}</div>
 );
 
-/*const topSellingProducts: Product[] = treemapData
-.flatMap(category => category.children)
-.sort((a, b) => b.size - a.size)
-.slice(0, 3)
-.map(product => ({ name: product.name, quantity: product.size }));*/
-
 const CustomTooltip = ({ active, payload }: any) => {
 	if (active && payload && payload.length) {
 		const { name, size, root } = payload[0].payload;

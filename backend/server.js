@@ -19,6 +19,12 @@ const corsOptions = {
 // Use CORS middleware with options
 app.use(cors(corsOptions));
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', FRONTEND_URL);
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Combine headers
+  next();
+});
+
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
