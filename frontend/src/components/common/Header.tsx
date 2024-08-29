@@ -43,7 +43,7 @@ const Header = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/get-access-menus?responseType=allowed`, {
+      const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/get-access-menus?responseType=allowed`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

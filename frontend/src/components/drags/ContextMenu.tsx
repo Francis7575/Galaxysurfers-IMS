@@ -1,4 +1,6 @@
 import { X, Trash } from "lucide-react";
+import { useState } from "react";
+import DeleteModal from "../common/DeleteModal";
 
 interface ContextMenuProps {
     position: { x: number; y: number };
@@ -15,6 +17,15 @@ const ContextMenu = ({
     onDelete,
     onClose,
 }: ContextMenuProps) => {
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const cancelDelete = () => {
+        setIsModalOpen(false);
+    };
 
     return (
         <div
@@ -40,9 +51,18 @@ const ContextMenu = ({
                     className="ml-2 p-1 border rounded-md"
                 />
             </label>
-            <button onClick={onDelete} className="hover:opacity-70 w-8 h-8 flex items-center justify-center bg-red text-white rounded-md">
+
+            <button onClick={handleOpenModal} className="hover:opacity-70 w-8 h-8 flex items-center justify-center bg-red text-white rounded-md">
                 <Trash className="w-4 h-4" />
             </button>
+            {isModalOpen && (
+                <DeleteModal
+                    setIsModalOpen={setIsModalOpen}
+                    itemName={name}
+                    deleteUser={onDelete}
+                    cancelDelete={cancelDelete}
+                />
+            )}
             <button onClick={onClose} className="hover:opacity-70 w-8 h-8 flex items-center justify-center bg-yellow-500 text-white rounded-md">
                 <X className="w-4 h-4" />
             </button>

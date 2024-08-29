@@ -15,11 +15,11 @@ const UserPermissions = () => {
   return (
     <div className="flex-1">
       <div className='hidden 930:block'>
-        <button onClick={navToUserMain}><Heading title="User Configuration" /></button>
+        <button onClick={navToUserMain} className='w-full'><Heading title="User Configuration" /></button>
       </div>
       <div className="px-[40px] 930:px-0 mb-[27px] 930:mb-[34px]">
         <div className="pt-[25px] 930:text-left border-b border-lightgray pb-[17px]
-					930:pl-[29px] 930:py-[30px] 930:w-full 930:border-none 930:pb-0 flex items-center">
+					930:pl-[29px] 930:py-[30px] 930:w-full 930:border-none 930:pb-0 flex items-center w-full">
           <button className='930:hidden max-w-[18px]'>
             <img src={BackBtn} alt="Back button" />
           </button>

@@ -5,10 +5,12 @@ import { Edges } from '@react-three/drei';
 
 interface DraggableBoxProps {
   position: [number, number, number];
+  // rotation: [number, number, number];
   size: [number, number, number];
   color: string;
   name: string;
   setPosition: (position: [number, number, number]) => void;
+  // setRotation: (position: [number, number, number]) => void;
   otherBoxes: [number, number, number][];
   onDragStart: () => void;
   onDragEnd: () => void;
@@ -27,6 +29,7 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({
   isDragging,
   setIsDragging,
   onClick,
+  // rotation
 }) => {
   const [hasMoved, setHasMoved] = useState(false);
   const meshRef = useRef<Mesh>(null);

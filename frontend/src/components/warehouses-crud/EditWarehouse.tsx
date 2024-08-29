@@ -58,7 +58,7 @@ const EditWarehouse = () => {
         return;
     }
 
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/warehouses/warehouse-update/${warehouse.idwarehouse}`, {
+    const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/warehouse-update/${warehouse.idwarehouse}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

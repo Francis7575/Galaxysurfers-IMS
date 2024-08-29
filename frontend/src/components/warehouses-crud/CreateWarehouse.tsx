@@ -55,7 +55,7 @@ const CreateWarehouse = () => {
       return;
     }
 
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/warehouses/warehouse-new`, {
+    const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/warehouse-new`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

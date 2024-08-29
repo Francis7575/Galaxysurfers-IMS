@@ -94,7 +94,7 @@ const CreateUser = () => {
             return;
         }
 
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/user-add`, {
+        const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/user-add`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

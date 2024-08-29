@@ -7,6 +7,7 @@ import ContextMenu from './ContextMenu';
 import { WarehouseType } from '../../types/typesBackend';
 import { Heading } from '../';
 import BackBtn from '/assets/back-button.svg';
+import { RotateCw } from 'lucide-react';
 
 const Threejs = () => {
   const location = useLocation();
@@ -16,7 +17,7 @@ const Threejs = () => {
   const navToWarehouseMain = () => {
     navigate('/addwarehouse');
   };
-
+  const [boxRotations, setBoxRotations] = useState<[number, number, number][]>([]);
   const [isDragging, setIsDragging] = useState(false);
   const [boxPositions, setBoxPositions] = useState<[number, number, number][]>([]);
   const [boxSizes, setBoxSizes] = useState<[number, number, number][]>([]);
@@ -29,7 +30,6 @@ const Threejs = () => {
   const [contextMenuOpen, setContextMenuOpen] = useState(false);
   const [contextMenuPosition, setContextMenuPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [selectedBoxIndex, setSelectedBoxIndex] = useState<number | null>(null);
-
 
   const handleDragStart = () => {
     setIsDragging(true);
@@ -83,7 +83,7 @@ const Threejs = () => {
   useEffect(() => {
     const fetchGetLocations = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/warehouses/get-locations/${warehouse.idwarehouse}`);
+        const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/get-locations/${warehouse.idwarehouse}`);
         if (response.ok) {
           const data = await response.json();
 
@@ -113,7 +113,7 @@ const Threejs = () => {
 
     try {
       console.log(dataToSave)
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/warehouses/save-locations/${warehouse.idwarehouse}`, {
+      const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/save-locations/${warehouse.idwarehouse}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -131,13 +131,27 @@ const Threejs = () => {
     }
   };
 
-  console.log(boxPositions)
+
+  // const updateBoxRotation = (index: number, newRotation: [number, number, number]) => {
+  //   setBoxRotations((prev) => {
+  //     const newRotations = [...prev];
+  //     newRotations[index] = newRotation;
+  //     return newRotations;
+  //   });
+  // };
+
+  // Handle rotation of all boxes
+  const rotateAllBoxes = (angle: number) => {
+    setBoxRotations((prev) =>
+      prev.map(([x, y, z]) => [x + angle, y + angle, z + angle] as [number, number, number])
+    );
+  };
 
   return (
     <section className='pb-4'>
       <div className="930:flex-1 font-manrope">
         <div className="hidden 930:block">
-          <button onClick={navToWarehouseMain}><Heading title="Warehouse Configuration" /></button>
+          <button className="w-full" onClick={navToWarehouseMain}><Heading title="Warehouse Configuration" /></button>
         </div>
         <div className="px-[40px] 930:px-0 mb-[27px] 930:mb-[34px]">
           <div className="pt-[25px] 930:text-left border-b border-lightgray pb-[17px]
@@ -215,7 +229,7 @@ const Threejs = () => {
 
               <Plane
                 args={[20, 20]}
-                rotation={[-Math.PI / 2, 0, 0]}
+                rotation={[-Math.PI / 2, 0, Math.PI / 4]}
                 position={[0, -0.5, 0]} // Adjusted height to make the boxes appear closer to the ground
                 receiveShadow
               >
@@ -230,20 +244,32 @@ const Threejs = () => {
                   size={boxSizes[index]}
                   color={boxColors[index]}
                   name={boxNames[index]}
-                  setPosition={(newPos) => updateBoxPosition(index, newPos)}
+                  // rotation={boxRotations[index] || [0, 0, 0]} 
+                  // setRotation={(newRotation: any) => updateBoxRotation(index, newRotation)}
+                  setPosition={(newPos: any) => updateBoxPosition(index, newPos)}
                   otherBoxes={boxPositions.filter((_, i) => i !== index)}
                   onDragStart={handleDragStart}
                   onDragEnd={handleDragEnd}
                   isDragging={isDragging}
                   setIsDragging={setIsDragging}
-                  onClick={(e) => handleBoxClick(index, e)}
+                  onClick={(e: any) => handleBoxClick(index, e)}
                 />
               ))}
 
               <OrbitControls
-                enableRotate={false}  
+                enableRotate={false}
                 enableZoom={true} />
             </Canvas>
+            {selectedBoxIndex !== null && (
+              <div className='absolute bottom-4 right-4'>
+                <button title="Rotate box"
+                  onClick={() => rotateAllBoxes(Math.PI / 4)}
+                  className='px-4 py-2'
+                >
+                  <RotateCw/>
+                </button>
+              </div>
+            )}
           </div>
         </div>
 

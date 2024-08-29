@@ -97,7 +97,7 @@ const EditUser = () => {
             return;
         }
 
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/user-update/${user.iduser}`, {
+        const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/user-update/${user.iduser}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

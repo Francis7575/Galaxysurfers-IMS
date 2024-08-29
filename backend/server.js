@@ -8,7 +8,6 @@ dotenv.config();
 const app = express();
 
 const FRONTEND_URL = process.env.FRONTEND_URL;
-
 // CORS options
 const corsOptions = {
   origin: FRONTEND_URL, // Allow requests from this origin

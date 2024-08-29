@@ -29,7 +29,7 @@ const CheckboxList = ({ user }: Props) => {
       )
     );
 
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/update-menu-access/${user.iduser}`, {
+    const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/update-menu-access/${user.iduser}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ const CheckboxList = ({ user }: Props) => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/get-access-menus?userId=${user.iduser}`);
+      const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/get-access-menus?userId=${user.iduser}`);
       const data = await response.json();
 
       const submenus = data.map((item: any) => {

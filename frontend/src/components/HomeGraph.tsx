@@ -66,7 +66,7 @@ console.log(inventoryData)
 
 	useEffect(() => {
 		const fetchItems = async () => {
-			const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/warehouses/dashboard`);
+			const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/dashboard`);
 			const data = await response.json();
 
 			setInventoryIndicators(data.indicators)
