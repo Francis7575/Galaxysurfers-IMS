@@ -32,7 +32,7 @@ const Header = () => {
       icon: <Warehouse />
     },
     {
-      link: '/additem',
+      link: '/itemMain',
       icon: <Book />
     },
     {

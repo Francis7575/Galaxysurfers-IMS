@@ -100,7 +100,7 @@ console.log(inventoryData)
 			<div className='flex flex-col gap-4 930:flex-row'>
 				<div className='w-full 930:w-2/3 flex flex-col gap-4'>
 					<Card>
-						<CardHeader>Occupancy</CardHeader>
+						<CardHeader>Inventory details</CardHeader>
 						<CardContent>
 							<ResponsiveContainer width="100%" height={400}>
 								<Treemap

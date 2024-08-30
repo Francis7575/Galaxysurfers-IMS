@@ -36,6 +36,9 @@ app.use('/users', usersRoute);
 import warehousesRoute from './routes/warehousesRoutes.js';
 app.use('/warehouses', warehousesRoute);
 
+import itemsRoute from './routes/itemsRoutes.js';
+app.use('/items', itemsRoute);
+
 // Start the server
 const PORT = process.env.BACKEND_PORT || 8000;
 app.listen(PORT, () => {

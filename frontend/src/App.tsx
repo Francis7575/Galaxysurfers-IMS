@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import {
   Login, Home, Layout, AddUser, CreateUser, EditUser, UserPermissions, AddWarehouse, CreateWarehouse, EditWarehouse,
-Threejs} from './components'
+Threejs, ItemMain, AddItem, EditItem} from './components'
 import { useAuth } from './hooks/useAuth'
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +12,7 @@ const App = () => {
   const { handleLogin, loggedIn, loading } = useAuth();
   const navigate = useNavigate();
 
+  // Redirects to the login page if the user is not logged in and loading is complete.
   useEffect(() => {
     if (!loading && !loggedIn) {
       navigate("/");
@@ -39,6 +40,10 @@ const App = () => {
           <Route path="/createwarehouse" element={<CreateWarehouse />} />
           <Route path="/editwarehouse" element={<EditWarehouse />} />
 
+          <Route path="/itemMain" element={<ItemMain />} />
+          <Route path="/addItem" element={<AddItem />} />
+          <Route path="/editItem" element={<EditItem />} />
+          
           <Route path="/locations" element={<Threejs />} />
         </Route>
       </Routes>

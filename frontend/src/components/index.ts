@@ -15,4 +15,8 @@ export { default as AddWarehouse } from './warehouses-crud/AddWarehouse'
 export { default as CreateWarehouse } from './warehouses-crud/CreateWarehouse'
 export { default as EditWarehouse } from './warehouses-crud/EditWarehouse'
 
+export { default as AddItem } from './items/AddItem'
+export { default as ItemMain } from './items/ItemMain'
+export { default as EditItem } from './items/EditItem'
+
 export { default as Threejs } from './drags/Threejs'

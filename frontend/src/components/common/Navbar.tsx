@@ -27,7 +27,7 @@ const Navbar = () => {
       icon: <Warehouse />
     },
     {
-      link: '/additem',
+      link: '/itemMain',
       icon: <Book />
     },
     {
@@ -44,7 +44,6 @@ const Navbar = () => {
           headers: { 'Content-Type': 'application/json' }
         });
         const data = await response.json();
-        console.log(data)
         if (data.length > 0) {
           setMenus(data[0].subMenus);
         }

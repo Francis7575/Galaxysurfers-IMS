@@ -12,3 +12,17 @@ export type WarehouseType = {
   capacitym3_warehouse: number;
   status_warehouse: number;
 };
+
+export type ItemType = {
+  iditem: number;
+  code_item: string;
+  name_item: string;
+  description_item: string;
+  type_item: string;
+  idunit_item: string;
+  unit: string;
+  name_unit: number;
+  batch_ctrl_item: number;
+  expiration_ctrl_item: number;
+  imgurl_item: string;
+};

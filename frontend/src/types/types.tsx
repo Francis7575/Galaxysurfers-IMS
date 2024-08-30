@@ -54,3 +54,14 @@ export type CreateWarehouseErrors = {
   capacity?: number
 }
 
+export type NewItem = {
+  productCode: string;
+  itemName: string;
+  itemUnit: string;
+  itemDescription: string;
+  itemBatch: string;
+  Expiration: string;
+  itemUrl: string;
+}
+
+
