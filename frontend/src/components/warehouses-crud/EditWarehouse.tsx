@@ -12,7 +12,7 @@ const EditWarehouse = () => {
     const warehouse = location.state as WarehouseType;
 
     const navToWarehouseMain = () => {
-        navigate('/addwarehouse');
+        navigate('/warehouseMain');
     }
 
   const [formData, setFormData] = useState<EditWarehouseData>({
@@ -70,7 +70,7 @@ const EditWarehouse = () => {
     });
 
     if(response.ok){
-        navigate('/addwarehouse');
+        navigate('/warehouseMain');
         toast.success('Warehouse Updated!');
     }else{
         

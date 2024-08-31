@@ -9,7 +9,7 @@ const CreateWarehouse = () => {
   const navigate = useNavigate();
 
   const navToNewWarehouse = () => {
-    navigate('/addwarehouse');
+    navigate('/warehouseMain');
   }
 
   const [formData, setFormData] = useState({
@@ -67,7 +67,7 @@ const CreateWarehouse = () => {
     });
 
     if (response.ok) {
-      navigate('/addwarehouse');
+      navigate('/warehouseMain');
       toast.success('Warehouse Created!');
     } else {
       toast.error('Something went wrong!');

@@ -26,3 +26,22 @@ export type ItemType = {
   expiration_ctrl_item: number;
   imgurl_item: string;
 };
+
+export type InventoryType = {
+  idinventory: number,
+  iditem_in: number,
+  code_item: string,
+  name_item: string,
+  batch_ctrl_item: number,
+  idbatch_in: number,
+  lot_bc: string,
+  expirationdate_bc: string,
+  idwarehouse_in: number,
+  code_warehouse: number,
+  name_warehouse: string,
+  imgurl_item: string,
+  idloc: number,
+  name_loc: string,
+  quantity_in: string,
+  createdat_bc: string
+};

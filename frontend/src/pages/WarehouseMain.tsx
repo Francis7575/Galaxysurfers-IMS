@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Heading } from '../index'
-import { WarehouseType } from '../../types/typesBackend';
+import { Heading } from '../components/index'
+import { WarehouseType } from '../types/typesBackend';
 import { toast } from 'react-toastify';
-import DeleteModal from '../common/DeleteModal';
+import DeleteModal from '../components/common/DeleteModal';
 
-const AddWarehouse = () => {
+const WarehouseMain = () => {
   const navigate = useNavigate();
   const [warehouses, setWarehouseList] = useState<WarehouseType[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -65,9 +65,11 @@ const AddWarehouse = () => {
 
   return (
     <div className="font-manrope flex-1 w-full">
-      <Heading title="Warehouse Configuration" />
+      <Heading
+        showBackBtn={false}
+        title="Warehouse Configuration" />
       <div className="flex justify-center 930:justify-start 930:pl-[29px] mt-[27px] mb-[17px] md:mb-[40px] 930:mt-[29px] 930:mb-[21px]">
-        <button className="bg-lightblue hover:opacity-70 py-[10px] max-w-[222px] w-full font-medium text-dark-color" onClick={navToNewWarehouse}>
+        <button className="bg-second-lightblue hover:opacity-70 py-[10px] max-w-[222px] w-full font-medium text-dark-color" onClick={navToNewWarehouse}>
           + Add new Warehouse
         </button>
       </div>
@@ -82,7 +84,7 @@ const AddWarehouse = () => {
               ))}
             </tr>
           </thead>
-          <tbody className="bg-lightblue ">
+          <tbody className="bg-second-lightblue ">
             {warehouses.map((item) => (
               <tr key={item.idwarehouse} className="text-[.85rem]">
                 <td className="p-[10px] text-center">{item.idwarehouse}</td>
@@ -129,4 +131,4 @@ const AddWarehouse = () => {
   )
 }
 
-export default AddWarehouse
+export default WarehouseMain

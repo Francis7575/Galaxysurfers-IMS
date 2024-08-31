@@ -16,7 +16,7 @@ const EditUser = () => {
     const user = location.state as UserType;
 
     const navToUserMain = () => {
-        navigate('/adduser');
+        navigate('/userMain');
     }
 
 	const [formData, setFormData] = useState<EditUserData>({
@@ -111,7 +111,7 @@ const EditUser = () => {
         });
 
         if(response.ok){
-            navigate('/adduser');
+            navigate('/userMain');
             toast.success('User Updated!');
         }else if(response.status == 401){
             toast.error('User already exists');

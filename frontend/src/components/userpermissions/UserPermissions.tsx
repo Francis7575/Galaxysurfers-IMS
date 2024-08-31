@@ -9,7 +9,7 @@ const UserPermissions = () => {
   const user = location.state as UserType; // This updates the menu access permissions for that user.
 
   const navToUserMain = () => {
-    navigate('/adduser');
+    navigate('/userMain');
   }
 
   return (

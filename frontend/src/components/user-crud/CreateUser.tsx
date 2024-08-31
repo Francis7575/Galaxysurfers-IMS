@@ -13,7 +13,7 @@ const CreateUser = () => {
     const navigate = useNavigate();
 
     const navToUserMain = () => {
-        navigate('/adduser');
+        navigate('/userMain');
     }
 
 	const [formData, setFormData] = useState<CreateUserData>({
@@ -108,7 +108,7 @@ const CreateUser = () => {
         });
 
         if(response.ok){
-            navigate('/adduser');
+            navigate('/userMain');
             toast.success('User Created!');
         }else if(response.status == 401){
             toast.error('User already exists');

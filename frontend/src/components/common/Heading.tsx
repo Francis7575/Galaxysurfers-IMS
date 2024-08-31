@@ -5,7 +5,7 @@ type UserHeading = {
   showBackBtn?: boolean;
 }
 
-const Usertitle = ({ title, showBackBtn = true }: UserHeading) => {
+const Heading = ({ title, showBackBtn = true }: UserHeading) => {
   return (
     <div className="px-[40px] 930:px-0 w-full">
       <div className="pt-[25px] 930:text-left border-b border-lightgray pb-[17px]
@@ -17,7 +17,7 @@ const Usertitle = ({ title, showBackBtn = true }: UserHeading) => {
           </button>
         )}
         <div className="flex-grow flex justify-center 930:justify-start">
-          <h2 className="font-medium">
+          <h2 className="font-medium 930:text-[1.2rem]">
             {title}
           </h2>
         </div>
@@ -26,4 +26,4 @@ const Usertitle = ({ title, showBackBtn = true }: UserHeading) => {
   )
 }
 
-export default Usertitle
+export default Heading

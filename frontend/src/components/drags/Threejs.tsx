@@ -14,7 +14,7 @@ const Threejs: React.FC = () => {
     const navigate = useNavigate();
 
     const navToWarehouseMain = () => {
-        navigate('/addwarehouse');
+        navigate('/warehouseMain');
     };
 
     const [isDragging, setIsDragging] = useState(false);

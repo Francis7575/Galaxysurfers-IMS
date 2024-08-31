@@ -19,11 +19,11 @@ const Navbar = () => {
 
   const icons = [
     {
-      link: '/adduser',
+      link: '/userMain',
       icon: <User />
     },
     {
-      link: '/addwarehouse',
+      link: '/warehouseMain',
       icon: <Warehouse />
     },
     {
@@ -53,8 +53,8 @@ const Navbar = () => {
   }, [userId]);
 
   return (
-    <nav className="bg-lightblue hidden 930:block max-w-[225px] lg:max-w-[250px] xl:max-w-[292px] min-h-screen">
-      <div className="flex flex-col px-[2.7rem] lg:px-[3.7rem] xl:px-[4.8rem]">
+    <nav className="bg-lightblue hidden w-full 930:block max-w-[225px] lg:max-w-[250px] xl:max-w-[272px] min-h-screen">
+      <div className="flex flex-col items-center">
         <div className="mb-8 pt-8">
           <h2 className='text-[.75rem] text-gray font-medium uppercase mb-4'>General</h2>
           <div className='flex flex-col gap-[1rem]'>
@@ -64,7 +64,7 @@ const Navbar = () => {
                 }`}
             >
               <LayoutDashboard className='w-4' />
-              <span>Dashboard</span>
+              <p className='text-[.85rem]'>Dashboard</p>
             </Link>
             {menus.map((item) => {
               const iconResult = icons.find(icon => icon.link == item.link_mm2)?.icon
@@ -78,7 +78,7 @@ const Navbar = () => {
                   <Link key={item.idmm2} to={item.link_mm2} className={`hover:opacity-70 pl-4 text-[.85rem] flex w-full items-center gap-[8px] 
                         ${location.pathname === item.link_mm2 ? 'bg-active' : ''}`}>
                     <span>{IconComponent}</span>
-                    <span className="leading-none">{item.name_mm2}</span>
+                    <span className='leading-none'>{item.name_mm2}</span>
                   </Link>
                 </div>
               )

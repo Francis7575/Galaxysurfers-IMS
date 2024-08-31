@@ -22,13 +22,17 @@ const Header = () => {
     setIsMenuOpened(!isMenuOpened);
   };
 
+  const handleCloseMenu = () => {
+    setIsMenuOpened(false);
+  };
+
   const icons = [
     {
-      link: '/adduser',
+      link: '/userMain',
       icon: <User />
     },
     {
-      link: '/addwarehouse',
+      link: '/warehouseMain',
       icon: <Warehouse />
     },
     {
@@ -71,7 +75,8 @@ const Header = () => {
 					${isMenuOpened ? 'translate-x-0' : 'translate-x-full 930:hidden'}`}>
           <h2 className='mb-[1.5rem] text-[.75rem] text-gray font-medium uppercase'>General</h2>
           <div className='flex flex-col gap-3'>
-            <Link to="/home" className='flex items-center gap-[8px] pl-4'>
+            <Link onClick={handleCloseMenu}
+              to="/home" className='flex items-center gap-[8px] pl-4'>
               <LayoutDashboard className='w-4' />
               <span>Dashboard</span>
             </Link>
@@ -85,7 +90,8 @@ const Header = () => {
               return (
                 <div key={item.idmm2}>
                   <div className="pl-4 cursor-pointer flex flex-col gap-4">
-                    <Link key={item.idmm2} to={item.link_mm2} className="flex items-center gap-[8px]">
+                    <Link onClick={handleCloseMenu}
+                      key={item.idmm2} to={item.link_mm2} className="flex items-center gap-[8px]">
                       {IconComponent}
                       <span>{item.name_mm2}</span>
                     </Link>

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Heading } from '../index'
-import { ItemType } from '../../types/typesBackend';
+import { Heading } from '../components/index'
+import { ItemType } from '../types/typesBackend';
 import { toast } from 'react-toastify';
-import DeleteModal from '../common/DeleteModal';
+import DeleteModal from '../components/common/DeleteModal';
 
 const ItemMain = () => {
 	const navigate = useNavigate();
@@ -48,21 +48,23 @@ const ItemMain = () => {
 		fetchItems();
 	}, []);
 
-  const cancelDelete = () => {
-    setIsModalOpen(false);
-    setSelectedItem(null);
-  };
+	const cancelDelete = () => {
+		setIsModalOpen(false);
+		setSelectedItem(null);
+	};
 
 	const handleDeleteClick = (item: ItemType) => {
-    setSelectedItem(item); // Set the selected item to be deleted
-    setIsModalOpen(true);  // Open the modal
-  };
+		setSelectedItem(item); // Set the selected item to be deleted
+		setIsModalOpen(true);  // Open the modal
+	};
 
 	return (
 		<div className="font-manrope flex-1 w-full">
-			<Heading title="Item Configuration" />
+			<Heading
+				showBackBtn={false}
+				title="Item Configuration" />
 			<div className="flex justify-center 930:justify-start 930:pl-[29px] mt-[27px] mb-[17px] md:mb-[40px] 930:mt-[29px] 930:mb-[21px]">
-				<button className="hover:opacity-70 bg-lightblue py-[10px] max-w-[222px] w-full font-medium text-dark-color" onClick={navToNewItem}>
+				<button className="hover:opacity-70 bg-second-lightblue py-[10px] max-w-[222px] w-full font-medium text-dark-color" onClick={navToNewItem}>
 					+ Add new item
 				</button>
 			</div>
@@ -77,7 +79,7 @@ const ItemMain = () => {
 							))}
 						</tr>
 					</thead>
-					<tbody className="bg-lightblue ">
+					<tbody className="bg-second-lightblue ">
 						{itemsList.map((item) => (
 							<tr className="text-[.85rem]" key={item.iditem}>
 								<td className="p-[10px] text-center">{item.code_item}</td>

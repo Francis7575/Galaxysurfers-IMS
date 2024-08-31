@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Heading } from '../index'
-import { UserType } from '../../types/typesBackend';
+import { Heading } from '../components/index'
+import { UserType } from '../types/typesBackend';
 import { toast } from 'react-toastify';
-import DeleteModal from '../common/DeleteModal';
+import DeleteModal from '../components/common/DeleteModal';
 
-const AddUser = () => {
+const UserMain = () => {
 	const navigate = useNavigate();
 	const tableHeading = ["User", "Name", "Mail", "Actions"]
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,7 +58,6 @@ const AddUser = () => {
 			const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/user-list`);
 			const data = await response.json();
 
-			console.log(data);
 			setUsersList(data);
 		}
 		fetchItems();
@@ -68,7 +67,7 @@ const AddUser = () => {
 		<div className="font-manrope flex-1 w-full">
 			<Heading title="User Configuration" showBackBtn={false} />
 			<div className="flex justify-center 930:justify-start 930:pl-[29px] mt-[27px] mb-[17px] md:mb-[40px] 930:mt-[29px] 930:mb-[21px]">
-				<button className="bg-lightblue hover:opacity-70 py-[10px] max-w-[222px] w-full font-medium text-dark-color" onClick={navToNewUser}>
+				<button className="bg-second-lightblue hover:opacity-70 py-[10px] max-w-[222px] w-full font-medium text-dark-color" onClick={navToNewUser}>
 					+ Add new user
 				</button>
 			</div>
@@ -83,7 +82,7 @@ const AddUser = () => {
 							))}
 						</tr>
 					</thead>
-					<tbody className="bg-lightblue ">
+					<tbody className="bg-second-lightblue ">
 						{usersList.map((item) => (
 							<tr className="text-[.85rem]" key={item.iduser}>
 								<td className="p-[10px] text-center">{item.username}</td>
@@ -130,4 +129,4 @@ const AddUser = () => {
 		</div>
 	)
 }
-export default AddUser
+export default UserMain
