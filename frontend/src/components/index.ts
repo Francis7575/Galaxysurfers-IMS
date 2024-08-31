@@ -20,7 +20,9 @@ export { default as ItemMain } from "../pages/ItemMain";
 export { default as EditItem } from "./items/EditItem";
 
 export { default as InventoryMain } from "../pages/InventoryMain";
-export { default as InventoryMenu } from "./inventory/Inventory";
+export { default as Inventory } from "./inventory/Inventory";
+export { default as InventoryIn } from "./inventory/InventoryIn";
+export { default as InventoryOut } from "./inventory/InventoryOut";
 
 export { default as Threejs } from "./drags/Threejs";
 export { default as ThreejsTwo } from "./drags/ThreejsTwo";

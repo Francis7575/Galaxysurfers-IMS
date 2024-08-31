@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import {
   Login, Home, Layout, UserMain, CreateUser, EditUser, UserPermissions, WarehouseMain, CreateWarehouse, EditWarehouse,
-  Threejs, ItemMain, AddItem, EditItem, InventoryMain, InventoryMenu, ThreejsTwo
+  Threejs, ItemMain, AddItem, EditItem, InventoryMain, Inventory, ThreejsTwo, InventoryIn, InventoryOut,
 } from './components'
 import { useAuth } from './hooks/useAuth'
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -46,7 +46,9 @@ const App = () => {
           <Route path="/editItem" element={<EditItem />} />
 
           <Route path="/inventoryMain" element={<InventoryMain />} />
-          <Route path="/inventoryMenu" element={<InventoryMenu />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/inventory-in" element={<InventoryIn />} />
+          <Route path="/inventory-out" element={<InventoryOut />} />
 
           <Route path="/locations" element={<Threejs />} />
           <Route path="/locations2" element={<ThreejsTwo />} />

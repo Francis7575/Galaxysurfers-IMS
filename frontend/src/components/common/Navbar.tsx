@@ -2,39 +2,40 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { LogOut, LayoutDashboard, User, Warehouse, Book, Boxes } from "lucide-react";
 import { useAuth } from '../../hooks/useAuth';
+import { SubMenuItem } from '../../types/types';
 
-interface SubMenuItem {
-  idmm2: number;
-  idmm_mm2: number;
-  name_mm2: string;
-  link_mm2: string;
-  order_mm2: number;
-  access_menu: number;
-}
+export const userlocations = ["/userMain", "/createuser", "/edituser", "/user-permissions"]
+export const warehouseslocations = ["/warehouseMain", "/createwarehouse", "/editwarehouse", "/locations"]
+export const itemslocations = ["/itemMain", "/addItem", "/editItem"]
+export const inventorylocations = ["/inventoryMain", "/inventory", "/inventory-in", "/inventory-out"]
+
+export const icons = [
+  {
+    link: '/userMain',
+    icon: <User />,
+    relatedPaths: userlocations,
+  },
+  {
+    link: '/warehouseMain',
+    icon: <Warehouse />,
+    relatedPaths: warehouseslocations,
+  },
+  {
+    link: '/itemMain',
+    icon: <Book />,
+    relatedPaths: itemslocations,
+  },
+  {
+    link: '/inventoryMain',
+    icon: <Boxes />,
+    relatedPaths: inventorylocations,
+  },
+]
 
 const Navbar = () => {
   const { userId, handleLogout } = useAuth();
   const [menus, setMenus] = useState<SubMenuItem[]>([]);
   const location = useLocation();
-
-  const icons = [
-    {
-      link: '/userMain',
-      icon: <User />
-    },
-    {
-      link: '/warehouseMain',
-      icon: <Warehouse />
-    },
-    {
-      link: '/itemMain',
-      icon: <Book />
-    },
-    {
-      link: '/inventoryMain',
-      icon: <Boxes />
-    },
-  ]
 
   useEffect(() => {
     if (userId) {
@@ -52,6 +53,10 @@ const Navbar = () => {
     }
   }, [userId]);
 
+  const isActiveRoute = (path: string, relatedPaths: string[]) => {
+    return relatedPaths.includes(path);
+  };
+
   return (
     <nav className="bg-lightblue hidden w-full 930:block max-w-[225px] lg:max-w-[250px] xl:max-w-[272px] min-h-screen">
       <div className="flex flex-col items-center">
@@ -67,16 +72,19 @@ const Navbar = () => {
               <p className='text-[.85rem]'>Dashboard</p>
             </Link>
             {menus.map((item) => {
-              const iconResult = icons.find(icon => icon.link == item.link_mm2)?.icon
+              const iconResult = icons.find(icon => icon.link === item.link_mm2);
 
               const IconComponent = iconResult
-                ? React.cloneElement(iconResult, { className: 'w-4' })
+                ? React.cloneElement(iconResult.icon, { className: 'w-4' })
                 : null;
+
+              // Check if the current route matches the specific group
+              const isActive = isActiveRoute(location.pathname, iconResult?.relatedPaths || []);
 
               return (
                 <div key={item.idmm2}>
                   <Link key={item.idmm2} to={item.link_mm2} className={`hover:opacity-70 pl-4 text-[.85rem] flex w-full items-center gap-[8px] 
-                        ${location.pathname === item.link_mm2 ? 'bg-active' : ''}`}>
+                        ${isActive ? 'bg-active' : ''}`}>
                     <span>{IconComponent}</span>
                     <span className='leading-none'>{item.name_mm2}</span>
                   </Link>

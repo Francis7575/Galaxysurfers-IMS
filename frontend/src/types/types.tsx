@@ -64,4 +64,22 @@ export type NewItem = {
   itemUrl: string;
 }
 
+export type InventoryData = {
+  product: string;
+  quantity: string;
+  units: string;
+  warehouse: string;
+  location: string;
+  batch?: string;
+  expire_date?: string;
+}
 
+export interface SubMenuItem {
+  idmm2: number;
+  idmm_mm2: number;
+  name_mm2: string;
+  link_mm2: string;
+  order_mm2: number;
+  access_menu: number;
+  relatedpaths: string[]
+}

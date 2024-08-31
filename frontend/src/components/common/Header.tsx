@@ -2,48 +2,27 @@ import OpenMenu from '/assets/open-menu.svg';
 import CloseMenu from '/assets/close-menu.svg';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { LogOut, LayoutDashboard, User, Warehouse, Book, Boxes } from "lucide-react";
+import { LogOut, LayoutDashboard } from "lucide-react";
 import { useAuth } from '../../hooks/useAuth';
-
-interface SubMenuItem {
-  idmm2: number;
-  idmm_mm2: number;
-  name_mm2: string;
-  link_mm2: string;
-  order_mm2: number;
-  access_menu: number;
-}
+import { icons } from "./Navbar"
+import { SubMenuItem } from '../../types/types';
 
 const Header = () => {
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
   const [menus, setMenus] = useState<SubMenuItem[]>([]);
   const { handleLogout } = useAuth()
+
   const handleToggleMenu = () => {
     setIsMenuOpened(!isMenuOpened);
   };
 
   const handleCloseMenu = () => {
     setIsMenuOpened(false);
-  };
+  }
 
-  const icons = [
-    {
-      link: '/userMain',
-      icon: <User />
-    },
-    {
-      link: '/warehouseMain',
-      icon: <Warehouse />
-    },
-    {
-      link: '/itemMain',
-      icon: <Book />
-    },
-    {
-      link: '/inventoryMain',
-      icon: <Boxes />
-    },
-  ]
+  const isActiveRoute = (path: string, relatedPaths: string[]) => {
+    return relatedPaths.includes(path);
+  };
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -74,24 +53,27 @@ const Header = () => {
         <div className={`pt-[2rem] pl-[30px] fixed min-h-screen right-0 top-0 z-10 bottom-0 w-[75%] bg-white transition-transform duration-300 ease-in-out 930:transform-none
 					${isMenuOpened ? 'translate-x-0' : 'translate-x-full 930:hidden'}`}>
           <h2 className='mb-[1.5rem] text-[.75rem] text-gray font-medium uppercase'>General</h2>
-          <div className='flex flex-col gap-3'>
+          <div className='flex flex-col gap-3 max-w-[150px]'>
             <Link onClick={handleCloseMenu}
-              to="/home" className='flex items-center gap-[8px] pl-4'>
+              to="/home" className={`flex items-center gap-[8px] pl-4 
+              ${location.pathname === '/home' ? 'bg-active' : ''}`}>
               <LayoutDashboard className='w-4' />
               <span>Dashboard</span>
             </Link>
             {menus.map((item) => {
-              const iconResult = icons.find(icon => icon.link == item.link_mm2)?.icon
+              const iconResult = icons.find(icon => icon.link == item.link_mm2)
 
               const IconComponent = iconResult
-                ? React.cloneElement(iconResult, { className: 'w-4' })
+                ? React.cloneElement(iconResult.icon, { className: 'w-4' })
                 : null;
+
+              const isActive = isActiveRoute(location.pathname, iconResult?.relatedPaths || []);
 
               return (
                 <div key={item.idmm2}>
                   <div className="pl-4 cursor-pointer flex flex-col gap-4">
                     <Link onClick={handleCloseMenu}
-                      key={item.idmm2} to={item.link_mm2} className="flex items-center gap-[8px]">
+                      key={item.idmm2} to={item.link_mm2} className={`flex items-center gap-[8px] ${isActive ? 'bg-active' : ''}`}>
                       {IconComponent}
                       <span>{item.name_mm2}</span>
                     </Link>

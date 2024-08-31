@@ -86,12 +86,12 @@ const CreateWarehouse = () => {
   return (
     <div className='pb-[40px] 930:flex-1 font-manrope'>
       <div className='hidden 930:block'>
-        <button onClick={navToNewWarehouse}><Heading title="Warehouse Configuration" /></button>
+        <a onClick={navToNewWarehouse}><Heading title="Warehouse Configuration" /></a>
       </div>
       <div className="px-[40px] 930:px-0 mb-[27px] 930:mb-[34px]">
         <div className="pt-[25px] 930:text-left border-b border-lightgray pb-[17px]
           930:pl-[29px] 930:py-[30px] 930:w-full 930:border-none 930:pb-0 flex items-center">
-          <button className='930:hidden max-w-[18px]'>
+          <button onClick={navToNewWarehouse} className='930:hidden max-w-[18px]'>
             <img src={BackBtn} alt="Back button" />
           </button>
           <div className="flex-grow flex justify-center 930:justify-start text-[1.15rem]">
@@ -123,9 +123,11 @@ const CreateWarehouse = () => {
             </div>
           ))}
         </div>
-        <button type="submit" className='hover:opacity-70 bg-second-blue py-[8px] max-w-[232px] w-full text-white font-medium rounded-[.625rem]'>
-          Create Warehouse
-        </button>
+        <div className='flex justify-center mt-4 930:justify-start 930:mt-0'> 
+          <button type="submit" className='hover:opacity-70 bg-second-blue py-[8px] max-w-[232px] w-full text-white font-medium rounded-[.625rem]'>
+            Create Warehouse
+          </button>
+        </div>
       </form>
     </div>
   )

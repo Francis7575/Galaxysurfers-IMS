@@ -45,3 +45,29 @@ export type InventoryType = {
   quantity_in: string,
   createdat_bc: string
 };
+
+export type LocationsType = {
+  idloc: number, 
+  idwarehouse_loc: number,
+  name_loc: string, 
+  color_loc: string, 
+  position_loc: string, 
+  size_loc: string
+};
+
+export type InventoryLogType = {
+  idinventorylog: number,
+  type_inlog: string,
+  iditem_inlog: number
+  code_item: string,
+  name_item: string,
+  batch_ctrl_item: number,
+  idbatch_inlog: number,
+  lot_bc: string,
+  idwarehouse_inlog: number,
+  code_warehouse: number,
+  name_warehouse: string,
+  name_loc: string,
+  quantity_inlog: number,
+  createdat_inlog: string
+};

@@ -2,33 +2,24 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import { WarehouseType } from '../../types/typesBackend';
 
 const Filters = () => {
-    const [showMore, setShowMore] = useState<boolean>(false);
-    const [activeFilter, setActiveFilter] = useState<string | null>(null);
-    const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: string | null }>({});
-    const [warehouses, setWarehouseList] = useState<WarehouseType[]>([]);
+  const [showMore, setShowMore] = useState<boolean>(false);
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: string | null }>({});
+  const [warehouses, setWarehouseList] = useState<WarehouseType[]>([]);
 
-    useEffect(() => {
-        const fetchItems = async () => {
-            const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/warehouses-list`);
-            const data = await response.json();
+  useEffect(() => {
+    const fetchItems = async () => {
+      const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/warehouses-list`);
+      const data = await response.json();
 
-            setWarehouseList(data);
-        }
-        fetchItems();
-    }, []);
+      setWarehouseList(data);
+    }
+    fetchItems();
+  }, []);
 
   const filters = [
-    { name: "Category", type: "select", options: ["Type", "New Option"] },
     { name: "Sort By", type: "select", options: ["Ascending", "Descending"] },
     { name: "Group By", type: "select", options: ["Item", "Warehouse", "Location"] },
-    {
-      name: "By Date",
-      type: "date",
-      content: [
-        { name: "Start Date", type: "date" },
-        { name: "End Date", type: "date" }
-      ]
-    },
     { name: "Warehouses", options: warehouses.map(i => i.name_warehouse) }
   ];
 
@@ -69,7 +60,7 @@ const Filters = () => {
                   <div className="mt-2 px-4 py-2 max-w-[400px] mx-auto">
                     {filter.type === "select" && (
                       <select
-                        className="w-full outline-none p-2 border rounded bg-white text-black border-fourth-lightgray" 
+                        className="w-full outline-none p-2 border rounded bg-white text-black border-fourth-lightgray"
                         value={selectedOptions[filter.name] || ''}
                         onChange={(e) => handleSelectChange(e, filter.name)}
                       >
@@ -80,17 +71,6 @@ const Filters = () => {
                         ))}
                       </select>
                     )}
-                    {filter.type === "date" && filter.content?.map(dateFilter => (
-                      <div key={dateFilter.name} className="mt-2">
-                        <label className="block mb-1">{dateFilter.name}</label>
-                        <input
-                          type="date"
-                          className="w-full outline-none p-2 border border-fourth-lightgray bg-white text-black"
-                          value={selectedOptions[dateFilter.name] || ''}
-                          onChange={(e) => handleDateChange(e, dateFilter.name)}
-                        />
-                      </div>
-                    ))}
                   </div>
                   {Array.isArray(filter.options) && !filter.type && (
                     <div className='grid grid-cols-2 gap-x-[5px] gap-y-[7px]'>
@@ -139,17 +119,6 @@ const Filters = () => {
                       ))}
                     </select>
                   )}
-                  {filter.type === "date" && filter.content?.map(dateFilter => (
-                    <div key={dateFilter.name} className="mt-2">
-                      <label className="block mb-1">{dateFilter.name}</label>
-                      <input
-                        type="date"
-                        className="w-full outline-none p-2 border rounded bg-white text-fourth-lightgray border-fourth-lightgray"
-                        value={selectedOptions[dateFilter.name] || ''}
-                        onChange={(e) => handleDateChange(e, dateFilter.name)}
-                      />
-                    </div>
-                  ))}
                   {Array.isArray(filter.options) && !filter.type && (
                     <div className='grid grid-cols-2 gap-x-[5px] gap-y-[7px]'>
                       {filter.options.map((item, index) => (

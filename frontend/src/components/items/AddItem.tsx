@@ -115,7 +115,7 @@ const AddItem = () => {
 
   return (
     <section className="pb-10">
-      <button className="w-full" onClick={navigateToItem}><Heading title="Item Configuration" /></button>
+      <a className="w-full" onClick={navigateToItem}><Heading title="Item Configuration" /></a>
       <div className="mt-8 px-[22px] max-w-[1100px]">
         <h2 className="mb-[18px] font-medium">New Item</h2>
         <Formik

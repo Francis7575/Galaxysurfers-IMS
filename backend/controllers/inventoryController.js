@@ -139,7 +139,6 @@ export const stockOut = async (req, res) => {
 
 // dashboard
 export const getStock = async (req, res) => {
-
   try {
     const result = await pool.query(`
             SELECT * from inventory
@@ -148,34 +147,9 @@ export const getStock = async (req, res) => {
             left join warehouses on inventory.idwarehouse_in = warehouses.idwarehouse
             left join locations on inventory.idlocation_in = locations.idloc`)
 
-
     res.status(200).json(result.rows)
   } catch (err) {
     console.log(err.message)
     res.status(500).send(err.message)
   }
 }
-
-// dashboard
-export const getLog = async (req, res) => {
-
-  try {
-    const result = await pool.query(`
-            SELECT * 
-            from inventory_log
-            left join items on inventory_log.iditem_inlog = items.iditem
-            left join warehouses on inventory_log.idwarehouse_inlog = warehouses.idwarehouse
-            left join locations on inventory_log.idlocation_inlog = locations.idloc
-            left join inventory_batch on inventory_log.idbatch_inlog = inventory_batch.idbatch
-
-            order by inventory_log.idinventorylog
-            `)
-
-
-    res.status(200).json(result.rows)
-  } catch (err) {
-    console.log(err.message)
-    res.status(500).send(err.message)
-  }
-}
-

@@ -42,11 +42,9 @@ input[type="number"] {
 		"input t3 t3 t3"
 		"t4 t4 t4 t4"
 		"t5 t6 t6 t6"
-		"t7 t7 t7 t7"
 		"button button button button";
 	gap: 24px;
 }
-
 
 .input-container {
 	grid-area: input;
