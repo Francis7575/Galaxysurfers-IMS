@@ -59,6 +59,7 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({
 
     // Convert screen movement to world space
     const planeNormal = new THREE.Vector3(0, 1, 0); 
+    console.log(planeNormal)
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;

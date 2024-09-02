@@ -36,12 +36,12 @@ const Filters = () => {
     }));
   };
 
-  const handleDateChange = (event: ChangeEvent<HTMLInputElement>, dateType: string) => {
-    setSelectedOptions(prevState => ({
-      ...prevState,
-      [dateType]: event.target.value
-    }));
-  };
+  // const handleDateChange = (event: ChangeEvent<HTMLInputElement>, dateType: string) => {
+  //   setSelectedOptions(prevState => ({
+  //     ...prevState,
+  //     [dateType]: event.target.value
+  //   }));
+  // };
 
   return (
     <section className=' px-[34px] mt-[27px] 930:mt-[19px] md:mx-auto max-w-[750px] md:px-0 930:pl-[34px] 930:mx-0'>
