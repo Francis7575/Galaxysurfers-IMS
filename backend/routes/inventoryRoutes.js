@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { stockIn, stockOut, getStock, getLog } from "../controllers/inventoryController.js"
+import { stockIn, stockOut, getStock } from "../controllers/inventoryController.js"
 const router = express.Router()
 
 
