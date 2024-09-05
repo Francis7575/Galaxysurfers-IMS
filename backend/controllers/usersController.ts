@@ -1,4 +1,4 @@
-import pool from "../models/connection.ts";
+import pool from "../models/connection.js";
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import {
@@ -6,7 +6,7 @@ import {
   CheckLoggedInResponse,
   GetMenuAccessQuery,
   HierarchicalMenuAccess,
-} from "../types/types.ts";
+} from "../types/types.js";
 
 // Checks for a specific cookie
 export const checkLoggedIn = async (
@@ -81,9 +81,10 @@ export const login = async (
         message: "User does not exist",
       });
     }
-  } catch (err) {
-    console.log(err.message);
-    res.status(500).send(err.message);
+  } catch (err: unknown) {
+    const error = err as Error;
+    console.error(error.message);
+    res.status(500).send(error.message);
   }
 };
 

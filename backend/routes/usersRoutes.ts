@@ -1,7 +1,7 @@
 import express from 'express'
 import {
   login, checkLoggedIn, getMenuAccess, logout, addUser, deleteUser, updateUser, getUserList, updateMenuAccess
-} from '../controllers/usersController.ts'
+} from '../controllers/usersController.js'
 
 const router = express.Router()
 

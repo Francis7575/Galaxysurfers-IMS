@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node server.ts",
-    "dev": "nodemon server.ts",
+    "start": "node dist/server.js",
+    "dev": "tsc && nodemon dist/server.js",
     "migrate": "ts-node --project tsconfig.migrations.json node_modules/node-pg-migrate/bin/node-pg-migrate.js"
   },
   "keywords": [],
@@ -26,6 +26,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.21",
     "@types/node": "^22.5.2",
     "@types/pg": "^8.11.8",
