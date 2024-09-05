@@ -1,7 +1,7 @@
 import express from 'express'
 import {
   login, checkLoggedIn, getMenuAccess, logout, addUser, deleteUser, updateUser, getUserList, updateMenuAccess
-} from '../controllers/usersController.js'
+} from '../controllers/usersController.ts'
 
 const router = express.Router()
 
@@ -17,4 +17,3 @@ router.put('/update-menu-access/:iduser', updateMenuAccess)
 
 
 export default router;
-

@@ -2,7 +2,6 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import { WarehouseType } from '../../types/typesBackend';
 
 const Filters = () => {
-  const [showMore, setShowMore] = useState<boolean>(false);
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: string | null }>({});
   const [warehouses, setWarehouseList] = useState<WarehouseType[]>([]);
@@ -22,8 +21,6 @@ const Filters = () => {
     { name: "Group By", type: "select", options: ["Item", "Warehouse", "Location"] },
     { name: "Warehouses", options: warehouses.map(i => i.name_warehouse) }
   ];
-
-  const visibleFilters = showMore ? filters : filters.slice(0, 3); // Show only first 3 filters by default
 
   const handleButtonClick = (filterName: string) => {
     setActiveFilter(prevFilter => prevFilter === filterName ? null : filterName); // Toggle content visibility
@@ -48,7 +45,7 @@ const Filters = () => {
       <div className="bg-fifth-lightblue 930:rounded-[15px] px-[25px] py-4 md:px-[40px] md:py-8 930:max-w-[270px] 930:w-full 930:px-[9px] 930:py-4">
         <div className="bg-white px-4 py-[18px] 930:hidden">
           <div className="flex flex-col gap-[12px] rounded-[8px]">
-            {visibleFilters.map((filter) => (
+            {filters.map((filter) => (
               <div key={filter.name} className=''>
                 <button
                   onClick={() => handleButtonClick(filter.name)}
@@ -73,7 +70,7 @@ const Filters = () => {
                     )}
                   </div>
                   {Array.isArray(filter.options) && !filter.type && (
-                    <div className='grid grid-cols-2 gap-x-[5px] gap-y-[7px]'>
+                    <div className='grid grid-cols-2 gap-x-[10px] gap-y-[12px] text-center'>
                       {filter.options.map((item, index) => (
                         <div key={index} className='border border-third-lightgray rounded-[8px] py-[2px]'>
                           <button>
@@ -88,14 +85,6 @@ const Filters = () => {
             ))}
           </div>
         </div>
-        {filters.length > 3 && (
-          <button
-            onClick={() => setShowMore(!showMore)}
-            className="mt-4 930:hidden py-2 px-4 rounded-[8px] text-center"
-          >
-            {showMore ? 'Show Less Filters' : 'Show More Filters'}
-          </button>
-        )}
 
         {/* Desktop */}
         <section className='hidden 930:block'>
@@ -120,10 +109,10 @@ const Filters = () => {
                     </select>
                   )}
                   {Array.isArray(filter.options) && !filter.type && (
-                    <div className='grid grid-cols-2 gap-x-[5px] gap-y-[7px]'>
+                    <div className='grid grid-cols-2 gap-x-[5px] gap-y-[12px]'>
                       {filter.options.map((item, index) => (
                         <div key={index} >
-                          <button className='border border-third-lightgray rounded-[8px] px-3'>
+                          <button className='border border-third-lightgray rounded-[8px] w-full overflow-auto'>
                             {item}
                           </button>
                         </div>

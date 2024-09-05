@@ -7,7 +7,7 @@ CREATE TABLE users (
     status_user INT DEFAULT 1
 );
 
-CREATE TABLE main_menu (
+CREATE TABLE navbar_menu (
     idmm SERIAL PRIMARY KEY,
     name_mm VARCHAR(50) NOT NULL DEFAULT '',
     link_mm VARCHAR(50) NOT NULL DEFAULT '',
@@ -17,7 +17,7 @@ CREATE TABLE main_menu (
     status_mm INT DEFAULT 1
 );
 
-CREATE TABLE main_menu2 (
+CREATE TABLE navbar_menu2 (
     idmm2 SERIAL PRIMARY KEY,
     idmm_mm2 INT DEFAULT 0,
     name_mm2 VARCHAR(50) NOT NULL DEFAULT '',
@@ -27,7 +27,7 @@ CREATE TABLE main_menu2 (
 );
 
 
-CREATE TABLE main_menu_user2 (
+CREATE TABLE navbar_menu_user2 (
     idmmu2 SERIAL PRIMARY KEY,
     iduser_mmu2 INT DEFAULT 0,
     idmm_mmu2 INT DEFAULT 0,
@@ -38,7 +38,7 @@ CREATE TABLE warehouses (
     idwarehouse SERIAL PRIMARY KEY,
     code_warehouse VARCHAR(50) NOT NULL DEFAULT '',
     name_warehouse VARCHAR(50) NOT NULL DEFAULT '',
-    capacitym3_warehouse DECIMAL(15,6) DEFAULT 0,
+    capacitym3_warehouse DECIMAL(15,2) DEFAULT 0,
     status_warehouse INT DEFAULT 1
 );
 
@@ -65,8 +65,6 @@ CREATE TABLE locations(
     size_loc VARCHAR(50) NOT NULL DEFAULT '', 
     status_loc INT DEFAULT 0
 );
-
-
 
 CREATE TABLE inventory_batch(
     idbatch SERIAL PRIMARY KEY,

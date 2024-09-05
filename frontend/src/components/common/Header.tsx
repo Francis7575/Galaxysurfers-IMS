@@ -55,7 +55,7 @@ const Header = () => {
           <h2 className='mb-[1.5rem] text-[.75rem] text-gray font-medium uppercase'>General</h2>
           <div className='flex flex-col gap-3 max-w-[150px]'>
             <Link onClick={handleCloseMenu}
-              to="/home" className={`flex items-center gap-[8px] pl-4 
+              to="/home" className={`flex items-center gap-[8px] justify-center 
               ${location.pathname === '/home' ? 'bg-active' : ''}`}>
               <LayoutDashboard className='w-4' />
               <span>Dashboard</span>
@@ -71,9 +71,9 @@ const Header = () => {
 
               return (
                 <div key={item.idmm2}>
-                  <div className="pl-4 cursor-pointer flex flex-col gap-4">
+                  <div className="cursor-pointer flex flex-col gap-4">
                     <Link onClick={handleCloseMenu}
-                      key={item.idmm2} to={item.link_mm2} className={`flex items-center gap-[8px] ${isActive ? 'bg-active' : ''}`}>
+                      key={item.idmm2} to={item.link_mm2} className={`flex justify-center items-center gap-[8px] ${isActive ? 'bg-active' : ''}`}>
                       {IconComponent}
                       <span>{item.name_mm2}</span>
                     </Link>

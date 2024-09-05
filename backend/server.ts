@@ -19,7 +19,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', FRONTEND_URL);
+  res.setHeader('Access-Control-Allow-Origin', FRONTEND_URL!);
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Combine headers
   next();
 });
@@ -30,16 +30,16 @@ app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 // Routes
-import usersRoute from './routes/usersRoutes.js';
+import usersRoute from './routes/usersRoutes.ts';
 app.use('/users', usersRoute);
 
-import warehousesRoute from './routes/warehousesRoutes.js';
+import warehousesRoute from './routes/warehousesRoutes.ts';
 app.use('/warehouses', warehousesRoute);
 
-import itemsRoute from './routes/itemsRoutes.js';
+import itemsRoute from './routes/itemsRoutes.ts';
 app.use('/items', itemsRoute);
 
-import inventoryRoute from './routes/inventoryRoutes.js';
+import inventoryRoute from './routes/inventoryRoutes.ts';
 app.use('/inventory', inventoryRoute);
 
 // Start the server

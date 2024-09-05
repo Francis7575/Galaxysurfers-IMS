@@ -13,7 +13,7 @@ dotenv.config();
 // })
 
 const pool = new Pool({
-  connectionString: process.env.RENDERDB_INT,
+  connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
