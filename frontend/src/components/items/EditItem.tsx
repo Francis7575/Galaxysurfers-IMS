@@ -95,7 +95,6 @@ const EditItem = () => {
           code_item: formData.productCode,
           name_item: formData.itemName,
           description_item: formData.itemDescription,
-          type_item: 'product',
           idunit_item: formData.itemUnit,
           batch_ctrl_item: formData.batch_ctrl_item,
           expiration_ctrl_item: formData.expiration_ctrl_item,

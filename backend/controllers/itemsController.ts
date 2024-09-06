@@ -13,6 +13,9 @@ export const itemList = async (
             SELECT * FROM items WHERE status_item = $1`,
       [1]
     );
+
+
+
     return res.status(200).json(result.rows);
   } catch (err: unknown) {
     const error = err as Error;
@@ -68,7 +71,7 @@ export const itemNew = async (
 
 // UPDATE ITEM
 export const itemUpdate = async (
-  req: Request<{}, {}, ItemBody>,
+  req: Request,
   res: Response
 ): Promise<Response> => {
   try {
@@ -80,10 +83,28 @@ export const itemUpdate = async (
       batch_ctrl_item,
       expiration_ctrl_item,
       imgurl_item,
-    } = req.body;
+    } = req.body as ItemBody;
 
-    await pool.query(
-      "update items set code_item = $1, name_item = $2, description_item = $3, idunit_item = $4, batch_ctrl_item = $5, expiration_ctrl_item = $6, imgurl_item = $7",
+		const {iditem} = req.params
+
+		console.log(iditem)
+
+    // Check if iditem is provided
+    if (!iditem) {
+      return res.status(400).json({ error: "Item ID (iditem) is required to update an item." });
+    }
+		console.log(iditem)
+    // Update the specific item identified by iditem
+    const result = await pool.query(
+      `UPDATE items 
+         SET code_item = $1, 
+             name_item = $2, 
+             description_item = $3, 
+             idunit_item = $4, 
+             batch_ctrl_item = $5, 
+             expiration_ctrl_item = $6, 
+             imgurl_item = $7 
+         WHERE iditem = $8`, // Using iditem to uniquely identify the row
       [
         code_item,
         name_item,
@@ -92,16 +113,22 @@ export const itemUpdate = async (
         batch_ctrl_item,
         expiration_ctrl_item,
         imgurl_item,
+        iditem
       ]
     );
 
-    return res.status(201).send("Item updated!");
+    // Check if the update affected any rows
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: "Item not found or no changes made." });
+    }
+
+    return res.status(200).send("Item updated successfully!");
   } catch (err: unknown) {
     const error = err as Error;
-    console.error(error.message);
+    console.error("Error updating item:", error.message);
     return res.status(500).send(error.message);
   }
-};
+};0
 
 // DELETE ITEM
 export const itemCancel = async (

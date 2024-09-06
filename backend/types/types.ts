@@ -40,6 +40,7 @@ export type HierarchicalMenuAccess = {
 
 // itemsController.ts
 export type ItemBody = {
+  iditem: number;
   code_item: string;
   name_item: string;
   description_item: string;
