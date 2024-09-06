@@ -38,7 +38,6 @@ CREATE TABLE warehouses (
     idwarehouse SERIAL PRIMARY KEY,
     code_warehouse VARCHAR(50) NOT NULL DEFAULT '',
     name_warehouse VARCHAR(50) NOT NULL DEFAULT '',
-    capacitym3_warehouse DECIMAL(15,2) DEFAULT 0,
     status_warehouse INT DEFAULT 1
 );
 

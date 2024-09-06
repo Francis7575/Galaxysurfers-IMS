@@ -60,7 +60,7 @@ const Navbar = () => {
   return (
     <nav className="bg-lightblue hidden w-full 930:block max-w-[225px] lg:max-w-[250px] xl:max-w-[272px] min-h-screen">
       <div className="flex flex-col items-center">
-        <div className="mb-8 pt-8 w-full max-w-[150px]">
+        <div className="mb-8 pt-8 w-full max-w-[130px]">
           <h2 className='text-[.75rem] text-gray font-medium uppercase mb-4'>General</h2>
           <div className='flex flex-col gap-[1rem]'>
             <Link

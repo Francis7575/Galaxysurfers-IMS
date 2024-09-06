@@ -40,7 +40,6 @@ export type EditWarehouseData = {
 export type EditWarehouseErrors = {
   code?: string;
   name?: string;
-  capacity?: number;
 }
 
 export type CreateWarehouseData = EditWarehouseData
@@ -51,7 +50,6 @@ export type CreateWarehouseErrors = {
   city?: string;
   code?: string
   name?: string
-  capacity?: number
 }
 
 export type NewItem = {

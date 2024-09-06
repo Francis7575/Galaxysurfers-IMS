@@ -10,6 +10,7 @@ exports.shorthands = undefined;
 exports.up = (pgm) => {
   pgm.createTable('users', {
     iduser: 'serial primary key',
+    username: { type: 'varchar(500)', notNull: true, default: '' },
     name_user: { type: 'varchar(500)', notNull: true, default: '' },
     mail_user: { type: 'varchar(500)', notNull: true, default: '' },
     pass_user: { type: 'varchar(500)', notNull: true, default: '' },
@@ -82,7 +83,6 @@ exports.up = (pgm) => {
     idwarehouse: 'serial primary key',
     code_warehouse: { type: 'varchar(500)', default: '' },
     name_warehouse: { type: 'varchar(500)', default: '' },
-    capacitym3_warehouse: { type: 'decimal(15,2)', default: 0 },
     status_warehouse: { type: 'integer', default: 1 },
     createdAt: {
       type: 'timestamp',
@@ -100,7 +100,6 @@ exports.up = (pgm) => {
     code_item: { type: 'varchar(50)', notNull: true, default: '' },
     name_item: { type: 'varchar(50)', notNull: true, default: '' },
     description_item: { type: 'varchar(255)', notNull: true, default: '' },
-    type_item: { type: 'varchar(50)', notNull: true, default: '' },
     idunit_item: { type: 'varchar(50)', notNull: true, default: '' },
     imgurl_item: { type: 'varchar(150)', notNull: true, default: '' },
     createdat_item: { type: 'timestamp', default: pgm.func('current_timestamp'), },

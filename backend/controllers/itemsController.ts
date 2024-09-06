@@ -31,7 +31,6 @@ export const itemNew = async (
       code_item,
       name_item,
       description_item,
-      type_item,
       idunit_item,
       batch_ctrl_item,
       expiration_ctrl_item,
@@ -47,12 +46,11 @@ export const itemNew = async (
     }
 
     await pool.query(
-      "INSERT INTO items(code_item, name_item, description_item, type_item, idunit_item, batch_ctrl_item, expiration_ctrl_item, imgurl_item) values($1, $2, $3, $4, $5, $6, $7, $8)",
+      "INSERT INTO items(code_item, name_item, description_item, idunit_item, batch_ctrl_item, expiration_ctrl_item, imgurl_item) values($1, $2, $3, $4, $5, $6, $7)",
       [
         code_item,
         name_item,
         description_item,
-        type_item,
         idunit_item,
         batch_ctrl_item,
         expiration_ctrl_item,
@@ -78,7 +76,6 @@ export const itemUpdate = async (
       code_item,
       name_item,
       description_item,
-      type_item,
       idunit_item,
       batch_ctrl_item,
       expiration_ctrl_item,
@@ -86,12 +83,11 @@ export const itemUpdate = async (
     } = req.body;
 
     await pool.query(
-      "update items set code_item = $1, name_item = $2, description_item = $3, type_item = $4, idunit_item = $5, batch_ctrl_item = $6, expiration_ctrl_item = $7",
+      "update items set code_item = $1, name_item = $2, description_item = $3, idunit_item = $4, batch_ctrl_item = $5, expiration_ctrl_item = $6, imgurl_item = $7",
       [
         code_item,
         name_item,
         description_item,
-        type_item,
         idunit_item,
         batch_ctrl_item,
         expiration_ctrl_item,

@@ -9,7 +9,6 @@ export type WarehouseType = {
   idwarehouse: number;
   code_warehouse: string;
   name_warehouse: string;
-  capacitym3_warehouse: number;
   status_warehouse: number;
 };
 
