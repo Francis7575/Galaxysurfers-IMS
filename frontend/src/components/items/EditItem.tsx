@@ -98,7 +98,7 @@ const EditItem = () => {
           idunit_item: formData.itemUnit,
           batch_ctrl_item: formData.batch_ctrl_item,
           expiration_ctrl_item: formData.expiration_ctrl_item,
-          imageUrl: formData.imageUrl, // If you want to send the image URL too
+          imageUrl: formData.imageUrl, 
         }),
       });
       

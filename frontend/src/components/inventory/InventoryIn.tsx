@@ -178,7 +178,7 @@ const InventoryIn = () => {
                   </label>
                   {field.type === 'select' ? (
                     <select
-                      className={`border border-blue-500 rounded-[7px] py-[10px] pl-[10px] outline-none ${field.className || ''} ${field.disabled ? 'disabled-input' : ''}`}
+                      className={`border border-blue-500 rounded-[7px] py-[10px] px-[10px] outline-none ${field.className || ''} ${field.disabled ? 'disabled-input' : ''}`}
                       value={formData[field.name]}
                       onFocus={handleInputFocus}
                       onChange={handleInputChange}

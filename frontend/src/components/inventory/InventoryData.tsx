@@ -28,7 +28,7 @@ const InventoryData = () => {
 	}
 
 	return (
-		<section className='mt-[27px] 930:mt-[38px] pb-8 px-[23px] 930:px-0 930:flex-1 930:pr-[24px]'>
+		<section className='mt-[27px] 930:mt-0 pb-8 930:pb-0 px-[23px] 930:px-0 930:flex-1 930:pr-[24px]'>
 			{inventory.map((item, index) => {
 				console.log(inventory)
 				const expirationDate = new Date(item.expirationdate_bc);
@@ -42,7 +42,8 @@ const InventoryData = () => {
 
 				console.log(isNearExpiration, daysDiff, currentDate)
 				return (
-					<div key={item.idinventory} className={`border py-[8px] pl-[9px] pr-[41px] rounded-[8px] ${index != 0 ? 'mt-3' : ''} ${isNearExpiration ? 'border-red' : 'border-second-lightgray'}`}>
+					<div key={item.idinventory} className={`border py-[8px] px-5 930:px-8 rounded-[8px] hover:bg-lightblue cursor-pointer 
+							${index != 0 ? 'mt-3' : ''} ${isNearExpiration ? 'border-red' : 'border-second-lightgray'}`}>
 						<a onClick={() => check3d(item.idloc, item.idwarehouse_in, item.name_warehouse)}><div className='flex justify-between'>
 							<div className='flex items-center'>
 								<label

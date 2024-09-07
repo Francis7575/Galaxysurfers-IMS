@@ -14,8 +14,6 @@ export const itemList = async (
       [1]
     );
 
-
-
     return res.status(200).json(result.rows);
   } catch (err: unknown) {
     const error = err as Error;
@@ -128,7 +126,7 @@ export const itemUpdate = async (
     console.error("Error updating item:", error.message);
     return res.status(500).send(error.message);
   }
-};0
+};
 
 // DELETE ITEM
 export const itemCancel = async (

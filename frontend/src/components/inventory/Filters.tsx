@@ -1,24 +1,20 @@
-import { useState, ChangeEvent, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { WarehouseType } from '../../types/typesBackend';
 
 const Filters = () => {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
-  const [selectedOptions, setSelectedOptions] = useState<{ [key: string]: string | null }>({});
   const [warehouses, setWarehouseList] = useState<WarehouseType[]>([]);
 
   useEffect(() => {
     const fetchItems = async () => {
       const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/warehouses-list`);
       const data = await response.json();
-
       setWarehouseList(data);
     }
     fetchItems();
   }, []);
 
   const filters = [
-    { name: "Sort By", type: "select", options: ["Ascending", "Descending"] },
-    { name: "Group By", type: "select", options: ["Item", "Warehouse", "Location"] },
     { name: "Warehouses", options: warehouses.map(i => i.name_warehouse) }
   ];
 
@@ -26,23 +22,9 @@ const Filters = () => {
     setActiveFilter(prevFilter => prevFilter === filterName ? null : filterName); // Toggle content visibility
   };
 
-  const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>, filterName: string) => {
-    setSelectedOptions(prevState => ({
-      ...prevState,
-      [filterName]: event.target.value
-    }));
-  };
-
-  // const handleDateChange = (event: ChangeEvent<HTMLInputElement>, dateType: string) => {
-  //   setSelectedOptions(prevState => ({
-  //     ...prevState,
-  //     [dateType]: event.target.value
-  //   }));
-  // };
-
   return (
-    <section className=' px-[34px] mt-[27px] 930:mt-[19px] md:mx-auto max-w-[750px] md:px-0 930:pl-[34px] 930:mx-0'>
-      <div className="bg-fifth-lightblue 930:rounded-[15px] px-[25px] py-4 md:px-[40px] md:py-8 930:max-w-[270px] 930:w-full 930:px-[9px] 930:py-4">
+    <section className=' px-[34px] mt-[27px] 930:mt-0 md:mx-auto max-w-[750px] md:px-0 930:pl-[34px] 930:mx-0 930:flex-1 930:max-w-[250px]'>
+      <div className="bg-fifth-lightblue 930:rounded-[15px] px-[25px] py-4 md:px-[40px] md:py-8 930:max-w-[250px] 930:w-full 930:px-[9px] 930:py-4">
         <div className="bg-white px-4 py-[18px] 930:hidden">
           <div className="flex flex-col gap-[12px] rounded-[8px]">
             {filters.map((filter) => (
@@ -54,22 +36,7 @@ const Filters = () => {
                   {filter.name}
                 </button>
                 <div className={`filter-content ${activeFilter === filter.name ? 'open' : ''}`}>
-                  <div className="mt-2 px-4 py-2 max-w-[400px] mx-auto">
-                    {filter.type === "select" && (
-                      <select
-                        className="w-full outline-none p-2 border rounded bg-white text-black border-fourth-lightgray"
-                        value={selectedOptions[filter.name] || ''}
-                        onChange={(e) => handleSelectChange(e, filter.name)}
-                      >
-                        {filter.options?.map((option, index) => (
-                          <option key={index} value={option} className='text-xs'>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-                    )}
-                  </div>
-                  {Array.isArray(filter.options) && !filter.type && (
+                  {Array.isArray(filter.options) && (
                     <div className='grid grid-cols-2 gap-x-[10px] gap-y-[12px] text-center'>
                       {filter.options.map((item, index) => (
                         <div key={index} className='border border-third-lightgray rounded-[8px] py-[2px]'>
@@ -95,24 +62,11 @@ const Filters = () => {
                   {filter.name}
                 </h2>
                 <div className="mt-2 py-2">
-                  {filter.type === "select" && (
-                    <select
-                      className="w-full p-2 outline-none border rounded bg-white text-black border-fourth-lightgray"
-                      value={selectedOptions[filter.name] || ''}
-                      onChange={(e) => handleSelectChange(e, filter.name)}
-                    >
-                      {filter.options?.map((option, index) => (
-                        <option key={index} value={option} className='text-xs'>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                  )}
-                  {Array.isArray(filter.options) && !filter.type && (
+                  {Array.isArray(filter.options) && (
                     <div className='grid grid-cols-2 gap-x-[5px] gap-y-[12px]'>
                       {filter.options.map((item, index) => (
                         <div key={index} >
-                          <button className='border border-third-lightgray rounded-[8px] w-full overflow-auto'>
+                          <button className='border px-2 border-third-lightgray rounded-[8px] w-full overflow-auto'>
                             {item}
                           </button>
                         </div>

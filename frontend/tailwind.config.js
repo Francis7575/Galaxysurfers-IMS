@@ -15,6 +15,7 @@ export default {
       },
       colors: {
         'lightblue': '#F1F0FF',
+        'red': '#eb090d',
         'second-lightblue': '#E7F8FC',
         'third-lightblue': '#E6E9EC',
         'fourth-lightblue': '#D2F0F8',
@@ -26,6 +27,7 @@ export default {
         'lightgray': '#CED4DA',
         'second-lightgray': '#D0D0D0',
         'third-lightgray': '#B1B1B1',
+        'fourth-lightgray': '#e8e8e8',
         'grayish-gray': '#5C6F88',
         'dark-color': '#212529',
         'form-line': 'rgba(116, 123, 149, 0.25)',
