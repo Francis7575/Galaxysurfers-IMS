@@ -46,7 +46,6 @@ CREATE TABLE items(
     code_item VARCHAR(50) NOT NULL DEFAULT '',
     name_item VARCHAR(50) NOT NULL DEFAULT '',
     description_item VARCHAR(255) NOT NULL DEFAULT '',
-    type_item VARCHAR(50) NOT NULL DEFAULT '',
     idunit_item VARCHAR(50) NOT NULL DEFAULT '',
     imgurl_item VARCHAR(150) NOT NULL DEFAULT '',
     createdat_item TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

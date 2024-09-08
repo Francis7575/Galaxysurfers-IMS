@@ -82,16 +82,6 @@ const InventoryOutC = () => {
 		fetchItems();
 	}, [formData.warehouse, formData.location])
 
-	const InputFields = [
-		{ type: 'select', name: 'product' as const, id: 'product', label: 'Product', options: items.map(i => i.name_item), values: items.map(i => i.iditem) },
-		{ type: 'text', name: 'units' as const, id: 'units', label: 'Units', disabled: true },
-		{ type: 'number', name: 'quantity' as const, id: 'quantity', label: 'Quantity' },
-		{ type: 'select', name: 'warehouse' as const, id: 'warehouse', label: 'Warehouse', options: warehouses.map(i => i.name_warehouse), values: warehouses.map(i => i.idwarehouse) },
-		{ type: 'select', name: 'location' as const, id: 'location', label: 'Location', options: locations.map(i => i.name_loc), values: locations.map(i => i.idloc) },
-		...(showBatch ? [
-			{ type: 'select', name: 'batch' as const, id: 'batch', label: 'Batch', options: batches, values: batches },
-		] : [])
-	];
 
 	const formValidation = (): boolean => {
 		const newErrors: InventoryInErrors = {};
@@ -182,6 +172,18 @@ const InventoryOutC = () => {
 		});
 	};
 
+	const InputFields = [
+		{ type: 'select', name: 'product' as const, id: 'product', label: 'Product', options: items.map(i => i.name_item), values: items.map(i => i.iditem) },
+		{ type: 'text', name: 'units' as const, id: 'units', label: 'InventoryIn-Units', disabled: true },
+		{ type: 'number', name: 'quantity' as const, id: 'quantity', label: 'Quantity' },
+		{ type: 'select', name: 'warehouse' as const, id: 'warehouse', label: 'Warehouse', options: warehouses.map(i => i.name_warehouse), values: warehouses.map(i => i.idwarehouse) },
+		{ type: 'select', name: 'location' as const, id: 'location', label: 'Location', options: locations.map(i => i.name_loc), values: locations.map(i => i.idloc) },
+		...(showBatch ? [
+			{ type: 'select', name: 'batch' as const, id: 'batch', label: 'Batch', options: batches, values: batches },
+		] : [])
+	];
+
+
 	return (
 		<div className='flex flex-col'>
 			<div className="font-manrope flex-1 w-full">
@@ -208,7 +210,6 @@ const InventoryOutC = () => {
 											{field.options?.map((option, index) => (
 												<option key={index} value={field.values[index]} label={option} />
 											))}
-
 										</select>
 									) : (
 										<input

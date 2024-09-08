@@ -17,6 +17,7 @@ const InventoryIn = () => {
   const [warehouses, setWh] = useState<WarehouseType[]>([]);
   const [locations, setLocations] = useState<LocationsType[]>([]);
   const [showBatchAndExpiration, setShowBatchAndExpiration] = useState(false);
+  const [addedItems, setAddedItems] = useState<number[]>([]); // Track added items
 
   const navToInventoryMain = () => {
     navigate('/inventoryMain');
@@ -67,7 +68,7 @@ const InventoryIn = () => {
 
   const InputFields = [
     { type: 'select', name: 'product' as const, id: 'product', label: 'Product', options: items.map(i => i.name_item), values: items.map(i => i.iditem) },
-    { type: 'text', name: 'units' as const, id: 'units', label: 'Units', disabled: true },
+    { type: 'text', name: 'units' as const, id: 'units', label: 'Total Units', disabled: true },
     { type: 'number', name: 'quantity' as const, id: 'quantity', label: 'Quantity' },
     { type: 'select', name: 'warehouse' as const, id: 'warehouse', label: 'Warehouse', options: warehouses.map(i => i.name_warehouse), values: warehouses.map(i => i.idwarehouse) },
     { type: 'select', name: 'location' as const, id: 'location', label: 'Location', options: locations.map(i => i.name_loc), values: locations.map(i => i.idloc) },
@@ -139,7 +140,11 @@ const InventoryIn = () => {
         body: JSON.stringify(formData)
       });
 
+      const responseData = await response.json();
+
       if (response.ok) {
+        const addedItemId = await response.json()
+        setAddedItems([...addedItems, addedItemId, responseData]);
         toast.success('Inventory Added');
         navigate('/inventoryMain');
       } else {
@@ -194,7 +199,7 @@ const InventoryIn = () => {
                     </select>
                   ) : (
                     <input
-                      className={`border border-blue-500 rounded-[7px] py-[10px] pl-[10px] outline-none ${field.className || ''} ${field.disabled ? 'disabled-input' : ''}`}
+                      className={`border border-blue-500 rounded-[7px] py-[10px] pl-[10px] outline-none ${field.className || ''} ${field.disabled ? '' : ''}`}
                       value={formData[field.name]}
                       onFocus={handleInputFocus}
                       onChange={handleInputChange}
@@ -205,7 +210,7 @@ const InventoryIn = () => {
                     />
                   )}
                   {errors[field.name] && (
-                    <p className='text-red-500 text-[.85rem]'>
+                    <p className='text-red text-[.85rem]'>
                       {errors[field.name]}
                     </p>
                   )}

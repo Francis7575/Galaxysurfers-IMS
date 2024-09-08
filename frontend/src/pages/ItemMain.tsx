@@ -64,8 +64,9 @@ const ItemMain = () => {
 				showBackBtn={false}
 				title="Item Configuration" />
 			<div className="flex justify-center 930:justify-start 930:pl-[29px] mt-[27px] mb-[17px] md:mb-[40px] 930:mt-[29px] 930:mb-[21px]">
-				<button className="hover:opacity-70 bg-second-lightblue py-[10px] max-w-[222px] w-full font-medium text-dark-color" onClick={navToNewItem}>
-					+ Add new item
+				<button className="hover:opacity-70 bg-second-lightblue py-[10px] max-w-[222px] w-full font-medium text-dark-color"
+					onClick={navToNewItem}>
+					<p className='text-center 930:text-start 930:pl-8 '>+ Add new item</p>
 				</button>
 			</div>
 			<div className="overflow-x-auto px-[20px] 930:px-[29px]">

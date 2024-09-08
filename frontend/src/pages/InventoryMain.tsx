@@ -23,13 +23,16 @@ const InventoryMain = () => {
             showBackBtn={false}
             title="Inventory" />
           <div className="flex justify-center 930:justify-start 930:pl-[29px] mt-[27px] mb-[17px] md:mb-[40px] 930:mt-[29px] 930:mb-[21px]">
-            <button className="hover:opacity-70 bg-second-lightblue py-[10px] max-w-[222px] w-full font-medium text-dark-color mr-3" onClick={navToInventory}>
+            <button onClick={navToInventory}
+                    className="hover:opacity-70 bg-second-lightblue py-[10px] max-w-[222px] w-full font-medium text-dark-color mr-3">
               Inventory
             </button>
-            <button className="hover:opacity-70 bg-second-lightblue py-[10px] max-w-[222px] w-full font-medium text-dark-color mr-3" onClick={navToInventoryIn}>
+            <button onClick={navToInventoryIn}
+                    className="hover:opacity-70 bg-second-lightblue py-[10px] max-w-[222px] w-full font-medium text-dark-color mr-3">
               In
             </button>
-            <button className="hover:opacity-70 bg-second-lightblue py-[10px] max-w-[222px] w-full font-medium text-dark-color" onClick={navToInventoryOut}>
+            <button onClick={navToInventoryOut} 
+                    className="hover:opacity-70 bg-second-lightblue py-[10px] max-w-[222px] w-full font-medium text-dark-color">
               Out
             </button>
           </div>

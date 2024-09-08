@@ -257,7 +257,8 @@ const Threejs: React.FC = () => {
 
 			<div className='max-w-[300px] w-full md:max-w-[500px] 930:max-w-none mx-auto 930:mx-0 930:px-[29px] mt-3'>
 				<div className='flex flex-col gap-4'>
-					<button onClick={handleSave} className="hover:opacity-70 w-full 930:w-1/6 bg-blue text-white font-bold py-2 px-4 rounded">SAVE</button>
+					<button onClick={handleSave} 
+									className="hover:opacity-70 w-full 930:w-1/6 bg-blue text-white font-bold py-2 px-4 rounded">SAVE</button>
 				</div>
 			</div>
 		</>

@@ -85,8 +85,6 @@ export const itemUpdate = async (
 
 		const {iditem} = req.params
 
-		console.log(iditem)
-
     // Check if iditem is provided
     if (!iditem) {
       return res.status(400).json({ error: "Item ID (iditem) is required to update an item." });
