@@ -17,7 +17,6 @@ const InventoryIn = () => {
   const [warehouses, setWh] = useState<WarehouseType[]>([]);
   const [locations, setLocations] = useState<LocationsType[]>([]);
   const [showBatchAndExpiration, setShowBatchAndExpiration] = useState(false);
-  const [addedItems, setAddedItems] = useState<number[]>([]); // Track added items
 
   const navToInventoryMain = () => {
     navigate('/inventoryMain');
@@ -140,11 +139,8 @@ const InventoryIn = () => {
         body: JSON.stringify(formData)
       });
 
-      const responseData = await response.json();
 
       if (response.ok) {
-        const addedItemId = await response.json()
-        setAddedItems([...addedItems, addedItemId, responseData]);
         toast.success('Inventory Added');
         navigate('/inventoryMain');
       } else {

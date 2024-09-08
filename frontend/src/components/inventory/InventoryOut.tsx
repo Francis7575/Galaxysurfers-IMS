@@ -11,7 +11,7 @@ type InventoryInErrors = {
 	submit?: string;
 }
 
-const InventoryOutC = () => {
+const InventoryOut = () => {
 	const navigate = useNavigate();
 	const [items, setItems] = useState<ItemType[]>([]);
 	const [warehouses, setWh] = useState<WarehouseType[]>([]);
@@ -76,7 +76,6 @@ const InventoryOutC = () => {
 				item.idlocation_in === parseInt(formData.location)
 			);
 
-			console.log(filteredData)
 			setBatches(filteredData.map((i: any) => i.lot_bc));
 		}
 		fetchItems();
@@ -87,19 +86,19 @@ const InventoryOutC = () => {
 		const newErrors: InventoryInErrors = {};
 
 		if (!formData.product.trim()) {
-			newErrors.product = 'Product cannot be empty';
+			newErrors.product = 'Product is empty';
 		}
 
 		if (!formData.quantity || isNaN(Number(formData.quantity)) || Number(formData.quantity) <= 0) {
-			newErrors.quantity = 'Quantity must be a positive number';
+			newErrors.quantity = 'This field must be positive number';
 		}
 
 		if (!formData.warehouse.trim()) {
-			newErrors.warehouse = 'Warehouse cannot be empty';
+			newErrors.warehouse = 'Warehouse is empty';
 		}
 
 		if (!formData.location.trim()) {
-			newErrors.location = 'Location cannot be empty';
+			newErrors.location = 'Location is empty';
 		}
 
 		setErrors(newErrors);
@@ -136,9 +135,7 @@ const InventoryOutC = () => {
 			return;
 		}
 
-		console.log(formData)
 		try {
-
 			const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/inventory/inventory-out`, {
 				method: 'POST',
 				headers: {
@@ -148,7 +145,7 @@ const InventoryOutC = () => {
 			});
 
 			if (response.ok) {
-				toast.success('Inventory Added');
+				toast.success('The item has been successfully removed from inventory.');
 				navigate('/inventoryMain');
 			} else {
 				toast.error('Something went wrong!');
@@ -224,7 +221,7 @@ const InventoryOutC = () => {
 										/>
 									)}
 									{errors[field.name] && (
-										<p className='text-red text-[.85rem] absolute bottom-[-25px]'>
+										<p className='text-red text-[.85rem] absolute bottom-[-29px]'>
 											{errors[field.name]}
 										</p>
 									)}
@@ -246,4 +243,4 @@ const InventoryOutC = () => {
 	)
 }
 
-export default InventoryOutC
+export default InventoryOut

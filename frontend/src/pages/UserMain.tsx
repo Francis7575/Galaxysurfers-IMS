@@ -123,7 +123,7 @@ const UserMain = () => {
 					setIsModalOpen={setIsModalOpen}
 					itemName={selectedUser!.username}
 					cancelDelete={cancelDelete}
-					deleteUser={deleteUser}
+					deleteName={deleteUser}
 				/>
 			)}
 

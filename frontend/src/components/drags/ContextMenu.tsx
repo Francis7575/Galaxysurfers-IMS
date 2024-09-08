@@ -59,7 +59,7 @@ const ContextMenu = ({
                 <DeleteModal
                     setIsModalOpen={setIsModalOpen}
                     itemName={name}
-                    deleteUser={onDelete}
+                    deleteName={onDelete}
                     cancelDelete={cancelDelete}
                 />
             )}

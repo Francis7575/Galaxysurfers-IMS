@@ -124,7 +124,7 @@ const WarehouseMain = () => {
           setIsModalOpen={setIsModalOpen}
           itemName={selectedWarehouse!.name_warehouse}
           cancelDelete={cancelDelete}
-          deleteUser={deleteWarehouse}
+          deleteName={deleteWarehouse}
         />
       )}
     </div >

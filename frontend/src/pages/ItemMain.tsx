@@ -35,7 +35,6 @@ const ItemMain = () => {
 			setIsModalOpen(false);
 		} else {
 			toast.error('Something went wrong!');
-			alert('Ocurrio un problema')
 		}
 	}
 
@@ -113,7 +112,7 @@ const ItemMain = () => {
 					setIsModalOpen={setIsModalOpen}
 					itemName={selectedItem!.name_item}
 					cancelDelete={cancelDelete}
-					deleteUser={() => deleteItem(selectedItem!.iditem)}
+					deleteName={() => deleteItem(selectedItem!.iditem)}
 				/>
 			)}
 		</div>
