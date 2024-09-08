@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { InventoryType } from '../../types/typesBackend';
 import { useNavigate } from 'react-router-dom';
 import DeleteModal from '../common/DeleteModal';
+import { toast } from 'react-toastify';
 
 interface InventoryDataProps {
 	activeFilter: string | null;
@@ -34,13 +35,17 @@ const InventoryData = ({ activeFilter }: InventoryDataProps) => {
 		try {
 			const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/inventory/delete-inventory/${idinventory}`, {
 				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json'
+				}
 			});
-
+			console.log(response)
 			if (response.ok) {
+				toast.success('Inventory Deleted!');
 				setFilteredInventory(filteredInventory.filter(item => item.idinventory !== idinventory));
 				setInventory(inventory.filter(item => item.idinventory !== idinventory));
 			} else {
-				console.error('Failed to delete the item');
+				toast.error('Failed to delete the item');
 			}
 		} catch (err) {
 			console.error(err);
@@ -106,7 +111,7 @@ const InventoryData = ({ activeFilter }: InventoryDataProps) => {
 										<p className='opacity-60'>{parseFloat(item.quantity_in).toFixed(2)}</p>
 									</div>
 								</div>
-								<p className='pt-3'>
+								<p className='pt-3 ml-7 930:ml-0'>
 									{item.lot_bc && (
 										<span>Batch: <span className='text-red'>{item.lot_bc}</span></span>
 									)}
