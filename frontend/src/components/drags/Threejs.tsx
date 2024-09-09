@@ -130,7 +130,6 @@ const Threejs: React.FC = () => {
 		}
 	};
 
-	console.log(boxPositions)
 
 	return (
 		<>

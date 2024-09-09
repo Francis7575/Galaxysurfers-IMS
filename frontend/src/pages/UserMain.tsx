@@ -69,7 +69,7 @@ const UserMain = () => {
 			<div className="flex justify-center 930:justify-start 930:pl-[29px] mt-[27px] mb-[17px] md:mb-[40px] 930:mt-[29px] 930:mb-[21px]">
 				<button className="bg-second-lightblue hover:opacity-70 py-[10px] max-w-[222px] w-full font-medium text-dark-color"
 					onClick={navToNewUser}>
-					<p className='text-center 930:text-start 930:pl-8 '>+ Add new item</p>
+					<p className='text-center 930:text-start 930:pl-8 '>+ Add new user</p>
 				</button>
 			</div>
 			<div className="overflow-x-auto px-[20px] 930:px-[29px]">
