@@ -35,7 +35,7 @@ const useAuth = () => {
 
   const handleLogin = async (formData: LoginForm) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/login`, { 
+      const response = await fetch(`https://galaxysurfers-ims-1.onrender.com/users/login`, { 
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const useAuth = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URLL}/users/logout`,
+      const response = await fetch(`https://galaxysurfers-ims-1.onrender.com/users/logout`,
         {
           credentials: "include",
         }
