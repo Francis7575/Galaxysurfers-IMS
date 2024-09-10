@@ -30,6 +30,8 @@ const useAuth = () => {
     checkUserCookie();
   }, []);
 
+  console.log(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/login`);
+  
   const handleLogin = async (formData: LoginForm) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/login`, { 
