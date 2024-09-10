@@ -11,10 +11,12 @@ const useAuth = () => {
     const checkUserCookie = async () => {
       try {
         const response = await fetch(`https://galaxysurfers-ims-1.onrender.com/users/check-logged-in`,
+
           {
             credentials: "include",
           }
         );
+        console.log(response);
         const data = await response.json();
         if (response.ok) {
           setLoggedIn(data.loggedIn);
@@ -30,7 +32,6 @@ const useAuth = () => {
     checkUserCookie();
   }, []);
 
-  console.log(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/login`);
 
   const handleLogin = async (formData: LoginForm) => {
     try {
