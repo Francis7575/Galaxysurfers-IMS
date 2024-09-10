@@ -83,13 +83,15 @@ export const itemUpdate = async (
       imgurl_item,
     } = req.body as ItemBody;
 
+    console.log("BD", req.body)
+
 		const {iditem} = req.params
 
     // Check if iditem is provided
     if (!iditem) {
       return res.status(400).json({ error: "Item ID (iditem) is required to update an item." });
     }
-		console.log(iditem)
+		console.log("ID",iditem)
     // Update the specific item identified by iditem
     const result = await pool.query(
       `UPDATE items 

@@ -74,7 +74,7 @@ const EditItem = () => {
   
   const handleSubmit = async (values: NewItem) => {
     try {
-      let imageUrl = '';
+      let imageUrl = values.itemUrl;
       if (file) {
         imageUrl = await uploadToCloudinary(file);
       }
@@ -98,7 +98,7 @@ const EditItem = () => {
           idunit_item: formData.itemUnit,
           batch_ctrl_item: formData.batch_ctrl_item,
           expiration_ctrl_item: formData.expiration_ctrl_item,
-          imageUrl: formData.imageUrl, 
+          imgurl_item : formData.imageUrl, 
         }),
       });
       

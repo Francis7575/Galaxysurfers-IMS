@@ -71,7 +71,7 @@ const AddItem = () => {
 
   const handleSubmit = async (values: NewItem) => {
     try {
-      let imageUrl = '';
+      let imageUrl = ''
       if (file) {
         imageUrl = await uploadToCloudinary(file);
       }

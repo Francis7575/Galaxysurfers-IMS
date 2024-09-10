@@ -53,17 +53,17 @@ const InventoryOut = () => {
 		fetchWh();
 	}, []);
 
-	useEffect(() => {
-		const fetchItems = async () => {
-			const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/get-locations/${formData.warehouse}`);
-			const data = await response.json();
+  useEffect(() => {
+    const fetchItems = async () => {
+      const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/get-locations/${formData.warehouse}`);
+      const data = await response.json();
 
-			setLocations(data);
-		}
+      setLocations(data);
+    }
 
-		fetchItems();
+    fetchItems();
 
-	}, [formData.warehouse])
+  }, [formData.warehouse])
 
 	useEffect(() => {
 		const fetchItems = async () => {
