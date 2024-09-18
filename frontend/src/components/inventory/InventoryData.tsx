@@ -65,9 +65,9 @@ const InventoryData = ({ activeFilter }: InventoryDataProps) => {
 
 	useEffect(() => {
 		if (activeFilter) {
-			setFilteredInventory(inventory.filter(item => item.name_warehouse === activeFilter));
+			setFilteredInventory(inventory.filter(item => item.name_warehouse === activeFilter && item.status_in !== 0));
 		} else {
-			setFilteredInventory(inventory); // Reset to all items when no filter is active
+			setFilteredInventory(inventory.filter(item => item.status_in !== 0)); // Reset to all items when no filter is active
 		}
 	}, [activeFilter, inventory]); // Dependency includes inventory to re-filter when data changes
 

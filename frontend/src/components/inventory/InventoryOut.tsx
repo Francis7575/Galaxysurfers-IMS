@@ -145,7 +145,7 @@ const InventoryOut = () => {
 			});
 
 			if (response.ok) {
-				toast.success('The item has been successfully removed from inventory.');
+				toast.success('The quantity entered has been successfully removed from the inventory.');
 				navigate('/inventoryMain');
 			} else {
 				toast.error('Something went wrong!');
@@ -171,7 +171,6 @@ const InventoryOut = () => {
 
 	const InputFields = [
 		{ type: 'select', name: 'product' as const, id: 'product', label: 'Product', options: items.map(i => i.name_item), values: items.map(i => i.iditem) },
-		{ type: 'text', name: 'units' as const, id: 'units', label: 'InventoryIn-Units', disabled: true },
 		{ type: 'number', name: 'quantity' as const, id: 'quantity', label: 'Quantity' },
 		{ type: 'select', name: 'warehouse' as const, id: 'warehouse', label: 'Warehouse', options: warehouses.map(i => i.name_warehouse), values: warehouses.map(i => i.idwarehouse) },
 		{ type: 'select', name: 'location' as const, id: 'location', label: 'Location', options: locations.map(i => i.name_loc), values: locations.map(i => i.idloc) },
@@ -195,13 +194,12 @@ const InventoryOut = () => {
 									</label>
 									{field.type === 'select' ? (
 										<select
-											className={`border border-blue-500 rounded-[7px] py-[10px] pl-[10px] outline-none ${field.disabled ? 'disabled-input' : ''}`}
+											className='border border-blue-500 rounded-[7px] py-[10px] pl-[10px] outline-none'
 											value={formData[field.name]}
 											onFocus={handleInputFocus}
 											onChange={handleInputChange}
 											id={field.id}
 											name={field.name}
-											disabled={field.disabled || false}
 										>
 											<option value="">Select {field.label}</option>
 											{field.options?.map((option, index) => (
@@ -210,14 +208,13 @@ const InventoryOut = () => {
 										</select>
 									) : (
 										<input
-											className={`border border-blue-500 rounded-[7px] py-[10px] pl-[10px] outline-none ${field.disabled ? 'disabled-input' : ''}`}
+											className='border border-blue-500 rounded-[7px] py-[10px] pl-[10px] outline-none'
 											value={formData[field.name]}
 											onFocus={handleInputFocus}
 											onChange={handleInputChange}
 											id={field.id}
 											type={field.type}
 											name={field.name}
-											disabled={field.disabled || false}
 										/>
 									)}
 									{errors[field.name] && (

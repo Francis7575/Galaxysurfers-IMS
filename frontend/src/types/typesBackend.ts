@@ -40,6 +40,7 @@ export type InventoryType = {
   name_warehouse: string,
   imgurl_item: string,
   idloc: number,
+  status_in: number,
   name_loc: string,
   quantity_in: string,
   createdat_bc: string
