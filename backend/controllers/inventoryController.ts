@@ -225,14 +225,10 @@ export const deleteInventoryData = async (
   try {
     const { idinventory } = req.params;
     console.log(idinventory)
-    // Update the status of the inventory item instead of deleting
-    const result = await pool.query(
-      "UPDATE inventory SET status_in = 0 WHERE idinventory = $1",
-      [idinventory]
-    );
-    if (result.rows.length === 0) {
-      return res.status(404).send("Inventory item not found!");
-    }
+    
+    await pool.query( `UPDATE inventory SET status_in = 0 WHERE idinventory = $1`, [
+      idinventory
+    ]);
 
     return res.status(200).send("Inventory item deleted!");
   } catch (err: unknown) {
