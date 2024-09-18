@@ -32,6 +32,7 @@ const InventoryData = ({ activeFilter }: InventoryDataProps) => {
 	}, []);
 
 	const handleDelete = async (idinventory: number) => {
+		console.log(idinventory)
 		try {
 			const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/inventory/delete-inventory/${idinventory}`, {
 				method: 'DELETE',
