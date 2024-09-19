@@ -7,8 +7,8 @@ Techologies used: React, Typescript, TailwindCSS, Node.js, Express, Postgresql.
 # Login Information
 This project doesn't contain a sign-up because the idea of the project is that the employee will be provided with the login information to access the application.
 
-username: admin
-password: 12345678
+<p>username: admin</p>
+<p>password: 12345678</p>
 
 # .ENV Example
 **Backend**
