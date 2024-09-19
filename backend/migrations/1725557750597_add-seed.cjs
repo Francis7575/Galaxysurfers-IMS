@@ -14,7 +14,7 @@ exports.up = async (pgm) => {
   const hashedPassword = await bcrypt.hash(pass, 12);
 
   const users = [
-    { username: 'francis5050', name_user: 'francis', pass_user: hashedPassword, mail_user: 'francis@test.com' },
+    { username: 'admin', name_user: 'testuser', pass_user: hashedPassword, mail_user: 'test@gmail.com' },
   ];
 
   // Insert users using a loop
