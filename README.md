@@ -15,12 +15,16 @@ Backend
 
 <p>BACKEND_PORT=</p>
 <p>COOKIE_SECRET_KEY=</p>
+<p>DB_HOST=</p>
+<p>DB_NAME=</p>
+<span>DB_PASSWORD=</span>
+<span>DB_PORT=</p>
 
 
-DB_HOST=
-DB_NAME=
-DB_PASSWORD=
-DB_PORT=
+
+
+
+
 DB_USER=
 DATABASE_URL=
 FRONTEND_URL=
