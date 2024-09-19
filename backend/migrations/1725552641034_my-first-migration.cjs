@@ -101,11 +101,11 @@ exports.up = (pgm) => {
     name_item: { type: 'varchar(50)', notNull: true, default: '' },
     description_item: { type: 'varchar(255)', notNull: true, default: '' },
     idunit_item: { type: 'varchar(50)', notNull: true, default: '' },
+    imgurl_item: { type: 'varchar(150)', notNull: true, default: '' },
     createdat_item: { type: 'timestamp', default: pgm.func('current_timestamp'), },
     batch_ctrl_item: { type: 'integer', default: 0 },
     expiration_ctrl_item: { type: 'integer', default: 0 },
     status_item: { type: 'integer', default: 1 },
-    imgurl_item: { type: 'varchar(150)', notNull: true, default: '' },
   });
 
   pgm.createTable('locations', {

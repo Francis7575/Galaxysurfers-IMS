@@ -1,32 +1,31 @@
-  const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
-  /**
-   * @type {import('node-pg-migrate').ColumnDefinitions | undefined}
-   */
-  exports.shorthands = undefined;
+/**
+ * @type {import('node-pg-migrate').ColumnDefinitions | undefined}
+ */
+exports.shorthands = undefined;
 
-  /**
-   * @param pgm {import('node-pg-migrate').MigrationBuilder}
-   * @returns {Promise<void> | void}
-   */
-  exports.up = async (pgm) => {
-    const pass = '12345678';
-    const hashedPassword = await bcrypt.hash(pass, 12);
+/**
+ * @param pgm {import('node-pg-migrate').MigrationBuilder}
+ * @returns {Promise<void> | void}
+ */
+exports.up = async (pgm) => {
+  const pass = '12345678';
+  const hashedPassword = await bcrypt.hash(pass, 12);
 
-    const users = [
-      { username: 'francis5050', name_user: 'francis', pass_user: hashedPassword, mail_user: 'francis@test.com' },
-    ];
+  const users = [
+    { username: 'francis5050', name_user: 'francis', pass_user: hashedPassword, mail_user: 'francis@test.com' },
+  ];
 
-    // Insert users using a loop
-    for (const user of users) {
-      await pgm.sql(
-        `INSERT INTO users (username, name_user, pass_user, mail_user) VALUES ($1, $2, $3, $4);`,
-        [user.username, user.name_user, user.pass_user, user.mail_user]
-      );
-    }
-    
+  // Insert users using a loop
+  for (const user of users) {
+    await pgm.sql(
+      `INSERT INTO users (username, name_user, pass_user, mail_user) VALUES ($1, $2, $3, $4)`,
+      [user.username, user.name_user, user.pass_user, user.mail_user]
+    );
+  }
+
   const now = new Date().toISOString();
-
   // Data to insert into items
   const items = [
     {
@@ -55,9 +54,9 @@
 
   for (const item of items) {
     await pgm.sql(`
-      INSERT INTO items (code_item, name_item, description_item, idunit_item, imgurl_item, createdat_item, batch_ctrl_item, expiration_ctrl_item, status_item)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);
-    `, [
+    INSERT INTO items (code_item, name_item, description_item, idunit_item, imgurl_item, createdat_item, batch_ctrl_item, expiration_ctrl_item, status_item)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);
+  `, [
       item.code_item,
       item.name_item,
       item.description_item,
@@ -86,9 +85,9 @@
 
   for (const warehouse of warehouses) {
     await pgm.sql(`
-      INSERT INTO warehouses (code_warehouse, name_warehouse, status_warehouse)
-      VALUES ($1, $2, $3);
-    `, [
+    INSERT INTO warehouses (code_warehouse, name_warehouse, status_warehouse)
+    VALUES ($1, $2, $3);
+  `, [
       warehouse.code_warehouse,
       warehouse.name_warehouse,
       warehouse.status_warehouse
@@ -120,7 +119,7 @@
       position_loc: '5.267678188493902,0,7.850344269680872',
       size_loc: '5,1,1',
       status_loc: 1,
-    }, 
+    },
     {
       idwarehouse_loc: 33,
       name_loc: 'a4',
@@ -157,9 +156,9 @@
 
   for (const location of locations) {
     await pgm.sql(`
-      INSERT INTO locations (idwarehouse_loc, name_loc, color_loc, position_loc, size_loc, status_loc)
-      VALUES ($1, $2, $3, $4, $5, $6);
-    `, [
+    INSERT INTO locations (idwarehouse_loc, name_loc, color_loc, position_loc, size_loc, status_loc)
+    VALUES ($1, $2, $3, $4, $5, $6);
+  `, [
       location.idwarehouse_loc,
       location.name_loc,
       location.color_loc,
@@ -177,9 +176,9 @@
 
   for (const menuItem of navbarMenuItems) {
     await pgm.sql(`
-      INSERT INTO navbar_menu (name_mm, link_mm, order_mm, fa_mm, type_mm, status_mm)
-      VALUES ($1, $2, $3, $4, $5, $6);
-    `, [
+    INSERT INTO navbar_menu (name_mm, link_mm, order_mm, fa_mm, type_mm, status_mm)
+    VALUES ($1, $2, $3, $4, $5, $6);
+  `, [
       menuItem.name_mm,
       menuItem.link_mm,
       menuItem.order_mm,
@@ -199,9 +198,9 @@
 
   for (const menuItem of navbarMenu2Items) {
     await pgm.sql(`
-      INSERT INTO navbar_menu2 (idmm_mm2, name_mm2, link_mm2, order_mm2, status_mm2)
-      VALUES ($1, $2, $3, $4, $5);
-    `, [
+    INSERT INTO navbar_menu2 (idmm_mm2, name_mm2, link_mm2, order_mm2, status_mm2)
+    VALUES ($1, $2, $3, $4, $5);
+  `, [
       menuItem.idmm_mm2,
       menuItem.name_mm2,
       menuItem.link_mm2,
@@ -220,9 +219,9 @@
 
   for (const menuUser of navbarMenuUserItems) {
     await pgm.sql(`
-      INSERT INTO navbar_menu_user (iduser_mmu2, idmm_mmu2, access_mmu2)
-      VALUES ($1, $2, $3);
-    `, [
+    INSERT INTO navbar_menu_user (iduser_mmu2, idmm_mmu2, access_mmu2)
+    VALUES ($1, $2, $3);
+  `, [
       menuUser.iduser_mmu2,
       menuUser.idmm_mmu2,
       menuUser.access_mmu2
@@ -253,9 +252,9 @@
 
   for (const inventory of inventories) {
     await pgm.sql(`
-      INSERT INTO inventory (iditem_in, idbatch_in, idwarehouse_in, idlocation_in, quantity_in, status_in, createdat_in)
-      VALUES ($1, $2, $3, $4, $5, $6, $7);
-    `, [
+    INSERT INTO inventory (iditem_in, idbatch_in, idwarehouse_in, idlocation_in, quantity_in, status_in, createdat_in)
+    VALUES ($1, $2, $3, $4, $5, $6, $7);
+  `, [
       inventory.iditem_in,
       inventory.idbatch_in,
       inventory.idwarehouse_in,
@@ -288,9 +287,9 @@
 
   for (const batch of inventoryBatches) {
     await pgm.sql(`
-      INSERT INTO inventory_batch (iditem_bc, lot_bc, quantity_bc, createdat_bc, expirationdate_bc, status_bc)
-      VALUES ($1, $2, $3, $4, $5, $6);
-    `, [
+    INSERT INTO inventory_batch (iditem_bc, lot_bc, quantity_bc, createdat_bc, expirationdate_bc, status_bc)
+    VALUES ($1, $2, $3, $4, $5, $6);
+  `, [
       batch.iditem_bc,
       batch.lot_bc,
       batch.quantity_bc,
@@ -340,9 +339,9 @@
 
   for (const log of inventoryLogs) {
     await pgm.sql(`
-      INSERT INTO inventory_log (idgroup_inlog, type_inlog, iditem_inlog, idbatch_inlog, idwarehouse_inlog, idlocation_inlog, quantity_inlog, iduser_inlog, createdat_inlog, idmovtype_inlog, idsubmovtype_inlog, iddoc_inlog, iddocdet_inlog, lastquantity_inlog, obs_inlog)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
-    `, [
+    INSERT INTO inventory_log (idgroup_inlog, type_inlog, iditem_inlog, idbatch_inlog, idwarehouse_inlog, idlocation_inlog, quantity_inlog, iduser_inlog, createdat_inlog, idmovtype_inlog, idsubmovtype_inlog, iddoc_inlog, iddocdet_inlog, lastquantity_inlog, obs_inlog)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
+  `, [
       log.idgroup_inlog,
       log.type_inlog,
       log.iditem_inlog,
@@ -360,6 +359,6 @@
       log.obs_inlog
     ]);
   }
-  };
+}
 
-  exports.down = (pgm) => { }
+exports.down = (pgm) => { }
