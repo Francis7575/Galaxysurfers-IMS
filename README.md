@@ -17,20 +17,14 @@ Backend
 <p>COOKIE_SECRET_KEY=</p>
 <p>DB_HOST=</p>
 <p>DB_NAME=</p>
-<span>DB_PASSWORD=</span>
-<span>DB_PORT=</p>
-
-
-
-
-
-
-DB_USER=
-DATABASE_URL=
-FRONTEND_URL=
+<p>DB_PASSWORD=</p>
+<p>DB_PORT=</p>
+<p>DB_USER=</p>
+<p>DATABASE_URL=</p>
+<p>FRONTEND_URL=</p>
 
 Frontend
-VITE_REACT_BACKEND_URL=
+<p>VITE_REACT_BACKEND_URL=</p>
 
 # Application live link
 
