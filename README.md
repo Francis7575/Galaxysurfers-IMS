@@ -11,7 +11,7 @@ username: admin
 password: 12345678
 
 # .ENV Example
-Backend
+**Backend**
 
 <p>BACKEND_PORT=</p>
 <p>COOKIE_SECRET_KEY=</p>
@@ -23,7 +23,7 @@ Backend
 <p>DATABASE_URL=</p>
 <p>FRONTEND_URL=</p>
 
-Frontend
+**Frontend**
 <p>VITE_REACT_BACKEND_URL=</p>
 
 # Application live link
