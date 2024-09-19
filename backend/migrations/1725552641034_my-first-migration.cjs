@@ -63,7 +63,7 @@ exports.up = (pgm) => {
       default: pgm.func('current_timestamp'),
     },
   });
-  pgm.createTable('navbar_menu_user2', {
+  pgm.createTable('navbar_menu_user', {
     idmmu2: 'serial primary key',
     iduser_mmu2: { type: 'integer', default: 0 },
     idmm_mmu2: { type: 'integer', default: 0 },
@@ -101,11 +101,11 @@ exports.up = (pgm) => {
     name_item: { type: 'varchar(50)', notNull: true, default: '' },
     description_item: { type: 'varchar(255)', notNull: true, default: '' },
     idunit_item: { type: 'varchar(50)', notNull: true, default: '' },
-    imgurl_item: { type: 'varchar(150)', notNull: true, default: '' },
     createdat_item: { type: 'timestamp', default: pgm.func('current_timestamp'), },
     batch_ctrl_item: { type: 'integer', default: 0 },
     expiration_ctrl_item: { type: 'integer', default: 0 },
     status_item: { type: 'integer', default: 1 },
+    imgurl_item: { type: 'varchar(150)', notNull: true, default: '' },
   });
 
   pgm.createTable('locations', {
@@ -170,7 +170,7 @@ exports.down = (pgm) => {
   pgm.dropTable('inventory');
   pgm.dropTable('inventory_batch');
   pgm.dropTable('locations');
-  pgm.dropTable('navbar_menu_user2');
+  pgm.dropTable('navbar_menu_user');
   pgm.dropTable('navbar_menu2');
   pgm.dropTable('navbar_menu');
 };
