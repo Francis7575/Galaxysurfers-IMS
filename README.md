@@ -27,5 +27,5 @@ This project doesn't contain a sign-up because the idea of the project is that t
 <p>VITE_REACT_BACKEND_URL=</p>
 
 # Application live link
-<a href="https://galaxysurfers-ims.onrender.com" target="_blank">https://galaxysurfers-ims.onrender.com</a>
+https://galaxysurfers-ims.onrender.com
 
