@@ -1,4 +1,4 @@
-import pool from "../models/connection.js";
+import pool from "../models/connection";
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import {
@@ -6,7 +6,7 @@ import {
   CheckLoggedInResponse,
   GetMenuAccessQuery,
   HierarchicalMenuAccess,
-} from "../types/types.js";
+} from "../types/types";
 
 // Checks for a specific cookie
 export const checkLoggedIn = async (

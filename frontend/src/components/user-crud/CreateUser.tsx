@@ -112,7 +112,7 @@ const CreateUser = () => {
             toast.success('User Created!');
         }else if(response.status == 401){
             toast.error('User already exists');
-        }else{
+        }else{		
             toast.error('Something went wrong!');
         }
 	}

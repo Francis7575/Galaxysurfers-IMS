@@ -30,16 +30,16 @@ app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 // Routes
-import usersRoute from "./routes/usersRoutes.js";
+import usersRoute from "./routes/usersRoutes";
 app.use("/users", usersRoute);
 
-import warehousesRoute from "./routes/warehousesRoutes.js";
+import warehousesRoute from "./routes/warehousesRoutes";
 app.use("/warehouses", warehousesRoute);
 
-import itemsRoute from "./routes/itemsRoutes.js";
+import itemsRoute from "./routes/itemsRoutes";
 app.use("/items", itemsRoute);
 
-import inventoryRoute from "./routes/inventoryRoutes.js";
+import inventoryRoute from "./routes/inventoryRoutes";
 app.use("/inventory", inventoryRoute);
 
 // Start the server
