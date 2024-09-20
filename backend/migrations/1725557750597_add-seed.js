@@ -83,7 +83,7 @@ exports.up = async (pgm) => {
 	// Data to insert into warehousess
 	const locations = [
 		{
-			idwarehouse_loc: 33,
+			idwarehouse_loc: 1,
 			name_loc: 'a1',
 			color_loc: 'gray',
 			position_loc: '-6.149421112973947,0,7.860267426770203',
@@ -91,7 +91,7 @@ exports.up = async (pgm) => {
 			status_loc: 1,
 		},
 		{
-			idwarehouse_loc: 33,
+			idwarehouse_loc: 1,
 			name_loc: 'a2',
 			color_loc: 'gray',
 			position_loc: '-0.2696748854822948,0,7.712787191049772',
@@ -99,7 +99,7 @@ exports.up = async (pgm) => {
 			status_loc: 1,
 		},
 		{
-			idwarehouse_loc: 33,
+			idwarehouse_loc: 1,
 			name_loc: 'a3',
 			color_loc: 'gray',
 			position_loc: '5.267678188493902,0,7.850344269680872',
@@ -107,7 +107,7 @@ exports.up = async (pgm) => {
 			status_loc: 1,
 		},
 		{
-			idwarehouse_loc: 33,
+			idwarehouse_loc: 1,
 			name_loc: 'a4',
 			color_loc: '#2439db',
 			position_loc: '0.3964381304998188,0,-1.2999120444588477',
@@ -115,7 +115,7 @@ exports.up = async (pgm) => {
 			status_loc: 1,
 		},
 		{
-			idwarehouse_loc: 34,
+			idwarehouse_loc: 2,
 			name_loc: 'b1',
 			color_loc: 'gray',
 			position_loc: '-3.5435306600103527,0,7.9360679310831115',
@@ -123,7 +123,7 @@ exports.up = async (pgm) => {
 			status_loc: 1,
 		},
 		{
-			idwarehouse_loc: 34,
+			idwarehouse_loc: 2,
 			name_loc: 'b2',
 			color_loc: 'gray',
 			position_loc: '1.9863915492968012,0,7.890957391636112',
@@ -131,7 +131,7 @@ exports.up = async (pgm) => {
 			status_loc: 1,
 		},
 		{
-			idwarehouse_loc: 34,
+			idwarehouse_loc: 2,
 			name_loc: 'b3',
 			color_loc: 'gray',
 			position_loc: '6.562970041600832,0,7.806288540019689',
@@ -193,19 +193,19 @@ exports.up = async (pgm) => {
 	// Data to insert into inventory
 	const inventories = [
 		{
-			iditem_in: 24,
-			idbatch_in: 30,
-			idwarehouse_in: 33,
-			idlocation_in: 160,
+			iditem_in: 1,
+			idbatch_in: 1,
+			idwarehouse_in: 1,
+			idlocation_in: 1,
 			quantity_in: 25,
 			status_in: 1,
 			createdat_in: now
 		},
 		{
-			iditem_in: 25,
-			idbatch_in: 31,
-			idwarehouse_in: 34,
-			idlocation_in: 152,
+			iditem_in: 2,
+			idbatch_in: 2,
+			idwarehouse_in: 2,
+			idlocation_in: 2,
 			quantity_in: 40,
 			status_in: 1,
 			createdat_in: now
@@ -222,15 +222,15 @@ exports.up = async (pgm) => {
 	// Data to insert into inventory_batch
 	const inventoryBatches = [
 		{
-			iditem_bc: 24,
-			1: 'orange-42',
+			iditem_bc: 1,
+			lot_bc: 'Orange-42',
 			quantity_bc: 25,
 			createdat_bc: now,
 			expirationdate_bc: '2024-09-27 00:00:00',
 			status_bc: 1,
 		},
 		{
-			iditem_bc: 25,
+			iditem_bc: 2,
 			lot_bc: 'App-24',
 			quantity_bc: 40,
 			createdat_bc: now,
@@ -251,10 +251,10 @@ exports.up = async (pgm) => {
 		{
 			idgroup_inlog: 'cd0942e5-feb0-409f-8cf0-1d980d608d31',
 			type_inlog: 'In',
-			iditem_inlog: 24,
-			idbatch_inlog: 30,
-			idwarehouse_inlog: 33,
-			idlocation_inlog: 160,
+			iditem_inlog: 1,
+			idbatch_inlog: 1,
+			idwarehouse_inlog: 1,
+			idlocation_inlog: 1,
 			quantity_inlog: 25,
 			iduser_inlog: 0,
 			createdat_inlog: now,
@@ -268,10 +268,10 @@ exports.up = async (pgm) => {
 		{
 			idgroup_inlog: '496338de-5da7-4f3c-886d-8f6f6b55948d',
 			type_inlog: 'In',
-			iditem_inlog: 25,
-			idbatch_inlog: 31,
-			idwarehouse_inlog: 34,
-			idlocation_inlog: 152,
+			iditem_inlog: 2,
+			idbatch_inlog: 2,
+			idwarehouse_inlog: 2,
+			idlocation_inlog: 2,
 			quantity_inlog: 40,
 			iduser_inlog: 0,
 			createdat_inlog: now,
