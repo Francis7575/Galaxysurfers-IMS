@@ -7,24 +7,24 @@ Techologies used: React, Typescript, TailwindCSS, Node.js, Express, Postgresql.
 # Login Information
 This project doesn't contain a sign-up because the idea of the project is that the employee will be provided with the login information to access the application.
 
-username: admin
-password: 12345678
+<p>username: admin</p>
+<p>password: 12345678</p>
 
 # .ENV Example
-Backend
+**Backend**
 
-BACKEND_PORT=
-COOKIE_SECRET_KEY=
-DB_HOST=
-DB_NAME=
-DB_PASSWORD=
-DB_PORT=
-DB_USER=
-DATABASE_URL=
-FRONTEND_URL=
+<p>BACKEND_PORT=</p>
+<p>COOKIE_SECRET_KEY=</p>
+<p>DB_HOST=</p>
+<p>DB_NAME=</p>
+<p>DB_PASSWORD=</p>
+<p>DB_PORT=</p>
+<p>DB_USER=</p>
+<p>DATABASE_URL=</p>
+<p>FRONTEND_URL=</p>
 
-Frontend
-VITE_REACT_BACKEND_URL=
+**Frontend**
+<p>VITE_REACT_BACKEND_URL=</p>
 
 # Application live link
 
