@@ -29,7 +29,7 @@ export const checkLoggedIn = async (
     } catch (err) {
       const error = err as Error;
       console.error(error.message);
-      res.status(500).send({message: error.message}); 
+      res.status(500).send({ message: error.message });
     }
   } else {
     res.status(401).json({ loggedIn: false });
@@ -152,6 +152,7 @@ export const getMenuAccess = async (
       });
     });
 
+    console.log(datarows);
     res.status(200).json(datarows);
   } catch (err: unknown) {
     const error = err as Error;
