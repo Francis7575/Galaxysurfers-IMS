@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import path from "path";
 
 dotenv.config();
 
@@ -41,6 +42,13 @@ app.use("/items", itemsRoute);
 
 import inventoryRoute from "./routes/inventoryRoutes";
 app.use("/inventory", inventoryRoute);
+
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+app.get('*', (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
+});
 
 // Start the server
 const PORT = process.env.BACKEND_PORT || 8000;
