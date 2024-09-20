@@ -10,7 +10,7 @@ import { SubMenuItem } from '../../types/types';
 const Header = () => {
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
   const [menus, setMenus] = useState<SubMenuItem[]>([]);
-  const { handleLogout } = useAuth()
+  const { userId, handleLogout } = useAuth()
 
   const handleToggleMenu = () => {
     setIsMenuOpened(!isMenuOpened);
@@ -25,21 +25,20 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const fetchItems = async () => {
-      const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/get-access-menus?responseType=allowed`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
+    if (userId) {
+      const fetchItems = async () => {
+        const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/get-access-menus?userId=${userId}&responseType=allowed`, {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        const data = await response.json();
+        if (data.length > 0) {
+          setMenus(data[0].subMenus);
         }
-      });
-      const data = await response.json();
-
-      if (data.length > 0) {
-        setMenus(data[0].subMenus);
-      }
+      };
+      fetchItems();
     }
-    fetchItems();
-  }, []);
+  }, [userId]);
 
   return (
     <header className='font-manrope border-b border-lightgray flex justify-between items-center px-[12px] md:px-[55px] py-[19px] md:py-[27px] lg:px-0 lg:pl-[71px]'>
