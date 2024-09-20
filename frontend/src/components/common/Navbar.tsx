@@ -40,7 +40,7 @@ const Navbar = () => {
   useEffect(() => {
     if (userId) {
       const fetchItems = async () => {
-        const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/get-access-menus?userId=${userId}&responseType=allowed`, {
+        const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/get-access-menus?userId=${userId}&responseType=all`, {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' }
         });
