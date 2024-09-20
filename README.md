@@ -27,7 +27,5 @@ This project doesn't contain a sign-up because the idea of the project is that t
 <p>VITE_REACT_BACKEND_URL=</p>
 
 # Application live link
-
 https://galaxysurfers-ims.onrender.com
 
-Production Database will be deploy soon...
