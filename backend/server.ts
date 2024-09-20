@@ -48,7 +48,7 @@ app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 app.get('*', (req, res) => {
   console.log("Serving index.html for:", req.url);
-    res.status(200).sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
+    res.status(200).sendFile(path.join(__dirname, '../frontend/dist', '/index.html'));
 });
 
 // Start the server
