@@ -152,7 +152,7 @@ export const getMenuAccess = async (
       });
     });
 
-    console.log(datarows);
+    console.log(datarows[0].subMenus);
     res.status(200).json(datarows);
   } catch (err: unknown) {
     const error = err as Error;
