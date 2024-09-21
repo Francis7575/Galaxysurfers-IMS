@@ -282,7 +282,7 @@ export const updateMenuAccess = async (
         [iduser, idmm2, access]
       );
     }
-    res.status(201).send("User Access updated!");
+    res.status(201).json({ message: "User Access updated!", userId: iduser });
   } catch (err: unknown) {
     const error = err as Error;
     console.error(error.message);
