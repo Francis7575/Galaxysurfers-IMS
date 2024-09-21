@@ -10,6 +10,11 @@ export type GetMenuAccessQuery = {
   responseType?: "all" | "allowed";
 };
 
+export type GetMenuAccessResponse = {
+  datarows: HierarchicalMenuAccess[];
+  userId: number | string; 
+}
+
 export type UserRequestBody = {
   name_user: string;
   username: string;

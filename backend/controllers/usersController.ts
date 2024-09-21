@@ -6,6 +6,7 @@ import {
   CheckLoggedInResponse,
   GetMenuAccessQuery,
   HierarchicalMenuAccess,
+  GetMenuAccessResponse,
 } from "../types/types";
 
 // Checks for a specific cookie
@@ -90,7 +91,7 @@ export const login = async (
 
 export const getMenuAccess = async (
   req: Request<{}, {}, {}, GetMenuAccessQuery>,
-  res: Response<HierarchicalMenuAccess[] | { message: string }>
+  res: Response<GetMenuAccessResponse | { message: string }>
 ): Promise<void> => {
   try {
     // when userId is null returns all existing menus
@@ -149,7 +150,7 @@ export const getMenuAccess = async (
     });
 
     // console.log(datarows[0].subMenus)
-    res.status(200).json(datarows);
+    res.status(200).json({ datarows, userId });
   } catch (err: unknown) {
     const error = err as Error;
     console.error(error.message);
