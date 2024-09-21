@@ -61,8 +61,8 @@ export const login = async (
         res.cookie("userId", userId, {
           httpOnly: true,
           maxAge: 60000 * 60, // expires in 1 hour
-          signed: true,
-          sameSite: "strict",
+          secure: true, // Set to true if using HTTPS
+          sameSite: 'none',
         });
 
         res.status(200).json({
