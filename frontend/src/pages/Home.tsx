@@ -27,7 +27,7 @@ const CardContent: React.FC<CardProps> = ({ children }) => (
 const CustomTooltip = ({ active, payload }: any) => {
 	if (active && payload && payload.length) {
 		const { name, size, root } = payload[0].payload;
-		console.log('hi', size)	
+		// console.log('hi', size)	
 		return (
 			<div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc' }}>
 				<p className="label"><strong>Warehouse:</strong> {root.name}</p>

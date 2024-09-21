@@ -38,6 +38,7 @@ const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
+    console.log("User ID in Navbar:", userId);
     if (userId) {
       const fetchItems = async () => {
         try {
