@@ -35,7 +35,6 @@ export type HierarchicalMenuAccess = {
 }
 
 
-
 // itemsController.ts
 export type ItemBody = {
   iditem: number;
@@ -68,12 +67,12 @@ export type StockRequestBody = {
 
 
 // warehouseController.ts
-export interface WarehouseRequestBody {
+export type WarehouseRequestBody = {
   code_warehouse: string;
   name_warehouse: string;
 }
 
-export interface SaveLocationsRequestBody {
+export type SaveLocationsRequestBody = {
   figures: Array<{
     name: string;
     color: string;
@@ -82,7 +81,7 @@ export interface SaveLocationsRequestBody {
   }>;
 }
 
-export interface DashboardResponse {
+export type DashboardResponse = {
   indicators: {
     units: number;
     items: number;

@@ -38,23 +38,19 @@ const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log("User ID in Navbar:", userId);
-    if (userId) {
-      const fetchItems = async () => {
-        try {
-          const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/get-access-menus?userId=${userId}&responseType=allowed`);
-          const data = await response.json();
-          console.log("Fetched menu data:", data);  // Check this log in production
-          if (data.length > 0) {
-            setMenus(data[0].subMenus);
-          }
-        } catch (error) {
-          console.error("Failed to fetch menu data:", error);  // Log any error
+    const fetchItems = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/get-access-menus?userId=${userId}&responseType=allowed`);
+        const data = await response.json();
+        if (data.length > 0) {
+          setMenus(data[0].subMenus);
         }
-      };
-      fetchItems();
-    }
-  }, [userId]);
+      } catch (error) {
+        console.error("Failed to fetch menu data:", error);  // Log any error
+      }
+    };
+    fetchItems();
+  }, []);
 
   const isActiveRoute = (path: string, relatedPaths: string[]) => {
     return relatedPaths.includes(path);
