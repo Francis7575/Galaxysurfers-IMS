@@ -156,6 +156,7 @@ export const getMenuAccess = async (
 
     // console.log(datarows[0].subMenus)
     res.status(200).json({ datarows, userId });
+    console.log("Menu data to send:", datarows);
   } catch (err: unknown) {
     const error = err as Error;
     console.error(error.message);

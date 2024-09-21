@@ -4,7 +4,7 @@ import { LoginForm } from "../types/types";
 const BACKEND_URL = import.meta.env.VITE_REACT_BACKEND_URL
 const useAuth = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const [userId, setUserId] = useState<number | null>(1);
+  const [userId, setUserId] = useState<number | null>(null);
   const [username, setUsername] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -20,7 +20,7 @@ const useAuth = () => {
         if (response.ok) {
           setLoggedIn(data.loggedIn);
           setUsername(data.username);
-          setUserId((prevId) => (prevId !== null ? prevId + 1 : 1));
+          setUserId(data.userId);
         }
       } catch (err) {
         console.error(err);
@@ -46,7 +46,7 @@ const useAuth = () => {
       if (response.ok) {
         setLoggedIn(data.loggedIn);
         setUsername(data.username);
-        setUserId((prevId) => (prevId !== null ? prevId + 1 : 1));
+        setUserId(data.userId);
       } else {
         alert(data.message);
       }
