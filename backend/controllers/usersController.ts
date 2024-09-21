@@ -21,6 +21,8 @@ export const checkLoggedIn = async (
         "SELECT username FROM users WHERE iduser = $1",
         [req.signedCookies.userId]
       );
+      console.log("Query result: ", result.rows);
+      console.log("Cookies: ", req.signedCookies);
       const user = result.rows[0];
       res.status(200).json({
         loggedIn: true,
@@ -63,7 +65,7 @@ export const login = async (
           httpOnly: true,
           maxAge: 60000 * 60, // expires in 1 hour
           secure: true, // Set to true if using HTTPS
-          sameSite: 'none',
+          sameSite: "none",
         });
 
         res.status(200).json({
@@ -109,16 +111,19 @@ export const getMenuAccess = async (
       }
     }
 
-    const result = await pool.query(`select 
+    const result = await pool.query(
+      `select 
           idmm2, idmm_mm2, name_mm2, link_mm2, order_mm2,
           coalesce(access_mmu2, 0) as access_menu
           from navbar_menu
           left join (select idmm_mmu2, access_mmu2 from navbar_menu_user where iduser_mmu2 = $1) UA on navbar_menu.idmm2 = UA.idmm_mmu2
           where navbar_menu.status_mm2 = 1 ${ex}
           group by idmm2, idmm_mm2, name_mm2, link_mm2, order_mm2, access_menu
-      `, [userId]); // Use parameterized queries to prevent SQL injection
+      `,
+      [userId]
+    ); // Use parameterized queries to prevent SQL injection
 
-    // console.log(result.rows); 
+    // console.log(result.rows);
 
     const datarows: HierarchicalMenuAccess[] = [];
     const menuMap: Record<number | string, HierarchicalMenuAccess> = {};
