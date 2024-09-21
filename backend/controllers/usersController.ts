@@ -88,71 +88,67 @@ export const login = async (
   }
 };
 
-// get menus with access
 export const getMenuAccess = async (
   req: Request<{}, {}, {}, GetMenuAccessQuery>,
   res: Response<HierarchicalMenuAccess[] | { message: string }>
 ): Promise<void> => {
   try {
-    /*
-      3 types of response
-      
-      when userId is null returns all existing menus
-      when userId is not null and responseType = 'all' returns all existing menus access or not
-      when userId is not null and responseType = 'allowed' returns just the menus with access
-      */
+    // when userId is null returns all existing menus
+    // when userId is not null and responseType = 'all' returns all existing menus access or not
+    // when userId is not null and responseType = 'allowed' returns just the menus with access
+
     let { userId, responseType } = req.query;
 
     let ex = "";
     if (!userId) {
       userId = 0;
     } else {
-      if (responseType == "allowed") {
+      if (responseType === "allowed") {
         ex = `and access_mmu2 = 1`;
       }
     }
 
     const result = await pool.query(`select 
-          idmm2, idmm, name_mm, link_mm, order_mm, fa_mm, type_mm,
-          idmm_mm2, name_mm2, link_mm2, order_mm2,
+          idmm2, idmm_mm2, name_mm2, link_mm2, order_mm2,
           coalesce(access_mmu2, 0) as access_menu
+          from navbar_menu
+          left join (select idmm_mmu2, access_mmu2 from navbar_menu_user where iduser_mmu2 = $1) UA on navbar_menu.idmm2 = UA.idmm_mmu2
+          where navbar_menu.status_mm2 = 1 ${ex}
+          group by idmm2, idmm_mm2, name_mm2, link_mm2, order_mm2, access_menu
+      `, [userId]); // Use parameterized queries to prevent SQL injection
 
-          from navbar_menu2
-          left join navbar_menu on navbar_menu2.idmm_mm2 = navbar_menu.idmm 
-          left join (select idmm_mmu2, access_mmu2 from navbar_menu_user where iduser_mmu2 = ${userId} ) UA on navbar_menu2.idmm2 = UA.idmm_mmu2
-
-          where navbar_menu2.status_mm2 = 1  ${ex}
-          group by idmm2, idmm, access_menu
-          order by order_mm, order_mm2
-      `);
+    // console.log(result.rows); 
 
     const datarows: HierarchicalMenuAccess[] = [];
     const menuMap: Record<number | string, HierarchicalMenuAccess> = {};
 
     result.rows.forEach((row) => {
-      if (!menuMap[row.idmm]) {
-        menuMap[row.idmm] = {
-          idmm: row.idmm,
-          name_mm: row.name_mm,
-          link_mm: row.link_mm,
-          order_mm: row.order_mm,
-          fa_mm: row.fa_mm,
-          type_mm: row.type_mm,
+      // Ensure the main menu exists in the map
+      if (!menuMap[row.idmm_mm2]) {
+        menuMap[row.idmm_mm2] = {
+          idmm: row.idmm_mm2,
+          name_mm: row.name_mm2,
+          link_mm: row.link_mm2,
+          order_mm: row.order_mm2,
           subMenus: [],
         };
-        datarows.push(menuMap[row.idmm]);
+        datarows.push(menuMap[row.idmm_mm2]); // Add to datarows
       }
-      menuMap[row.idmm].subMenus.push({
-        idmm2: row.idmm2,
-        idmm_mm2: row.idmm_mm2,
-        name_mm2: row.name_mm2,
-        link_mm2: row.link_mm2,
-        order_mm2: row.order_mm2,
-        access_menu: row.access_menu,
-      });
+
+      // Only push if idmm2 is defined
+      if (row.idmm2 !== undefined) {
+        menuMap[row.idmm_mm2].subMenus.push({
+          idmm2: row.idmm2,
+          idmm_mm2: row.idmm_mm2,
+          name_mm2: row.name_mm2,
+          link_mm2: row.link_mm2,
+          order_mm2: row.order_mm2,
+          access_menu: row.access_menu,
+        });
+      }
     });
 
-    console.log(datarows[0].subMenus);
+    // console.log(datarows[0].subMenus)
     res.status(200).json(datarows);
   } catch (err: unknown) {
     const error = err as Error;

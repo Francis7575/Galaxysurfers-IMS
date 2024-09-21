@@ -57,7 +57,7 @@ const CheckboxList = ({ user }: Props) => {
       setCheckboxes(submenus[0]);
     }
     fetchItems();
-  }, []);
+  }, [user.iduser]);
 
   console.log(checkboxes)
 

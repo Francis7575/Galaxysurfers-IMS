@@ -27,25 +27,6 @@ exports.up = (pgm) => {
     },
   });
   pgm.createTable('navbar_menu', {
-    idmm: 'serial primary key',
-    name_mm: { type: 'varchar(500)', notNull: true, default: '' },
-    link_mm: { type: 'varchar(500)', notNull: true, default: '' },
-    order_mm: { type: 'integer', notNull: true, default: 1 },
-    fa_mm: { type: 'varchar(500)', notNull: true, default: '' },
-    type_mm: { type: 'integer', notNull: true, default: 1 },
-    status_mm: { type: 'integer', notNull: true, default: 1 },
-    createdAt: {
-      type: 'timestamp',
-      notNull: true,
-      default: pgm.func('current_timestamp'),
-    },
-    updatedAt: {
-      type: 'timestamp',
-      notNull: true,
-      default: pgm.func('current_timestamp'),
-    },
-  });
-  pgm.createTable('navbar_menu2', {
     idmm2: 'serial primary key',
     idmm_mm2: { type: 'integer', default: 0 },
     name_mm2: { type: 'varchar(500)', notNull: true, default: '' },

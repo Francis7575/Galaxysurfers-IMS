@@ -31,8 +31,6 @@ export type HierarchicalMenuAccess = {
   name_mm: string;
   link_mm: string;
   order_mm: number;
-  fa_mm: string;
-  type_mm: number;
   subMenus: SubMenuAccess[];
 }
 

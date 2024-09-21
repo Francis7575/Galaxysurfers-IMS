@@ -149,28 +149,15 @@ exports.up = async (pgm) => {
 	}
 	// Data to insert into navbar_menu
 	const navbarMenuItems = [
-		{ name_mm: 'Users', link_mm: '/adduser', order_mm: 1, fa_mm: '', type_mm: 1, status_mm: 1 },
-		{ name_mm: 'Warehouses', link_mm: '/addwarehouse', order_mm: 1, fa_mm: '', type_mm: 1, status_mm: 1 },
-	];
-
-	for (const menuItem of navbarMenuItems) {
-		await pgm.sql(`
-    INSERT INTO navbar_menu (name_mm, link_mm, order_mm, fa_mm, type_mm, status_mm)
-		VALUES ('${menuItem.name_mm}', '${menuItem.link_mm}', '${menuItem.order_mm}',  '${menuItem.fa_mm}', '${menuItem.type_mm}', '${menuItem.status_mm}');
-  `)
-	}
-
-	// Data to insert into navbar_menu2
-	const navbarMenu2Items = [
 		{ idmm_mm2: 1, name_mm2: 'Users', link_mm2: '/userMain', order_mm2: 1, status_mm2: 1 },
 		{ idmm_mm2: 1, name_mm2: 'Warehouses', link_mm2: '/warehouseMain', order_mm2: 1, status_mm2: 1 },
 		{ idmm_mm2: 1, name_mm2: 'Items', link_mm2: '/itemMain', order_mm2: 1, status_mm2: 1 },
 		{ idmm_mm2: 1, name_mm2: 'Inventory', link_mm2: '/inventoryMain', order_mm2: 1, status_mm2: 1 },
 	];
 
-	for (const menuItem of navbarMenu2Items) {
+	for (const menuItem of navbarMenuItems) {
 		await pgm.sql(`
-    INSERT INTO navbar_menu2 (idmm_mm2, name_mm2, link_mm2, order_mm2, status_mm2)
+    INSERT INTO navbar_menu (idmm_mm2, name_mm2, link_mm2, order_mm2, status_mm2)
 		VALUES ('${menuItem.idmm_mm2}', '${menuItem.name_mm2}', '${menuItem.link_mm2}',  '${menuItem.order_mm2}', '${menuItem.status_mm2}');
   `)
 	}

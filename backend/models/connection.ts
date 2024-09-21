@@ -12,12 +12,12 @@ dotenv.config();
 //   port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : undefined, // Convert the string to a number
 // });
 
-  const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  });
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
 
 // pool.query("SELECT NOW()", (err, res) => {
 //   if (err) {
