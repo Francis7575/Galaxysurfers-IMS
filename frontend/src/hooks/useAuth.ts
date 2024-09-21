@@ -4,7 +4,7 @@ import { LoginForm } from "../types/types";
 const BACKEND_URL = import.meta.env.VITE_REACT_BACKEND_URL
 const useAuth = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const [userId, setUserId] = useState<number>(1);
+  const [userId, setUserId] = useState<number | null>(null);
   const [username, setUsername] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -65,7 +65,7 @@ const useAuth = () => {
       const data = await response.json();
       console.log(data);
       setUsername("");
-      setUserId(0);
+      setUserId(null);
       setLoggedIn(false);
       window.location.href = '/';
     } catch (err) {
