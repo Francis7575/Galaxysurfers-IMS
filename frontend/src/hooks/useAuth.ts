@@ -20,7 +20,7 @@ const useAuth = () => {
         if (response.ok) {
           setLoggedIn(data.loggedIn);
           setUsername(data.username);
-          setUserId(data.userId);
+          setUserId(data.iduser);
         }
       } catch (err) {
         console.error(err);
@@ -46,7 +46,7 @@ const useAuth = () => {
       if (response.ok) {
         setLoggedIn(data.loggedIn);
         setUsername(data.username);
-        setUserId(data.userId);
+        setUserId(data.iduser);
       } else {
         alert(data.message);
       }
