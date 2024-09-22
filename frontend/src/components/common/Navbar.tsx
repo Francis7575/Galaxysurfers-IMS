@@ -104,7 +104,7 @@ const Navbar = () => {
       {/* {mobile navbar} */}
       <div className='930:hidden font-manrope border-b border-lightgray flex justify-between items-center px-[12px] md:px-[55px] py-[19px] md:py-[27px] lg:px-0 lg:pl-[71px]'>
         <nav className='z-20'>
-          <div className={`pt-[2rem] pl-[30px] fixed min-h-screen right-0 top-0 z-10 bottom-0 w-[75%] bg-white transition-transform duration-300 ease-in-out 930:transform-none
+          <div className={`pt-[2rem] pl-[30px] fixed min-h-screen right-0 top-0 z-10 bottom-0 w-[75%] bg-lightblue transition-transform duration-300 ease-in-out 930:transform-none
 					${isMenuOpened ? 'translate-x-0' : 'translate-x-full 930:hidden'}`}>
             <h2 className='mb-[1.5rem] text-[.75rem] text-gray font-medium uppercase'>General</h2>
             <div className='flex flex-col gap-3 max-w-[150px]'>
