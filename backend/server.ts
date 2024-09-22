@@ -43,14 +43,11 @@ app.use("/items", itemsRoute);
 import inventoryRoute from "./routes/inventoryRoutes";
 app.use("/inventory", inventoryRoute);
 
-const frontendPath = path.join(__dirname, '..', 'frontend', 'dist');
-console.log('Serving static files from:', frontendPath);  
-
-app.use(express.static(frontendPath));
+app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
 
 app.get('*', (req, res) => {
-  const indexPath = path.join(__dirname, '../../..', 'frontend', 'dist', 'index.html');
-  console.log('Serving index.html from:', indexPath);  
+  const indexPath = path.join(__dirname, 'frontend', 'dist', 'index.html');
+  console.log('Serving index.html from:', indexPath); 
   res.status(200).sendFile(indexPath);
 });
 
