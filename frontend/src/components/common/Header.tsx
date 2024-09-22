@@ -25,15 +25,19 @@ const Header = () => {
   };
 
   useEffect(() => {
+    console.log("User ID in Navbar:", userId);
     if (userId) {
       const fetchItems = async () => {
-        const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/get-access-menus?userId=${userId}&responseType=allowed`, {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' }
-        });
-        const data = await response.json();
-        if (data.length > 0) {
-          setMenus(data[0].subMenus);
+        try {
+          const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/users/get-access-menus?userId=${userId}&responseType=allowed`);
+          const data = await response.json();
+          console.log("Fetched menu data:", data);  // Check this log in production
+          if (data.length > 0) {
+            setMenus(data[0].subMenus);
+            console.log("Updated menus state:", menus);
+          }
+        } catch (error) {
+          console.error("Failed to fetch menu data:", error);  // Log any error
         }
       };
       fetchItems();
