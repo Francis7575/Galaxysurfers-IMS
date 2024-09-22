@@ -193,7 +193,14 @@ export const updateMenuAccess = async (
 
 //logout
 export const logout = (req: Request, res: Response): void => {
-  res.clearCookie("userId");
+  const isProduction = process.env.NODE_ENV === 'production';
+
+  res.clearCookie("userId", {
+    httpOnly: true,
+    sameSite: isProduction ? 'none' : 'strict',
+    secure: isProduction ? true : false
+  });
+
   res.json({
     userId: "",
     loggedIn: false,
