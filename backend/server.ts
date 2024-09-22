@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import path from "path"
 
 dotenv.config();
 
@@ -42,11 +43,10 @@ app.use("/items", itemsRoute);
 import inventoryRoute from "./routes/inventoryRoutes";
 app.use("/inventory", inventoryRoute);
 
-// app.use(express.static(path.join(__dirname, '../frontend/dist/index.html')));
-app.use(express.static('../frontend/dist/index.html'))
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 app.get('*', (req, res) => {
-    const indexPath = '../frontend/dist/index.html'
+    const indexPath = (path.join(__dirname, '../frontend/dist', 'index.html'))
     console.log('server path:', indexPath)
     res.status(200).sendFile(indexPath)
 });
