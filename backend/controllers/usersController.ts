@@ -6,8 +6,9 @@ import {
   CheckLoggedInResponse,
   GetMenuAccessQuery,
   HierarchicalMenuAccess,
-  GetMenuAccessResponse,
 } from "../types/types";
+import dotenv from 'dotenv';
+dotenv.config(); 
 
 // Checks for a specific cookie
 export const checkLoggedIn = async (
@@ -21,8 +22,6 @@ export const checkLoggedIn = async (
         "SELECT username FROM users WHERE iduser = $1",
         [req.signedCookies.userId]
       );
-      console.log("Query result: ", result.rows);
-      console.log("Cookies: ", req.signedCookies);
       const user = result.rows[0];
       res.status(200).json({
         loggedIn: true,
@@ -61,11 +60,13 @@ export const login = async (
       if (isMatch) {
         const userId = user.iduser;
 
+        const isProduction = process.env.NODE_ENV === 'production';
         res.cookie("userId", userId, {
           httpOnly: true,
-          maxAge: 60000 * 60, // expires in 1 hour
-          secure: true, // Set to true if using HTTPS
-          sameSite: "none",
+          maxAge: 60000 * 60, // Expires in 1 hour
+          signed: true,
+          sameSite: isProduction ? 'none' : 'strict', 
+          secure: isProduction ? true : false, 
         });
 
         res.status(200).json({
@@ -93,7 +94,7 @@ export const login = async (
 
 export const getMenuAccess = async (
   req: Request<{}, {}, {}, GetMenuAccessQuery>,
-  res: Response<GetMenuAccessResponse | { message: string }>
+  res: Response<HierarchicalMenuAccess[] | { message: string }>
 ): Promise<void> => {
   try {
     // when userId is null returns all existing menus
@@ -111,19 +112,16 @@ export const getMenuAccess = async (
       }
     }
 
-    const result = await pool.query(
-      `select 
+    const result = await pool.query(`select 
           idmm2, idmm_mm2, name_mm2, link_mm2, order_mm2,
           coalesce(access_mmu2, 0) as access_menu
           from navbar_menu
           left join (select idmm_mmu2, access_mmu2 from navbar_menu_user where iduser_mmu2 = $1) UA on navbar_menu.idmm2 = UA.idmm_mmu2
           where navbar_menu.status_mm2 = 1 ${ex}
           group by idmm2, idmm_mm2, name_mm2, link_mm2, order_mm2, access_menu
-      `,
-      [userId]
-    ); // Use parameterized queries to prevent SQL injection
+      `, [userId]); // Use parameterized queries to prevent SQL injection
 
-    // console.log(result.rows);
+    // console.log(result.rows); 
 
     const datarows: HierarchicalMenuAccess[] = [];
     const menuMap: Record<number | string, HierarchicalMenuAccess> = {};
@@ -153,14 +151,43 @@ export const getMenuAccess = async (
         });
       }
     });
-
     // console.log(datarows[0].subMenus)
-    res.status(200).json({ datarows, userId });
-    console.log("Menu data to send:", datarows);
+    res.status(200).json(datarows);
   } catch (err: unknown) {
     const error = err as Error;
     console.error(error.message);
     res.status(500).json({ message: error.message });
+  }
+};
+
+// Update Menu Access
+export const updateMenuAccess = async (
+  req: Request<{ iduser: string }, {}, { idmm2: number; access: number }>,
+  res: Response
+): Promise<void> => {
+  try {
+    const { iduser } = req.params;
+    const { idmm2, access } = req.body;
+    const val = await pool.query(
+      "SELECT idmm_mmu2 FROM navbar_menu_user WHERE idmm_mmu2 = $1 AND iduser_mmu2 = $2",
+      [idmm2, iduser]
+    );
+    if (val.rows.length > 0) {
+      await pool.query(
+        "UPDATE navbar_menu_user SET access_mmu2 = $1 WHERE idmm_mmu2 = $2 AND iduser_mmu2 = $3",
+        [access, idmm2, iduser]
+      );
+    } else {
+      await pool.query(
+        "INSERT INTO navbar_menu_user (iduser_mmu2, idmm_mmu2, access_mmu2) VALUES ($1, $2, $3)",
+        [iduser, idmm2, access]
+      );
+    }
+    res.status(201).send("User Access updated!");
+  } catch (err: unknown) {
+    const error = err as Error;
+    console.error(error.message);
+    res.status(500).send(error.message);
   }
 };
 
@@ -265,33 +292,4 @@ export const updateUser = async (
   }
 };
 
-// Update Menu Access
-export const updateMenuAccess = async (
-  req: Request<{ iduser: string }, {}, { idmm2: number; access: number }>,
-  res: Response
-): Promise<void> => {
-  try {
-    const { iduser } = req.params;
-    const { idmm2, access } = req.body;
-    const val = await pool.query(
-      "SELECT idmm_mmu2 FROM navbar_menu_user WHERE idmm_mmu2 = $1 AND iduser_mmu2 = $2",
-      [idmm2, iduser]
-    );
-    if (val.rows.length > 0) {
-      await pool.query(
-        "UPDATE navbar_menu_user SET access_mmu2 = $1 WHERE idmm_mmu2 = $2 AND iduser_mmu2 = $3",
-        [access, idmm2, iduser]
-      );
-    } else {
-      await pool.query(
-        "INSERT INTO navbar_menu_user (iduser_mmu2, idmm_mmu2, access_mmu2) VALUES ($1, $2, $3)",
-        [iduser, idmm2, access]
-      );
-    }
-    res.status(201).json({ message: "User Access updated!", userId: iduser });
-  } catch (err: unknown) {
-    const error = err as Error;
-    console.error(error.message);
-    res.status(500).send(error.message);
-  }
-};
+

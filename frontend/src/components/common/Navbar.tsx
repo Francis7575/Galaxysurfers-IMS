@@ -33,9 +33,12 @@ export const icons = [
 ]
 
 const Navbar = () => {
-  const { userId, handleLogout } = useAuth();
+  const { userId, handleLogout} = useAuth();
   const [menus, setMenus] = useState<SubMenuItem[]>([]);
   const location = useLocation();
+  console.log("Menus state in render:", menus);
+
+
 
   useEffect(() => {
     console.log("User ID in Navbar:", userId);
@@ -47,6 +50,7 @@ const Navbar = () => {
           console.log("Fetched menu data:", data);  // Check this log in production
           if (data.length > 0) {
             setMenus(data[0].subMenus);
+            console.log("Updated menus state:", menus);
           }
         } catch (error) {
           console.error("Failed to fetch menu data:", error);  // Log any error
@@ -55,6 +59,10 @@ const Navbar = () => {
       fetchItems();
     }
   }, [userId]);
+
+  useEffect(() => {
+    console.log("Updated menus state:", menus);
+  }, [menus]);
 
   const isActiveRoute = (path: string, relatedPaths: string[]) => {
     return relatedPaths.includes(path);

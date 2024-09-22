@@ -79,5 +79,4 @@ export interface SubMenuItem {
   link_mm2: string;
   order_mm2: number;
   access_menu: number;
-  relatedpaths: string[]
 }
