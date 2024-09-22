@@ -43,7 +43,7 @@ app.use("/items", itemsRoute);
 import inventoryRoute from "./routes/inventoryRoutes";
 app.use("/inventory", inventoryRoute);
 
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 
 app.get('*', (req, res) => {
     const indexPath = path.join(__dirname, '../../frontend/dist/', 'index.html');
@@ -51,7 +51,6 @@ app.get('*', (req, res) => {
     console.log('server path:', indexPath)
     res.status(200).sendFile(indexPath)
 });
-
 
 // Start the server
 const PORT = process.env.BACKEND_PORT || 8000;
