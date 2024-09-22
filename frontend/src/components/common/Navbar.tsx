@@ -66,9 +66,9 @@ const Navbar = () => {
       const iconComponent = getIconComponent(item);
       const isActive = isActiveRoute(location.pathname, icons.find(icon => icon.link === item.link_mm2)?.relatedPaths || []);
       return (
-        <Link key={item.idmm2} to={item.link_mm2} onClick={closeMenu} className={`flex items-center gap-2 ${isActive ? 'bg-active' : ''}`}>
+        <Link key={item.idmm2} to={item.link_mm2} onClick={closeMenu} className={`hover:opacity-70 flex items-center gap-2 ${isActive ? 'bg-active' : ''}`}>
           {iconComponent}
-          <span>{item.name_mm2}</span>
+          <span className='text-[.85rem]'>{item.name_mm2}</span>
         </Link>
       );
     });
@@ -90,7 +90,7 @@ const Navbar = () => {
                 <p className='text-[.85rem]'>Dashboard</p>
               </Link>
               {renderMenuItems()}
-              <h2 className='text-[.75rem] text-gray font-medium uppercase mb-4'>Support</h2>
+              <h2 className='text-[.75rem] text-gray font-medium uppercase mt-4'>Support</h2>
               <button onClick={handleLogout}
                 className='flex items-center gap-[8px] hover:opacity-50'>
                 <LogOut className='w-4' />
