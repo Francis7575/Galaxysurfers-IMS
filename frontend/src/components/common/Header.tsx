@@ -44,6 +44,10 @@ const Header = () => {
     }
   }, [userId]);
 
+  useEffect(() => {
+    console.log("Updated menus state:", menus);
+  }, [menus]);
+  
   return (
     <header className='font-manrope border-b border-lightgray flex justify-between items-center px-[12px] md:px-[55px] py-[19px] md:py-[27px] lg:px-0 lg:pl-[71px]'>
       <Link to="/"
