@@ -46,7 +46,7 @@ app.use("/inventory", inventoryRoute);
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 app.get('*', (req, res) => {
-    const indexPath = (path.join(__dirname, '../frontend/dist', 'index.html'))
+    const indexPath = (path.join(__dirname, 'index.html'))
     console.log('server path:', indexPath)
     res.status(200).sendFile(indexPath)
 });
