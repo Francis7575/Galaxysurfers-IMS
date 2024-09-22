@@ -22,6 +22,7 @@ This project doesn't contain a sign-up because the idea of the project is that t
 <p>DB_USER=</p>
 <p>DATABASE_URL=</p>
 <p>FRONTEND_URL=</p>
+<p>NODE_ENV=</p>
 
 **Frontend**
 <p>VITE_REACT_BACKEND_URL=</p>
