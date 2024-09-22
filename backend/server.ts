@@ -46,10 +46,11 @@ app.use("/inventory", inventoryRoute);
 app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 
 app.get('*', (req, res) => {
-    const indexPath = (path.join(__dirname, '../../index.html'))
+    const indexPath = (path.join(__dirname, '../../../../../frontend/dist', 'index.html'))
     console.log('server path:', indexPath)
     res.status(200).sendFile(indexPath)
 });
+
 
 // Start the server
 const PORT = process.env.BACKEND_PORT || 8000;
