@@ -47,7 +47,6 @@ app.use(express.static('../frontend/dist/index.html'))
 
 app.get('*', (req, res) => {
     const indexPath = '../frontend/dist/index.html'
-    console.log('Root directory:', __dirname)
     console.log('server path:', indexPath)
     res.status(200).sendFile(indexPath)
 });
