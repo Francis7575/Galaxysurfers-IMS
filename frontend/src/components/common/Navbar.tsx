@@ -61,6 +61,7 @@ const Navbar = () => {
   };
 
   const renderMenuItems = () => {
+    console.log('Menus:', menus);
     return menus.map((item) => {
       const iconComponent = getIconComponent(item);
       const isActive = isActiveRoute(location.pathname, icons.find(icon => icon.link === item.link_mm2)?.relatedPaths || []);
