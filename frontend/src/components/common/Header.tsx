@@ -1,20 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import Navbar from './Navbar';
+import useWindowWidth from '../../hooks/useWindowWidth';
 
 const Header = () => {
-  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
+	const windowWidth = useWindowWidth();
   const isDesktop = windowWidth >= 930;
 
   return (

@@ -1,22 +1,9 @@
 import { Outlet } from "react-router-dom";
-import { useEffect, useState } from 'react';
-
 import { Header, Navbar } from './index';
+import useWindowWidth from "../hooks/useWindowWidth";
 
 const Layout = () => {
-	const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
-
-	useEffect(() => {
-		const handleResize = () => {
-			setWindowWidth(window.innerWidth);
-		};
-		window.addEventListener('resize', handleResize);
-		// Cleanup the event listener on unmount
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
-	}, []);
-
+	const windowWidth = useWindowWidth();
 	const isMobile = windowWidth <= 930;
 
 	return (
