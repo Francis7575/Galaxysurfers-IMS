@@ -6,7 +6,8 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "tsc && nodemon dist/server.js",
-    "migrate": "ts-node --project tsconfig.migrations.json node_modules/node-pg-migrate/bin/node-pg-migrate.js"
+    "migrate": "ts-node --project tsconfig.migrations.json node_modules/node-pg-migrate/bin/node-pg-migrate.js",
+    "postinstall": "npm install --save-dev @types/bcrypt @types/cookie-parser @types/cors @types/express @types/pg @types/uuid"
   },
   "keywords": [],
   "author": "",
