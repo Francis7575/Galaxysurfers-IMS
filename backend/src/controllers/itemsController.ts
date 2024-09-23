@@ -83,15 +83,17 @@ export const itemUpdate = async (
       imgurl_item,
     } = req.body as ItemBody;
 
-    console.log("BD", req.body)
+    console.log("BD", req.body);
 
-		const {iditem} = req.params
+    const { iditem } = req.params;
 
     // Check if iditem is provided
     if (!iditem) {
-      return res.status(400).json({ error: "Item ID (iditem) is required to update an item." });
+      return res
+        .status(400)
+        .json({ error: "Item ID (iditem) is required to update an item." });
     }
-		console.log("ID",iditem)
+    console.log("ID", iditem);
     // Update the specific item identified by iditem
     const result = await pool.query(
       `UPDATE items 
@@ -111,13 +113,15 @@ export const itemUpdate = async (
         batch_ctrl_item,
         expiration_ctrl_item,
         imgurl_item,
-        iditem
+        iditem,
       ]
     );
 
     // Check if the update affected any rows
     if (result.rowCount === 0) {
-      return res.status(404).json({ error: "Item not found or no changes made." });
+      return res
+        .status(404)
+        .json({ error: "Item not found or no changes made." });
     }
 
     return res.status(200).send("Item updated successfully!");

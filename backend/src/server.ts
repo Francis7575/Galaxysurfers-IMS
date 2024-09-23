@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import path from "path"
+import path from "path";
 
 dotenv.config();
 
@@ -43,12 +43,16 @@ app.use("/items", itemsRoute);
 import inventoryRoute from "./routes/inventoryRoutes.ts";
 app.use("/inventory", inventoryRoute);
 
-app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
-app.get('*', (req, res) => {
-    const indexPath = (path.join(__dirname, '../../../../../frontend/dist', 'index.html'))
-    console.log('server path:', indexPath)
-    res.status(200).sendFile(indexPath)
+app.get("*", (req, res) => {
+  const indexPath = path.join(
+    __dirname,
+    "../frontend/dist",
+    "index.html"
+  );
+  console.log("server path:", indexPath);
+  res.status(200).sendFile(indexPath);
 });
 
 // Start the server

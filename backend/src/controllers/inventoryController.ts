@@ -224,11 +224,12 @@ export const deleteInventoryData = async (
 ): Promise<Response> => {
   try {
     const { idinventory } = req.params;
-    console.log(idinventory)
-    
-    await pool.query( `UPDATE inventory SET status_in = 0 WHERE idinventory = $1`, [
-      idinventory
-    ]);
+    console.log(idinventory);
+
+    await pool.query(
+      `UPDATE inventory SET status_in = 0 WHERE idinventory = $1`,
+      [idinventory]
+    );
 
     return res.status(200).send("Inventory item deleted!");
   } catch (err: unknown) {

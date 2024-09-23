@@ -7,8 +7,8 @@ import {
   GetMenuAccessQuery,
   HierarchicalMenuAccess,
 } from "../types/types.ts";
-import dotenv from 'dotenv';
-dotenv.config(); 
+import dotenv from "dotenv";
+dotenv.config();
 
 // Checks for a specific cookie
 export const checkLoggedIn = async (
@@ -60,13 +60,13 @@ export const login = async (
       if (isMatch) {
         const userId = user.iduser;
 
-        const isProduction = process.env.NODE_ENV === 'production';
+        const isProduction = process.env.NODE_ENV === "production";
         res.cookie("userId", userId, {
           httpOnly: true,
           maxAge: 60000 * 60, // Expires in 1 hour
           signed: true,
-          sameSite: isProduction ? 'none' : 'strict', 
-          secure: isProduction ? true : false, 
+          sameSite: isProduction ? "none" : "strict",
+          secure: isProduction ? true : false,
         });
 
         res.status(200).json({
@@ -112,16 +112,19 @@ export const getMenuAccess = async (
       }
     }
 
-    const result = await pool.query(`select 
+    const result = await pool.query(
+      `select 
           idmm2, idmm_mm2, name_mm2, link_mm2, order_mm2,
           coalesce(access_mmu2, 0) as access_menu
           from navbar_menu
           left join (select idmm_mmu2, access_mmu2 from navbar_menu_user where iduser_mmu2 = $1) UA on navbar_menu.idmm2 = UA.idmm_mmu2
           where navbar_menu.status_mm2 = 1 ${ex}
           group by idmm2, idmm_mm2, name_mm2, link_mm2, order_mm2, access_menu
-      `, [userId]); // Use parameterized queries to prevent SQL injection
+      `,
+      [userId]
+    ); // Use parameterized queries to prevent SQL injection
 
-    // console.log(result.rows); 
+    // console.log(result.rows);
 
     const datarows: HierarchicalMenuAccess[] = [];
     const menuMap: Record<number | string, HierarchicalMenuAccess> = {};
@@ -193,12 +196,12 @@ export const updateMenuAccess = async (
 
 //logout
 export const logout = (req: Request, res: Response): void => {
-  const isProduction = process.env.NODE_ENV === 'production';
+  const isProduction = process.env.NODE_ENV === "production";
 
   res.clearCookie("userId", {
     httpOnly: true,
-    sameSite: isProduction ? 'none' : 'strict',
-    secure: isProduction ? true : false
+    sameSite: isProduction ? "none" : "strict",
+    secure: isProduction ? true : false,
   });
 
   res.json({
@@ -298,5 +301,3 @@ export const updateUser = async (
     res.status(500).send(error.message);
   }
 };
-
-
