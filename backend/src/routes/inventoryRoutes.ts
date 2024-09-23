@@ -5,7 +5,7 @@ import {
   stockOut,
   getStock,
   deleteInventoryData,
-} from "../controllers/inventoryController.ts";
+} from "../controllers/inventoryController";
 const router = express.Router();
 
 router.post("/inventory-in", stockIn);

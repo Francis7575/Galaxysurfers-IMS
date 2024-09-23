@@ -7,7 +7,7 @@ import {
   getWarehouses,
   saveLocations,
   getLocations,
-} from "../controllers/warehousesController.ts";
+} from "../controllers/warehousesController";
 
 const router = express.Router();
 

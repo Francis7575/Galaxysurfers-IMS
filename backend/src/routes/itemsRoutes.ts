@@ -4,7 +4,7 @@ import {
   itemNew,
   itemUpdate,
   itemCancel,
-} from "../controllers/itemsController.ts";
+} from "../controllers/itemsController";
 
 const router = express.Router();
 

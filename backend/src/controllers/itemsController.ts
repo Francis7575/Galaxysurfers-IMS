@@ -1,6 +1,6 @@
-import pool from "../models/connection.ts";
+import pool from "../models/connection";
 import { Request, Response } from "express";
-import { ItemBody, ItemParams } from "../types/types.ts";
+import { ItemBody, ItemParams } from "../types/types";
 
 // GET ITEMS
 export const itemList = async (

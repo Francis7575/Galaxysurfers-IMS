@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
-import pool from "../models/connection.ts";
-import { StockRequestBody } from "../types/types.ts";
+import pool from "../models/connection";
+import { StockRequestBody } from "../types/types";
 
 // ADD STOCK
 export const stockIn = async (

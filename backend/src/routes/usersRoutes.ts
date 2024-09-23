@@ -9,7 +9,7 @@ import {
   updateUser,
   getUserList,
   updateMenuAccess,
-} from "../controllers/usersController.ts";
+} from "../controllers/usersController";
 
 const router = express.Router();
 

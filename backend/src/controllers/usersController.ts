@@ -1,4 +1,4 @@
-import pool from "../models/connection.ts";
+import pool from "../models/connection";
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import {
@@ -6,7 +6,7 @@ import {
   CheckLoggedInResponse,
   GetMenuAccessQuery,
   HierarchicalMenuAccess,
-} from "../types/types.ts";
+} from "../types/types";
 import dotenv from "dotenv";
 dotenv.config();
 
