@@ -4,7 +4,7 @@
   "main": "server.ts",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "ts-node src/server.ts",
     "dev": "tsc && nodemon dist/server.js",
     "migrate": "ts-node --project tsconfig.migrations.json node_modules/node-pg-migrate/bin/node-pg-migrate.js"
   },
@@ -20,6 +20,7 @@
     "express": "^4.19.2",
     "path": "^0.12.7",
     "pg": "^8.12.0",
+    "ts-node": "^10.9.2",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
