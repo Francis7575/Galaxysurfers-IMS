@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es2016", 
     "module": "NodeNext",
     "rootDir": "./src",
     "moduleResolution": "nodenext",
@@ -14,5 +14,6 @@
     "sourceMap": true,
 		"types": ["node"]
   },
-  "exclude": ["dist"]
+	"include": ["./**/*"],
+  "exclude": ["node_modules"]
 }
