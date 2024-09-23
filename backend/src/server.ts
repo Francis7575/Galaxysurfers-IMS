@@ -14,9 +14,8 @@ dotenv.config();
 type Express = express.Application
 const app: Express = express();
 
-
-
 const FRONTEND_URL = process.env.FRONTEND_URL;
+console.log(FRONTEND_URL)
 // CORS options
 const corsOptions = {
   origin: FRONTEND_URL, // Allow requests from this origin
