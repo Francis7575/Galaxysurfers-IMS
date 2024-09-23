@@ -1,10 +1,10 @@
-import pool from "../models/connection";
+import pool from "../models/connection.ts";
 import { Request, Response } from "express";
 import {
   WarehouseRequestBody,
   SaveLocationsRequestBody,
   DashboardResponse,
-} from "../types/types";
+} from "../types/types.ts";
 
 // NEW WAREHOUSE
 export const warehouseNew = async (

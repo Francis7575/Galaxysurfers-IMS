@@ -31,16 +31,16 @@ app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
 // Routes
-import usersRoute from "./routes/usersRoutes";
+import usersRoute from "./routes/usersRoutes.ts";
 app.use("/users", usersRoute);
 
-import warehousesRoute from "./routes/warehousesRoutes";
+import warehousesRoute from "./routes/warehousesRoutes.ts";
 app.use("/warehouses", warehousesRoute);
 
-import itemsRoute from "./routes/itemsRoutes";
+import itemsRoute from "./routes/itemsRoutes.ts";
 app.use("/items", itemsRoute);
 
-import inventoryRoute from "./routes/inventoryRoutes";
+import inventoryRoute from "./routes/inventoryRoutes.ts";
 app.use("/inventory", inventoryRoute);
 
 app.use(express.static(path.join(__dirname, '../../frontend/dist')));
@@ -50,7 +50,6 @@ app.get('*', (req, res) => {
     console.log('server path:', indexPath)
     res.status(200).sendFile(indexPath)
 });
-
 
 // Start the server
 const PORT = process.env.BACKEND_PORT || 8000;

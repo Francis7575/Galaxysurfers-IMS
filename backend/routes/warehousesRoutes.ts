@@ -2,7 +2,7 @@ import express from 'express'
 import {
   getDashboard, warehouseNew, warehouseUpdate, warehouseCancel, getWarehouses, saveLocations, getLocations
 }
-  from '../controllers/warehousesController'
+  from '../controllers/warehousesController.ts'
 
 const router = express.Router()
 
