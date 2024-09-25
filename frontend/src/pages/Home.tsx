@@ -47,7 +47,6 @@ const Home = () => {
 		units: 0,
 		items: 0
 	});
-	const [loading, setLoading] = useState<boolean>(true); 
 
 	useEffect(() => {
 		const fetchInventoryData = () => {
@@ -92,18 +91,11 @@ const Home = () => {
 				}, []);
 				setInventoryOcupancy(treemapData)
 			}
-			setLoading(false);
 		}
 		fetchItems();
 	}, []);
 
-	if (loading) {
-		return (
-				<div className="flex justify-center items-center h-screen">
-						<p>Loading...</p> 
-				</div>
-		);
-}
+
 
 	return (
 		<div className='w-full mx-auto 930:pr-[29px]'>

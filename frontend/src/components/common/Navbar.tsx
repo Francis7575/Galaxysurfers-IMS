@@ -112,7 +112,7 @@ const Navbar = () => {
                 to="/home" className={`flex items-center gap-[8px] justify-center 
               ${location.pathname === '/home' ? 'bg-active' : ''}`}>
                 <LayoutDashboard className='w-4' />
-                <span>Dashboard</span>
+                <span className='text-[.85rem]'>Dashboard</span>
               </Link>
               {renderMenuItems()}
             </div>
@@ -120,7 +120,7 @@ const Navbar = () => {
             <button onClick={handleLogout}
               className='flex items-center gap-[8px] pl-4'>
               <LogOut className='w-4' />
-              <span>Log Out</span>
+              <span className='text-[.85rem]'>Log Out</span>
             </button>
           </div>
           <button onClick={toggleMenu}>
