@@ -80,3 +80,10 @@ export interface SubMenuItem {
   order_mm2: number;
   access_menu: number;
 }
+
+export type IRouterType = {
+  title: string;
+  path?: string;
+  element: JSX.Element;
+  children?: IRouterType[];
+}
