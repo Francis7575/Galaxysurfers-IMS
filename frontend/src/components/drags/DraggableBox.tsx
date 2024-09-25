@@ -28,7 +28,7 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({
   setIsDragging,
   onClick,
 }) => {
-  const [hasMoved, setHasMoved] = useState(false);
+  const [hasMoved, setHasMoved] = useState<boolean>(false);
   const meshRef = useRef<Mesh>(null);
   const planeRef = useRef<Mesh>(null); // Reference to the plane
   const { camera } = useThree();

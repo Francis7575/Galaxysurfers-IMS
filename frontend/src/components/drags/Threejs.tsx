@@ -17,7 +17,7 @@ const Threejs: React.FC = () => {
 		navigate('/warehouseMain');
 	};
 
-	const [isDragging, setIsDragging] = useState(false);
+	const [isDragging, setIsDragging] = useState<boolean>(false);
 	const [boxPositions, setBoxPositions] = useState<[number, number, number][]>([]);
 	const [boxSizes, setBoxSizes] = useState<[number, number, number][]>([]);
 	const [boxColors, setBoxColors] = useState<string[]>([]);

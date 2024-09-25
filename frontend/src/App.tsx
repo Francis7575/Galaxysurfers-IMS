@@ -1,5 +1,5 @@
-import { IRouterType } from './types/types';
-import { Routes, Route } from "react-router-dom";
+// import { IRouterType } from './types/types';
+// import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Suspense } from "react";
