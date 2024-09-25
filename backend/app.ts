@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import * as path from "path";
+// import * as path from "path";
 import { Request, Response, NextFunction } from "express";
 import usersRoute from "./routes/usersRoutes";
 import warehousesRoute from "./routes/warehousesRoutes";
@@ -41,12 +41,12 @@ app.use("/warehouses", warehousesRoute);
 app.use("/items", itemsRoute);
 app.use("/inventory", inventoryRoute);
 
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
+// app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-app.get("*", (req: Request, res: Response) => {
-  const indexPath = path.join(__dirname, "../frontend/dist", "index.html");
-  console.log("server path:", indexPath);
-  res.status(200).sendFile(indexPath);
-});
+// app.get("*", (req: Request, res: Response) => {
+//   const indexPath = path.join(__dirname, "../frontend/dist", "index.html");
+//   console.log("server path:", indexPath);
+//   res.status(200).sendFile(indexPath);
+// });
 
 export default app;
