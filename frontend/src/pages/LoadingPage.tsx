@@ -2,9 +2,9 @@ import LoadingIcon from "/assets/icon-loading.gif"
 
 const LoadingPage = () => {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '1.5em' }}>
-      <p>Loading, please wait...</p>
-      <img src={LoadingIcon} alt="Loading..." />
+    <div className="text-[1.5em] flex flex-col justify-center items-center min-h-screen">
+      <p className="mb-10">Loading, please wait...</p>
+      <img src={LoadingIcon} alt="Loading..." className="w-[200px]"/>
     </div>
   );
 };

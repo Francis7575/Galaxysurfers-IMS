@@ -66,13 +66,16 @@ const Navbar = () => {
       const iconComponent = getIconComponent(item);
       const isActive = isActiveRoute(location.pathname, icons.find(icon => icon.link === item.link_mm2)?.relatedPaths || []);
       return (
-        <Link key={item.idmm2} to={item.link_mm2} onClick={closeMenu} className={`hover:opacity-70 flex items-center gap-2 ${isActive ? 'bg-active' : ''}`}>
+        <Link key={item.idmm2} to={item.link_mm2} onClick={closeMenu} className={`hover:opacity-70 justify-center flex items-center gap-2 ${isActive ? 'bg-active' : ''}`}>
           {iconComponent}
           <span className='text-[.85rem]'>{item.name_mm2}</span>
         </Link>
       );
     });
   }
+
+
+
   return (
     <>
       {/* {desktop navbar} */}
@@ -83,7 +86,7 @@ const Navbar = () => {
             <div className='flex flex-col gap-[1rem]'>
               <Link
                 to="/home"
-                className={`hover:opacity-70 flex items-center gap-[8px] justify-start ${location.pathname === '/home' ? 'bg-active' : ''}
+                className={`hover:opacity-70 flex items-center gap-[8px] justify-center ${location.pathname === '/home' ? 'bg-active' : ''}
                 }`}
               >
                 <LayoutDashboard className='w-4' />
@@ -107,7 +110,7 @@ const Navbar = () => {
           <div className={`pt-[2rem] pl-[30px] fixed min-h-screen right-0 top-0 z-10 bottom-0 w-[75%] bg-lightblue transition-transform duration-300 ease-in-out 930:transform-none
 					${isMenuOpened ? 'translate-x-0' : 'translate-x-full 930:hidden'}`}>
             <h2 className='mb-[1.5rem] text-[.75rem] text-gray font-medium uppercase'>General</h2>
-            <div className='flex flex-col gap-3 max-w-[150px]'>
+            <div className='flex flex-col items-center gap-3 max-w-[180px]'>
               <Link onClick={closeMenu}
                 to="/home" className={`flex items-center gap-[8px] justify-center 
               ${location.pathname === '/home' ? 'bg-active' : ''}`}>

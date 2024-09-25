@@ -24,8 +24,10 @@ input[type="number"] {
 
 .bg-active {
   background-color: rgba(108, 117, 125, 0.1);
-  padding-left: 1rem;	
+	max-width: 120px;
+	padding: .2rem 0;
   border-radius: 20px;
+	width: 100%;
 }
 
 .grid-cols-dynamic {
