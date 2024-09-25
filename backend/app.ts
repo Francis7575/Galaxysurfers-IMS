@@ -13,8 +13,8 @@ dotenv.config();
 
 const app = express();
 
-const FRONTEND_URL = process.env.FRONTEND_URL;
-console.log(FRONTEND_URL);
+const FRONTEND_URL = process.env.FRONTEND_URL
+
 // CORS options
 const corsOptions = {
   origin: FRONTEND_URL, // Allow requests from this origin
@@ -36,7 +36,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
-// Routes
 app.use("/users", usersRoute);
 app.use("/warehouses", warehousesRoute);
 app.use("/items", itemsRoute);
@@ -53,9 +52,6 @@ app.use("/inventory", inventoryRoute);
 //   console.log("server path:", indexPath);
 //   res.status(200).sendFile(indexPath);
 // });
-
-// Start the server
-
 
 
 export default app
