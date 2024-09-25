@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import { IRouterType } from '../types/types';
+import { createBrowserRouter } from 'react-router-dom';
 
 const Login = lazy(() => import("../pages/Login"));
 const Layout = lazy(() => import("../components/Layout"));
@@ -22,7 +23,7 @@ const ThreeJs = lazy(() => import("../components/drags/Threejs"));
 const ThreeJsTwo = lazy(() => import("../components/drags/ThreejsTwo"));
 
 
-export const PAGE_DATA: IRouterType[] = [
+const routes: IRouterType[] = [
   {
     title: "Login",
     path: "/",
@@ -120,3 +121,5 @@ export const PAGE_DATA: IRouterType[] = [
     ],
   },
 ];
+
+export const PAGE_DATA: ReturnType<typeof createBrowserRouter> = createBrowserRouter(routes);

@@ -5,11 +5,6 @@ interface CardProps {
 	children: ReactNode;
 }
 
-interface InventoryData {
-	month: string;
-	items: number;
-}
-
 const Card: React.FC<CardProps> = ({ children }) => (
 	<div className="bg-white rounded-md py-6 shadow-md px-8 h-full">{children}</div>
 );
@@ -36,33 +31,15 @@ const CustomTooltip = ({ active, payload }: any) => {
 			</div>
 		);
 	}
-
 	return null;
 };
 
 const Home = () => {
-	const [inventoryData, setInventoryData] = useState<InventoryData[]>([]);
 	const [inventoryOcupancy, setInventoryOcupancy] = useState([]);
 	const [inventoryIndicators, setInventoryIndicators] = useState({
 		units: 0,
 		items: 0
 	});
-console.log(inventoryData)
-	useEffect(() => {
-		const fetchInventoryData = () => {
-			const data: InventoryData[] = [
-				{ month: 'Jan', items: 800 },
-				{ month: 'Feb', items: 950 },
-				{ month: 'Mar', items: 1200 },
-				{ month: 'Apr', items: 1100 },
-				{ month: 'May', items: 1300 },
-				{ month: 'Jun', items: 1400 },
-			];
-			setInventoryData(data);
-		};
-		fetchInventoryData();
-	}, []);
-
 
 	useEffect(() => {
 		const fetchItems = async () => {
@@ -94,8 +71,6 @@ console.log(inventoryData)
 		}
 		fetchItems();
 	}, []);
-
-
 
 	return (
 		<div className='w-full mx-auto 930:pr-[29px]'>
