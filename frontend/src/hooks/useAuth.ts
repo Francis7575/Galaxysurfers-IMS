@@ -31,7 +31,7 @@ const useAuth = () => {
     checkUserCookie();
   }, []);
 
-  const handleLogin = async (formData: LoginForm) => {
+  const handleLogin = async (formData: LoginForm): Promise<boolean> => {
     try {
       const response = await fetch(`${BACKEND_URL}/users/login`, { 
           method: "POST",
@@ -47,11 +47,14 @@ const useAuth = () => {
         setLoggedIn(data.loggedIn);
         setUsername(data.username);
         setUserId(data.userId);
+        return true
       } else {
         alert(data.message);
+        return false
       }
     } catch (err) {
       console.error(err);
+      return false
     }
   };
 

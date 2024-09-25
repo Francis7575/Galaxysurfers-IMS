@@ -1,13 +1,17 @@
 import { ChangeEvent, FormEvent, FocusEvent, useState } from 'react'
-import { LoginForm, LoginProps } from '../types/types'
+import { LoginForm } from '../types/types'
 import LoginImage from '/assets/login-image.png'
+import { useAuth } from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ onLogin }: LoginProps) => {
+const Login = () => {
   const [formData, setFormData] = useState<LoginForm>({
     username: '',
     password: ''
   })
   const [errors, setErrors] = useState<LoginForm>({});
+  const { handleLogin } = useAuth();
+  const navigate = useNavigate();
   const InputFields = [
     { type: 'text', name: 'username', id: 'username', label: 'Username' },
     { type: 'password', name: 'password', id: 'password', label: 'Password' }
@@ -28,10 +32,15 @@ const Login = ({ onLogin }: LoginProps) => {
     return Object.keys(newErrors).length === 0;
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formValidation()) {
-      onLogin(formData);
+      const success = await handleLogin(formData);
+      if (success) {
+        navigate('/home');
+      } else {
+        alert('Login failed!');
+      }
     }
   }
 

@@ -1,6 +1,5 @@
 import { lazy } from "react";
 import { IRouterType } from '../types/types';
-import { useAuth } from '../hooks/useAuth'
 
 const Login = lazy(() => import("../pages/Login"));
 const Layout = lazy(() => import("../components/Layout"));
@@ -22,13 +21,12 @@ const InventoryOut = lazy(() => import("../components/inventory/InventoryOut"));
 const ThreeJs = lazy(() => import("../components/drags/Threejs"));
 const ThreeJsTwo = lazy(() => import("../components/drags/ThreejsTwo"));
 
-const { handleLogin } = useAuth();
 
 export const PAGE_DATA: IRouterType[] = [
   {
     title: "Login",
     path: "/",
-    element: <Login onLogin={handleLogin} />,
+    element: <Login  />,
   },
   {
     title: "Layout",
