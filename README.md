@@ -10,23 +10,6 @@ This project doesn't contain a sign-up because the idea of the project is that t
 <p>username: admin</p>
 <p>password: 12345678</p>
 
-# .ENV Example
-**Backend**
-
-<p>BACKEND_PORT=</p>
-<p>COOKIE_SECRET_KEY=</p>
-<p>DB_HOST=</p>
-<p>DB_NAME=</p>
-<p>DB_PASSWORD=</p>
-<p>DB_PORT=</p>
-<p>DB_USER=</p>
-<p>DATABASE_URL=</p>
-<p>FRONTEND_URL=</p>
-<p>NODE_ENV=</p>
-
-**Frontend**
-<p>VITE_REACT_BACKEND_URL=</p>
-
 # Application live link
 https://galaxysurfers-ims.onrender.com
 
