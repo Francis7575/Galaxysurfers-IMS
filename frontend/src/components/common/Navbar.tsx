@@ -74,7 +74,7 @@ const Navbar = () => {
   return (
     <div className='font-manrope border-b border-lightgray flex justify-between items-center px-[12px] md:px-[55px] py-[19px] 930:pl-0 930:px-0 930:py-0 md:py-[27px]'>
       <nav className='z-20 fixed top-[25px] right-[15px] 930:static'>
-        <div className={`pt-[2rem] pl-[30px] 930:px-[60px] lg:px-[70px] 930:static fixed min-h-screen 930:w-full right-0 top-0 z-10 bottom-0 w-[30%] bg-lightblue transition-transform duration-300 ease-in-out 930:transform-none
+        <div className={`pt-[2rem] pl-[30px] 930:px-[60px] lg:px-[70px] 930:static fixed min-h-screen 930:w-full right-0 top-0 z-10 bottom-0 w-[45%] sm:w-[30%] bg-lightblue transition-transform duration-300 ease-in-out 930:transform-none
 					${isMenuOpened ? 'translate-x-0' : 'translate-x-full'}`}>
           <h2 className='mb-[1.5rem] text-[.75rem] text-gray font-medium uppercase'>General</h2>
           <div className='flex flex-col items-center gap-3 930:gap-5 max-w-[180px]'>
