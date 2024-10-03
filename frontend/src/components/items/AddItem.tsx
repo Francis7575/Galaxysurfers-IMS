@@ -11,13 +11,13 @@ const uploadToCloudinary = async (file: File) => {
   const formData = new FormData();
   formData.append('file', file);
   formData.append('upload_preset', 'hdim8qpe');
-  console.log(file)
+  // console.log(file)
 
   const response = await fetch(`https://api.cloudinary.com/v1_1/dlknx4y4m/image/upload`, {
     method: 'POST',
     body: formData,
   });
-  console.log(response)
+  // console.log(response)
   if (response.ok) {
     const data = await response.json();
     return data.secure_url;
@@ -82,7 +82,7 @@ const AddItem = () => {
         batch_ctrl_item: values.itemBatch === 'No' ? 0 : 1,
         expiration_ctrl_item: values.Expiration === 'No' ? 0 : 1,
       };
-      console.log(import.meta.env.VITE_REACT_BACKEND_URL)
+      // console.log(import.meta.env.VITE_REACT_BACKEND_URL)
       const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/items/item-new`, {
         method: 'POST',
         headers: {

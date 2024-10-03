@@ -25,7 +25,7 @@ input[type="number"] {
 .bg-active {
   background-color: rgba(108, 117, 125, 0.1);
 	max-width: 120px;
-	padding: .2rem 0;
+	padding: .2rem .6rem;
   border-radius: 20px;
 	width: 100%;
 }

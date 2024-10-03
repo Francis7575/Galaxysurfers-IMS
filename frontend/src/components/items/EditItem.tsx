@@ -12,13 +12,13 @@ const uploadToCloudinary = async (file: File) => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'hdim8qpe');
-    console.log(file)
+    // console.log(file)
   
     const response = await fetch(`https://api.cloudinary.com/v1_1/dlknx4y4m/image/upload`, {
       method: 'POST',
       body: formData,
     });
-    console.log(response)
+    // console.log(response)
     if (response.ok) {
       const data = await response.json();
       return data.secure_url;

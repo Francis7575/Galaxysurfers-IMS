@@ -32,7 +32,7 @@ const InventoryData = ({ activeFilter }: InventoryDataProps) => {
 	}, []);
 
 	const handleDelete = async (idinventory: number) => {
-		console.log(idinventory)
+		// console.log(idinventory)
 		try {
 			const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/inventory/delete-inventory/${idinventory}`, {
 				method: 'DELETE',
@@ -40,7 +40,7 @@ const InventoryData = ({ activeFilter }: InventoryDataProps) => {
 					'Content-Type': 'application/json'
 				}
 			});
-			console.log(response)
+			// console.log(response)
 			if (response.ok) {
 				toast.success('Inventory Deleted!');
 				setFilteredInventory(filteredInventory.filter(item => item.idinventory !== idinventory));
@@ -88,7 +88,7 @@ const InventoryData = ({ activeFilter }: InventoryDataProps) => {
 				// Check if the expiration date is within 15 days
 				const isNearExpiration = daysDiff <= 15 && daysDiff >= 0;
 
-				console.log(isNearExpiration, daysDiff, currentDate)
+				// console.log(isNearExpiration, daysDiff, currentDate)
 				return (
 					<div key={item.idinventory} className={`border py-[8px] px-5 930:px-8 rounded-[8px] hover:bg-lightblue cursor-pointer relative
 							${index != 0 ? 'mt-3' : ''} ${isNearExpiration ? 'border-red' : 'border-second-lightgray'}`}>
