@@ -1,6 +1,8 @@
 # Galaxy Surfers - 3D Inventory Management System
 
-GalaxySurfers is an advanced inventory management system that lets you design and visualize your warehouse in a 3D model. Easily track products entering and exiting the warehouse, ensuring efficient inventory control and management, also implemented menu access to allow users to be able to see the menu options based on user permissions.
+GalaxySurfers is an advanced inventory management system that lets you design and visualize your warehouse in a 3D model. Easily track products entering and exiting the warehouse, ensuring efficient inventory control and management.
+
+During this project, I successfully implemented REST APIs, integrated 3D models using Three.js, and developed a backend with Node.js and Express. I connected the application to a PostgreSQL database, following the MVC architecture with controllers, routes, and models. I also set up database migrations to transition data to the production environment and created seed files to populate tables with initial data. For user notifications, I utilized React-Toastify to handle alerts upon completing actions.
 
 Techologies used: React, Typescript, TailwindCSS, Node.js, Express, Postgresql.
 
@@ -9,23 +11,6 @@ This project doesn't contain a sign-up because the idea of the project is that t
 
 <p>username: admin</p>
 <p>password: 12345678</p>
-
-# .ENV Example
-**Backend**
-
-<p>BACKEND_PORT=</p>
-<p>COOKIE_SECRET_KEY=</p>
-<p>DB_HOST=</p>
-<p>DB_NAME=</p>
-<p>DB_PASSWORD=</p>
-<p>DB_PORT=</p>
-<p>DB_USER=</p>
-<p>DATABASE_URL=</p>
-<p>FRONTEND_URL=</p>
-<p>NODE_ENV=</p>
-
-**Frontend**
-<p>VITE_REACT_BACKEND_URL=</p>
 
 # Application live link
 https://galaxysurfers-ims.onrender.com
