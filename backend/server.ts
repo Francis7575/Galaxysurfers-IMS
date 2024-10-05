@@ -3,6 +3,7 @@ import app from "./app";
 import dotenv from "dotenv";
 dotenv.config();
 
+// Added on cron-job to ping the server every 10 mins to avoid the server sleep on render for inactivity
 app.get("/test", (req: Request, res: Response) => {
   try {
     console.log("hello world");
