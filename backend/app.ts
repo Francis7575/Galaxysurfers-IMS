@@ -41,12 +41,6 @@ app.use("/warehouses", warehousesRoute);
 app.use("/items", itemsRoute);
 app.use("/inventory", inventoryRoute);
 
-// app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-// app.get("*", (req: Request, res: Response) => {
-//   const indexPath = path.join(__dirname, "../frontend/dist", "index.html");
-//   console.log("server path:", indexPath);
-//   res.status(200).sendFile(indexPath);
-// });
 
 export default app;
