@@ -10,7 +10,7 @@ Techologies used: React, Typescript, TailwindCSS, Node.js, Express, Postgresql.
 <hr></hr>
 # Login Information
 This project doesn't contain a sign-up because the idea of the project is that the employee will be provided with the login information to access the application.
- &nbsp;&nbsp;&nbsp;
+<hr>
 <p>username: admin</p>
 <p>password: 12345678</p>
 
