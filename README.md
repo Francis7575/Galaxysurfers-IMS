@@ -9,8 +9,7 @@ Techologies used: React, Typescript, TailwindCSS, Node.js, Express, Postgresql.
 ![Alt text](./frontend/public/assets/image-galaxysurfers.png)
 <hr></hr>
 # Login Information
-This project doesn't contain a sign-up because the idea of the project is that the employee will be provided with the login information to access the application.
-<hr>
+<p>This project doesn't contain a sign-up because the idea of the project is that the employee will be provided with the login information to access the application.</p>
 <p>username: admin</p>
 <p>password: 12345678</p>
 
