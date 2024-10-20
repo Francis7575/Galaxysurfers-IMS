@@ -4,7 +4,7 @@
   "main": "server.ts",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node server.ts",
+    "start": "ts-node src/server.ts",
     "dev": "tsc && nodemon dist/server.js",
     "migrate": "ts-node --project tsconfig.migrations.json node_modules/node-pg-migrate/bin/node-pg-migrate.js"
   },
