@@ -41,6 +41,4 @@ app.use("/warehouses", warehousesRoute);
 app.use("/items", itemsRoute);
 app.use("/inventory", inventoryRoute);
 
-
-
 export default app;

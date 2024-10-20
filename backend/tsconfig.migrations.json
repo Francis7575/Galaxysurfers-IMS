@@ -14,6 +14,5 @@
     },
     "experimentalSpecifierResolution": "node"  // Allows ES module resolution
   },
-  "include": ["migrations/**/*.ts"],
-  "exclude": ["src"]
+  "include": ["./src/migrations/**/*.ts"],
 }
