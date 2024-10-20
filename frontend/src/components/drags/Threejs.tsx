@@ -18,6 +18,7 @@ const Threejs: React.FC = () => {
 	};
 
 	const [isDragging, setIsDragging] = useState<boolean>(false);
+	const [draggingData, setDraggingData] = useState<{ index: number; offsetX: number; offsetY: number } | null>(null); 
 	const [boxPositions, setBoxPositions] = useState<[number, number, number][]>([]);
 	const [boxSizes, setBoxSizes] = useState<[number, number, number][]>([]);
 	const [boxColors, setBoxColors] = useState<string[]>([]);
@@ -29,14 +30,6 @@ const Threejs: React.FC = () => {
 	const [contextMenuOpen, setContextMenuOpen] = useState(false);
 	const [contextMenuPosition, setContextMenuPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 	const [selectedBoxIndex, setSelectedBoxIndex] = useState<number | null>(null);
-
-	const handleDragStart = () => {
-		setIsDragging(true);
-	};
-
-	const handleDragEnd = () => {
-		setIsDragging(false);
-	};
 
 	const updateBoxPosition = (index: number, newPos: [number, number, number]) => {
 		setBoxPositions((prev) => {
@@ -52,11 +45,35 @@ const Threejs: React.FC = () => {
 		setBoxColors([...boxColors, newColor]);
 		setBoxNames([...boxNames, '']);
 	};
+	
+	const handleDragStart = (event: ThreeEvent<MouseEvent>, index: number) => {
+    const boxPosition = boxPositions[index];
+    const offsetX = event.clientX - boxPosition[0];
+    const offsetY = event.clientY - boxPosition[1];
+
+    setDraggingData({ index, offsetX, offsetY });
+    setIsDragging(true);
+};
+
+const handleDrag = (event: ThreeEvent<MouseEvent>) => {
+	if (isDragging && draggingData) {
+			const newPos: [number, number, number] = [
+					event.clientX - draggingData.offsetX,
+					event.clientY - draggingData.offsetY,
+					boxPositions[draggingData.index][2], // keep the Z position constant
+			];
+			updateBoxPosition(draggingData.index, newPos);
+	}
+};
+
+	const handleDragEnd = () => {
+		setIsDragging(false);
+	};
 
 	const handleBoxClick = (index: number, event: ThreeEvent<MouseEvent>) => {
 		setSelectedBoxIndex(index);
 		setContextMenuPosition({ x: event.clientX, y: event.clientY });
-		setContextMenuOpen(true);
+		setContextMenuOpen(!contextMenuOpen);
 	};
 
 	const handleNameChange = (name: string) => {
@@ -212,7 +229,7 @@ const Threejs: React.FC = () => {
 							<pointLight position={[10, 10, 10]} />
 
 							<Plane
-								args={[20, 20]}
+								args={[20, 20]} // plane size
 								rotation={[-Math.PI / 2, 0, 0]}
 								position={[0, -0.5, 0]} // Adjusted height to make the boxes appear closer to the ground
 								receiveShadow
@@ -225,15 +242,20 @@ const Threejs: React.FC = () => {
 								<DraggableBox
 									key={index}
 									position={pos}
+									setPosition={(newPos) => updateBoxPosition(index, newPos)}
 									size={boxSizes[index]}
 									color={boxColors[index]}
 									name={boxNames[index]}
-									setPosition={(newPos) => updateBoxPosition(index, newPos)}
-									otherBoxes={boxPositions.filter((_, i) => i !== index)}
-									onDragStart={handleDragStart}
-									onDragEnd={handleDragEnd}
+									otherBoxes={boxPositions
+										.map((position, i) => ({
+											position,
+											size: boxSizes[i]
+										}))
+										.filter((_, i) => i !== index)}
 									isDragging={isDragging}
 									setIsDragging={setIsDragging}
+									onDragStart={() => handleDragStart}
+									onDragEnd={handleDragEnd}
 									onClick={(e) => handleBoxClick(index, e)}
 								/>
 							))}
@@ -256,8 +278,8 @@ const Threejs: React.FC = () => {
 
 			<div className='max-w-[300px] w-full md:max-w-[500px] 930:max-w-none mx-auto 930:mx-0 930:px-[29px] mt-3'>
 				<div className='flex flex-col gap-4'>
-					<button onClick={handleSave} 
-									className="hover:opacity-70 w-full 930:w-1/6 bg-blue text-white font-bold py-2 px-4 rounded">SAVE</button>
+					<button onClick={handleSave}
+						className="hover:opacity-70 w-full 930:w-1/6 bg-blue text-white font-bold py-2 px-4 rounded">SAVE</button>
 				</div>
 			</div>
 		</>

@@ -10,6 +10,7 @@ const Login = () => {
     password: ''
   })
   const [errors, setErrors] = useState<LoginForm>({});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { handleLogin } = useAuth();
   const navigate = useNavigate();
   const InputFields = [
@@ -26,7 +27,7 @@ const Login = () => {
     if (!password) {
       newErrors.password = 'Password cannot be empty';
     } else if (password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters long';
+      newErrors.password = 'Please Enter at least 6 characters';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -35,14 +36,20 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formValidation()) {
-      const success = await handleLogin(formData);
-      if (success) {
-        navigate('/home');
-      } else {
-        alert('Login failed!');
+      setIsLoading(true); // Set loading to true when submitting
+      try {
+        const success = await handleLogin(formData);
+        if (success) {
+          navigate('/home');
+        }
+      } catch (error) {
+        console.error('Login error:', error); // Log the error for debugging
+        alert('An error occurred during login. Please try again.'); // Show a friendly error message to the user
+      } finally {
+        setIsLoading(false); // Reset loading after login attempt (successful or not)
       }
     }
-  }
+  };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -82,8 +89,10 @@ const Login = () => {
                 <p className='text-red mt-2 font-medium absolute bottom-[-28px]'>{errors[field.name as keyof LoginForm]}</p>
               </div>
             ))}
-            <button className='text-lightblue bg-blue w-full mt-[50px] text-center py-[15px] rounded-[14px] text-[1.5rem] font-medium tracking-[-2.16px] hover:opacity-70'>
-              Login
+            <button type="submit"
+              disabled={isLoading}
+              className={`text-lightblue bg-blue w-full mt-[50px] text-center py-[15px] rounded-[14px] text-[1.5rem] font-medium tracking-[-2.16px] hover:opacity-70 ${isLoading ? 'opacity-50' : ''}`}>
+              {isLoading ? 'Loading...' : 'Login'}
             </button>
           </form>
         </div>

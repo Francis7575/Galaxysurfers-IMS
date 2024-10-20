@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Mesh } from 'three';
 import { ThreeEvent, useThree } from '@react-three/fiber';
 import { Edges } from '@react-three/drei';
@@ -9,7 +9,7 @@ interface DraggableBoxProps {
   color: string;
   name: string;
   setPosition: (position: [number, number, number]) => void;
-  otherBoxes: [number, number, number][];
+  otherBoxes: { position: [number, number, number]; size: [number, number, number] }[]; // other boxes with size
   onDragStart: () => void;
   onDragEnd: () => void;
   isDragging: boolean;
@@ -22,6 +22,7 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({
   size,
   color,
   setPosition,
+  otherBoxes,
   onDragStart,
   onDragEnd,
   isDragging,
@@ -32,6 +33,11 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({
   const meshRef = useRef<Mesh>(null);
   const planeRef = useRef<Mesh>(null); // Reference to the plane
   const { camera } = useThree();
+  const [currentPosition, setCurrentPosition] = useState<[number, number, number]>(position);
+
+  useEffect(() => {
+    setCurrentPosition(position);
+  }, [position]);
 
   const handlePointerDown = (event: ThreeEvent<PointerEvent>) => {
     event.stopPropagation();
@@ -47,24 +53,30 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({
     onDragEnd();
     setIsDragging(false);
 
+    // Ensure final position is updated
+    if (meshRef.current) {
+      const finalPosition = meshRef.current.position.toArray() as [number, number, number];
+      setCurrentPosition(finalPosition);
+      setPosition(finalPosition); 
+  }
+
     if (!hasMoved) {
       onClick(event);
     }
     setHasMoved(false);
+
   };
 
   const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
     if (!meshRef.current || !isDragging) return;
 
-
     // Convert screen movement to world space
-    const planeNormal = new THREE.Vector3(0, 1, 0); 
-    console.log(planeNormal)
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     raycaster.setFromCamera(mouse, camera);
+
     if (planeRef.current) {
       const intersects = raycaster.intersectObject(planeRef.current);
 
@@ -74,14 +86,43 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({
         // Compute new position based on intersection point
         const newPosition: [number, number, number] = [
           intersectPoint.x,
-          position[1],
+          currentPosition[1],
           intersectPoint.z,
         ];
 
-        setPosition(newPosition);
-        setHasMoved(true);
+        // Check for collisions only with boxes that are not currently being dragged
+        const filteredOtherBoxes = otherBoxes.filter(box => box.position !== currentPosition);
+
+        if (!isColliding(newPosition, size, filteredOtherBoxes)) {
+          meshRef.current.position.set(...newPosition);
+          setCurrentPosition(newPosition);
+          setPosition(newPosition); 
+          setHasMoved(true);
+        }
       }
     }
+  };
+
+  const isColliding = (
+    newPosition: [number, number, number],
+    size: [number, number, number],
+    otherBoxes: { position: [number, number, number]; size: [number, number, number] }[]
+  ) => {
+    const [newX, newY, newZ] = newPosition;
+    const [boxWidth, boxHeight, boxDepth] = size;
+
+    for (const { position: [otherX, otherY, otherZ], size: [otherWidth, otherHeight, otherDepth] } of otherBoxes) {
+      // Check if there's an overlap on all three axes
+      const isOverlappingX = newX < otherX + otherWidth && newX + boxWidth > otherX;
+      const isOverlappingY = newY < otherY + otherHeight && newY + boxHeight > otherY; // Use Y values
+      const isOverlappingZ = newZ < otherZ + otherDepth && newZ + boxDepth > otherZ;
+
+      // If there is overlap in all axes, then a collision is detected
+      if (isOverlappingX && isOverlappingY && isOverlappingZ) {
+        return true; // Collision detected
+      }
+    }
+    return false; // No collision
   };
 
   return (
@@ -98,7 +139,7 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({
       </mesh>
       <mesh
         ref={meshRef}
-        position={position}
+        position={currentPosition}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
