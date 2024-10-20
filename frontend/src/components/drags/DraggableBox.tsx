@@ -15,6 +15,7 @@ interface DraggableBoxProps {
   isDragging: boolean;
   setIsDragging: (value: boolean) => void;
   onClick: (event: ThreeEvent<MouseEvent>) => void;
+  onDrag: (newPosition: [number, number, number]) => void;
 }
 
 const DraggableBox: React.FC<DraggableBoxProps> = ({
@@ -28,6 +29,7 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({
   isDragging,
   setIsDragging,
   onClick,
+  onDrag
 }) => {
   const [hasMoved, setHasMoved] = useState<boolean>(false);
   const meshRef = useRef<Mesh>(null);
@@ -98,6 +100,9 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({
           setCurrentPosition(newPosition);
           setPosition(newPosition); 
           setHasMoved(true);
+          
+          // Trigger the onDrag function when the box is moved
+          onDrag(newPosition);
         }
       }
     }

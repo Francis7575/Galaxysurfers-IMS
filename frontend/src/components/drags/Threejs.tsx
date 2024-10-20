@@ -18,7 +18,6 @@ const Threejs: React.FC = () => {
 	};
 
 	const [isDragging, setIsDragging] = useState<boolean>(false);
-	const [draggingData, setDraggingData] = useState<{ index: number; offsetX: number; offsetY: number } | null>(null); 
 	const [boxPositions, setBoxPositions] = useState<[number, number, number][]>([]);
 	const [boxSizes, setBoxSizes] = useState<[number, number, number][]>([]);
 	const [boxColors, setBoxColors] = useState<string[]>([]);
@@ -46,24 +45,18 @@ const Threejs: React.FC = () => {
 		setBoxNames([...boxNames, '']);
 	};
 	
-	const handleDragStart = (event: ThreeEvent<MouseEvent>, index: number) => {
-    const boxPosition = boxPositions[index];
-    const offsetX = event.clientX - boxPosition[0];
-    const offsetY = event.clientY - boxPosition[1];
-
-    setDraggingData({ index, offsetX, offsetY });
+	const handleDragStart = () => {
     setIsDragging(true);
 };
 
-const handleDrag = (event: ThreeEvent<MouseEvent>) => {
-	if (isDragging && draggingData) {
-			const newPos: [number, number, number] = [
-					event.clientX - draggingData.offsetX,
-					event.clientY - draggingData.offsetY,
-					boxPositions[draggingData.index][2], // keep the Z position constant
-			];
-			updateBoxPosition(draggingData.index, newPos);
-	}
+const handleDrag = (newPosition: [number, number, number], index: number) => {
+  console.log('Dragged to:', newPosition);
+  
+  setBoxPositions((prevPositions) => {
+    const updatedPositions = [...prevPositions];
+    updatedPositions[index] = newPosition; 
+    return updatedPositions;
+  });
 };
 
 	const handleDragEnd = () => {
@@ -256,6 +249,7 @@ const handleDrag = (event: ThreeEvent<MouseEvent>) => {
 									setIsDragging={setIsDragging}
 									onDragStart={() => handleDragStart}
 									onDragEnd={handleDragEnd}
+									onDrag={(newPos) => handleDrag(newPos, index)} 
 									onClick={(e) => handleBoxClick(index, e)}
 								/>
 							))}
