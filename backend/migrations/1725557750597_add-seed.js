@@ -15,6 +15,7 @@ exports.up = async (pgm) => {
 
 	const users = [
 		{ username: 'admin', name_user: 'testuser', pass_user: hashedPassword, mail_user: 'test@gmail.com' },
+		{ username: 'edward', name_user: 'edward01', pass_user: hashedPassword, mail_user: 'edward@gmail.com' }
 	];
 
 	// Insert users using a loop
