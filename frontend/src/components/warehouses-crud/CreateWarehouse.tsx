@@ -3,14 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { Heading } from '../index'
 import BackBtn from '/assets/back-button.svg'
 import { CreateWarehouseErrors, CreateWarehouseData } from '../../types/types'
+import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify';
 
 const CreateWarehouse = () => {
   const navigate = useNavigate();
-
-  const navToNewWarehouse = () => {
-    navigate('/warehouseMain');
-  }
 
   const [formData, setFormData] = useState({
     code: '',
@@ -86,14 +83,14 @@ const CreateWarehouse = () => {
   return (
     <div className='pb-[40px] 930:flex-1 font-manrope'>
       <div className='hidden 930:block'>
-        <a onClick={navToNewWarehouse}><Heading title="Warehouse Configuration" /></a>
+        <Link to="/warehouseMain"><Heading title="Warehouse Configuration" /></Link>
       </div>
       <div className="px-[40px] 930:px-0 mb-[27px] 930:mb-[34px]">
         <div className="pt-[25px] 930:text-left border-b border-lightgray pb-[17px]
           930:pl-[29px] 930:py-[30px] 930:w-full 930:border-none 930:pb-0 flex items-center">
-          <button onClick={navToNewWarehouse} className='930:hidden max-w-[18px]'>
+          <Link to="/warehouseMain" className='930:hidden max-w-[18px]'>
             <img src={BackBtn} alt="Back button" />
-          </button>
+          </Link>
           <div className="flex-grow flex justify-center 930:justify-start text-[1.15rem]">
             <h2 className="font-medium">
               Create New Warehouse

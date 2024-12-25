@@ -15,6 +15,11 @@ const Filters = ({ warehouses, activeFilter, onFilterChange }: FiltersProps) => 
           <h2 className='font-medium mb-2'>
             Warehouses
           </h2>
+          {warehouses.length === 0 &&(
+            <p className='text-center text-gray'>
+              No warehouses listed
+            </p>
+          )}
           <div className={`grid ${warehouses.length === 0 ? '' : 'grid-cols-2'}  gap-[12px] rounded-[8px]`}>
             {warehouses.map((i) => (
               <div key={i.name_warehouse}>

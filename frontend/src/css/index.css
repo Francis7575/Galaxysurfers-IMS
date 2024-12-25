@@ -3,106 +3,107 @@
 @tailwind utilities;
 
 * {
-	margin: 0;
-	padding: 0;
-	font-family: "Manrope", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Manrope", sans-serif;
 }
 
-input[type='checkbox'] {
-	accent-color: #406D42;
+input[type="checkbox"] {
+  accent-color: #406d42;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type="number"] {
-	-moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 .bg-active {
   background-color: rgba(108, 117, 125, 0.1);
-	max-width: 120px;
-	padding: .2rem .6rem;
+  max-width: 150px;
+  padding: 0.2rem 1rem;
   border-radius: 20px;
-	width: 100%;
+  width: 100%;
+
 }
 
 .grid-cols-dynamic {
-	grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
 }
 
 .grid-layout {
-	display: grid;
-	grid-template-columns: 157px 1fr 1fr 1fr;
-	grid-template-rows: repeat(8, 1fr);
-	grid-template-areas:
-		"input t1 t1 t1"
-		"input t2 t2 t2"
-		"input t3 t3 t3"
-		"t4 t4 t4 t4"
-		"t5 t6 t6 t6"
-		"button button button button";
-	gap: 24px;
+  display: grid;
+  grid-template-columns: 157px 1fr 1fr 1fr;
+  grid-template-rows: repeat(8, 1fr);
+  grid-template-areas:
+    "input t1 t1 t1"
+    "input t2 t2 t2"
+    "input t3 t3 t3"
+    "t4 t4 t4 t4"
+    "t5 t6 t6 t6"
+    "button button button button";
+  gap: 24px;
 }
 
 .input-container {
-	grid-area: input;
+  grid-area: input;
 }
 
 .productCode {
-	grid-area: t1;
+  grid-area: t1;
 }
 
 .itemName {
-	grid-area: t2;
+  grid-area: t2;
 }
 
 .itemDescription {
-	grid-area: t3;
+  grid-area: t3;
 }
 
 .itemType {
-	grid-area: t4;
+  grid-area: t4;
 }
 
 .itemUnit {
-    grid-area: t5;
+  grid-area: t5;
 }
 
 .Expiration {
-	grid-area: t6;
+  grid-area: t6;
 }
 
 .itemBatch {
-	grid-area: t4;
+  grid-area: t4;
 }
 
 .button {
-	grid-area: button
+  grid-area: button;
 }
 
 .Date {
-	font-size: 12px;
+  font-size: 12px;
 }
 
 @media (min-width: 640px) {
-	.grid-layout {
-		grid-template-columns: 157px 1fr 1fr 1fr 1fr 1fr;
-		grid-template-rows: repeat(4, 1fr);
-		grid-template-areas:
-			"input t1 t1 t1 t2 t2"
-			"input t3 t3 t3 t5 t5"
-			"input t4 t4 t4 t4 t4"
-			"t6 t6 t6 button button button";
-			row-gap: 25px;
-	}
+  .grid-layout {
+    grid-template-columns: 157px 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas:
+      "input t1 t1 t1 t2 t2"
+      "input t3 t3 t3 t5 t5"
+      "input t4 t4 t4 t4 t4"
+      "t6 t6 t6 button button button";
+    row-gap: 25px;
+  }
 }
 
 @media (min-width: 930px) {
-	.grid-cols-dynamic {
-		grid-template-columns: repeat(2, minmax(255px, 1fr));
-	}
+  .grid-cols-dynamic {
+    grid-template-columns: repeat(2, minmax(255px, 1fr));
+  }
 }

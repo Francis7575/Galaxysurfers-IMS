@@ -4,6 +4,7 @@ import { Heading } from '../index'
 import { toast } from 'react-toastify';
 import { InventoryData } from '../../types/types';
 import { ItemType, LocationsType, WarehouseType } from '../../types/typesBackend';
+import { Link } from "react-router-dom";
 
 type InventoryInErrors = {
   [K in keyof InventoryData]?: string;
@@ -17,10 +18,6 @@ const InventoryIn = () => {
   const [warehouses, setWh] = useState<WarehouseType[]>([]);
   const [locations, setLocations] = useState<LocationsType[]>([]);
   const [showBatchAndExpiration, setShowBatchAndExpiration] = useState(false);
-
-  const navToInventoryMain = () => {
-    navigate('/inventoryMain');
-  }
 
   const [formData, setFormData] = useState<InventoryData>({
     product: '',
@@ -168,7 +165,7 @@ const InventoryIn = () => {
   return (
     <div className='flex flex-col'>
       <div className="font-manrope flex-1 w-full">
-        <a className="w-full" onClick={navToInventoryMain}><Heading title="Inventory In" /></a>
+        <Link to="/inventoryMain" className="w-full"><Heading title="Inventory In" /></Link>
         <div className="mt-8 930:mt-12">
           <form onSubmit={handleSubmit} className='max-w-[300px] w-full md:max-w-[500px] 930:max-w-none mx-auto 930:mx-0 930:px-[29px]'>
             <div className='flex flex-col gap-4 930:flex-row 930:flex-wrap'>

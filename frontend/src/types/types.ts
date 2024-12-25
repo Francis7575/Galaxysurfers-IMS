@@ -1,56 +1,56 @@
 export type LoginForm = {
-  username?: string
-  password?: string
-}
+  username?: string;
+  password?: string;
+};
 
 export type LoginProps = {
-  onLogin: (data: LoginForm) => void
-}
+  onLogin: (data: LoginForm) => void;
+};
 
 export type Checkbox = {
   name: string;
   label: string;
-  id: string
+  id: string;
 };
 
 export type CreateUserData = {
-  user: string
-  email: string
-  name: string
-  password: string
-  confirmPassword: string
-}
+  user: string;
+  email: string;
+  name: string;
+  password: string;
+  confirmPassword: string;
+};
 
 export type CreateUserErrors = {
-  user?: string
-  email?: string
-  name?: string
-  password?: string
-  confirmPassword?: string
-}
+  user?: string;
+  email?: string;
+  name?: string;
+  password?: string;
+  confirmPassword?: string;
+};
 
-export type EditUserData = CreateUserData
-export type EditUserErrors = CreateUserErrors
+export type EditUserData = CreateUserData;
+export type EditUserErrors = CreateUserErrors;
 
 export type EditWarehouseData = {
   code: string;
   name: string;
-}
+};
 
 export type EditWarehouseErrors = {
   code?: string;
   name?: string;
-}
+};
 
-export type CreateWarehouseData = EditWarehouseData
+export type CreateWarehouseData = EditWarehouseData;
 
 export type CreateWarehouseErrors = {
   address?: string;
   zipcode?: string;
   city?: string;
-  code?: string
-  name?: string
-}
+  code?: string;
+  name?: string;
+};
 
 export type NewItem = {
   productCode: string;
@@ -60,7 +60,7 @@ export type NewItem = {
   itemBatch: string;
   Expiration: string;
   itemUrl: string;
-}
+};
 
 export type InventoryData = {
   product: string;
@@ -70,7 +70,7 @@ export type InventoryData = {
   location: string;
   batch?: string;
   expire_date?: string;
-}
+};
 
 export interface SubMenuItem {
   idmm2: number;
@@ -86,4 +86,8 @@ export type IRouterType = {
   path?: string;
   element: JSX.Element;
   children?: IRouterType[];
-}
+};
+
+export type NavbarProps = {
+  onLoadingChange: (value: boolean) => void
+};
