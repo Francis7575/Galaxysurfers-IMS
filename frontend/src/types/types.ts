@@ -89,5 +89,16 @@ export type IRouterType = {
 };
 
 export type NavbarProps = {
-  onLoadingChange: (value: boolean) => void
+  onLoadingChange: (value: boolean) => void;
 };
+
+export type Warehouse = {
+  name: string;
+  children: { name: string; size: number }[];
+};
+
+export type Item = {
+  name_item: string
+  name_warehouse: string
+  quantity: string
+}

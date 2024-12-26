@@ -166,7 +166,7 @@ export const getDashboard = async (
 ): Promise<void> => {
   try {
     const result = await pool.query(`
-          SELECT count(idinventory) as units, count(distinct iditem) as items
+          SELECT ROUND(SUM(quantity_in)) as units, count(distinct iditem) as items
           from inventory
           left join items on inventory.iditem_in = items.iditem `);
 

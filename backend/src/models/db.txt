@@ -6,28 +6,17 @@ CREATE TABLE users (
     pass_user VARCHAR(255) NOT NULL DEFAULT '',
     status_user INT DEFAULT 1
 );
-
+  
 CREATE TABLE navbar_menu (
-    idmm SERIAL PRIMARY KEY,
-    name_mm VARCHAR(50) NOT NULL DEFAULT '',
-    link_mm VARCHAR(50) NOT NULL DEFAULT '',
-    order_mm INT DEFAULT 1,
-    fa_mm VARCHAR(50) NOT NULL DEFAULT '',
-    type_mm INT DEFAULT 1,
-    status_mm INT DEFAULT 1
-);
-
-CREATE TABLE navbar_menu2 (
     idmm2 SERIAL PRIMARY KEY,
-    idmm_mm2 INT DEFAULT 0,
+    idmm_mm2 VARCHAR(50) NOT NULL DEFAULT '',
     name_mm2 VARCHAR(50) NOT NULL DEFAULT '',
-    link_mm2 VARCHAR(50) NOT NULL DEFAULT '',
-    order_mm2 INT DEFAULT 1,
+    link_mm2 INT DEFAULT 1,
+    order_mm2 VARCHAR(50) NOT NULL DEFAULT '',
     status_mm2 INT DEFAULT 1
 );
 
-
-CREATE TABLE navbar_menu_user2 (
+CREATE TABLE navbar_menu_user (
     idmmu2 SERIAL PRIMARY KEY,
     iduser_mmu2 INT DEFAULT 0,
     idmm_mmu2 INT DEFAULT 0,
@@ -73,7 +62,7 @@ CREATE TABLE inventory_batch(
     expirationdate_bc TIMESTAMP DEFAULT NULL, 
     status_bc INT DEFAULT 1
 );
-
+  
 CREATE TABLE inventory(
     idinventory SERIAL PRIMARY KEY,
     iditem_in INT DEFAULT 0,
@@ -103,3 +92,4 @@ CREATE TABLE inventory_log(
     lastquantity_inlog DECIMAL(15,6) DEFAULT 0.00,
     obs_inlog VARCHAR(255) NOT NULL DEFAULT ''
 );
+

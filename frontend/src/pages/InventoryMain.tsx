@@ -1,45 +1,36 @@
-import { useNavigate } from 'react-router-dom';
-import { Heading } from '../components'
+import { Heading } from "../components";
+import { Link } from "react-router-dom";
 
 const InventoryMain = () => {
-  const navigate = useNavigate();
-
-  const navToInventory = () => {
-    navigate('/inventory');
-  }
-
-  const navToInventoryIn = () => {
-    navigate('/inventory-in');
-  }
-
-  const navToInventoryOut = () => {
-    navigate('/inventory-out');
-  }
   return (
     <>
-      <div className='flex'>
+      <div className="flex">
         <div className="font-manrope flex-1 w-full px-4 md:px-0">
-          <Heading
-            showBackBtn={false}
-            title="Inventory" />
+          <Heading showBackBtn={false} title="Inventory" />
           <div className="flex justify-center 930:justify-start 930:pl-[29px] mt-[27px] mb-[17px] md:mb-[40px] 930:mt-[29px] 930:mb-[21px]">
-            <button onClick={navToInventory}
-                    className="hover:opacity-70 bg-second-lightblue py-[10px] max-w-[222px] w-full font-medium text-dark-color mr-3">
+            <Link
+              to="/inventory"
+              className="btn-styles relative hover:opacity-80 pl-6 rounded-lg bg-deep-blue text-white py-[10px] max-w-[222px] w-full font-medium  mr-6"
+            >
               Inventory
-            </button>
-            <button onClick={navToInventoryIn}
-                    className="hover:opacity-70 bg-second-lightblue py-[10px] max-w-[222px] w-full font-medium text-dark-color mr-3">
+            </Link>
+            <Link
+              to="/inventory-in"
+              className="btn-styles relative hover:opacity-80 pl-6 rounded-lg bg-deep-blue text-white py-[10px] max-w-[222px] w-full font-medium mr-6"
+            >
               In
-            </button>
-            <button onClick={navToInventoryOut} 
-                    className="hover:opacity-70 bg-second-lightblue py-[10px] max-w-[222px] w-full font-medium text-dark-color">
+            </Link>
+            <Link
+              to="/inventory-out"
+              className="btn-styles relative hover:opacity-80 pl-6 rounded-lg bg-deep-blue text-white py-[10px] max-w-[222px] w-full font-medium mr-6"
+            >
               Out
-            </button>
+            </Link>
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default InventoryMain
+export default InventoryMain;

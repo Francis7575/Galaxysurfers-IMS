@@ -175,7 +175,7 @@ const CreateUser = () => {
             </div>
           ))}
         </div>
-        <div className="flex justify-center 930:justify-start mt-4 930:mt-[47px]">
+        <div className="flex justify-center 930:justify-start mt-4 930:mt-4">
           <button className="bg-second-blue hover:opacity-70 py-[8px] max-w-[232px] w-full text-white font-medium rounded-[.625rem]">
             Create User
           </button>

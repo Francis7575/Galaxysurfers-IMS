@@ -92,8 +92,8 @@ export type DashboardResponse = {
     items: number;
   };
   ocupancy: Array<{
-    name_item: string;
     name_warehouse: string;
+    name_item: string;
     quantity: number;
   }>;
 }

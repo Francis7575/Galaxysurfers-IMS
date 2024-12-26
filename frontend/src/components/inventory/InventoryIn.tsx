@@ -213,7 +213,7 @@ const InventoryIn = () => {
             {errors.submit && (
               <p className='text-red-500 text-center mt-4'>{errors.submit}</p>
             )}
-            <div className='flex justify-center 930:justify-start mt-4 930:mt-[47px]'>
+            <div className='flex justify-center 930:justify-start mt-4 930:mt-6'>
               <button type="submit" className='hover:opacity-70 bg-second-blue py-[8px] max-w-[232px] w-full text-white font-medium rounded-[.625rem]'>
                 Register
               </button>

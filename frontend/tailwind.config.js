@@ -20,6 +20,7 @@ export default {
         'third-lightblue': '#E6E9EC',
         'fourth-lightblue': '#D2F0F8',
         'sixth-lightblue': 'rgb(230, 248, 252)',
+        'deep-blue': 'rgb(123, 175, 250)',
         'fifth-lightblue': 'rgba(229, 255, 230, 0.50)',
         'blue': '#367AFF',
         'second-blue': '#3B86FF',

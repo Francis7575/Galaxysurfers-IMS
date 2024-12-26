@@ -12,7 +12,7 @@ import { useAuth } from "../../hooks/useAuth";
 import OpenMenu from "/assets/open-menu.svg";
 import CloseMenu from "/assets/close-menu.svg";
 import { SubMenuItem } from "../../types/types";
-import LoadingIcon from "/assets/icon-loading.gif"
+import LoadingIcon from "/assets/icon-loading.gif";
 
 export const userLocations = [
   "/userMain",
@@ -123,10 +123,10 @@ const Navbar = () => {
   }
 
   return (
-    <div className="font-manrope border-b border-lightgray flex h-full justify-between items-center px-[12px] md:px-[55px] py-[19px] 930:pl-0 930:px-0 930:py-0 md:py-[27px] w-full 930:max-w-[270px] 930:h-full">
-      <nav className="z-20 930:z-0 fixed top-[25px] right-[15px] 930:static 930:bg-sixth-lightblue 930:max-w-[270px] 930:w-full 930:h-full">
+    <div className="font-manrope border-b border-lightgray flex justify-between 930:bg-sixth-lightblue 930:min-h-screen px-[12px] md:px-[55px] py-[19px] 930:pl-0 930:px-0 930:py-0 md:py-[27px] w-full 930:max-w-[270px]">
+      <nav className="z-20 930:z-0 fixed top-[25px] right-[15px] 930:static 930:max-w-[270px] 930:w-full ">
         <div
-          className={`pt-[2rem] pl-[30px] 930:pl-0  930:static fixed min-h-screen bg-sixth-lightblue 930:bg-none 930:w-full 930:h-full right-0 top-0 z-10 bottom-0 w-[75%] sm:w-[30%]  transition-transform duration-300 ease-in-out 930:transform-none
+          className={`pt-8 930:pt-12 pl-[30px] 930:pl-0  930:static fixed bg-sixth-lightblue 930:bg-none 930:w-full right-0 top-0 z-10 bottom-0 w-[75%] sm:w-[30%]  transition-transform duration-300 ease-in-out 930:transform-none
 					${isMenuOpened ? "translate-x-0" : "translate-x-full"}`}
         >
           <h2 className="mb-[1.5rem] text-[.75rem] text-gray font-medium uppercase 930:pl-12">
