@@ -17,8 +17,6 @@ const Threejs2: React.FC = () => {
   const location = useLocation();
   const { idloc, idwarehouse, warehouse } = location.state as LocationState;
 
-  console.log(idloc);
-
   const [isDragging, setIsDragging] = useState(false);
   const [boxPositions, setBoxPositions] = useState<[number, number, number][]>(
     []
@@ -58,7 +56,6 @@ const Threejs2: React.FC = () => {
         if (response.ok) {
           const data = await response.json();
 
-          console.log(data);
           setBoxPositions(
             data.map((item: any) => item.position_loc.split(",").map(Number))
           );
@@ -127,7 +124,6 @@ const Threejs2: React.FC = () => {
 
               {boxPositions.map((pos, index) => {
                 const isHighlighted = boxIdLoc[index] === idloc;
-                console.log(isHighlighted);
 
                 return (
                   <DraggableBox

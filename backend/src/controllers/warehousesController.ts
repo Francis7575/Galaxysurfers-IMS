@@ -168,14 +168,15 @@ export const getDashboard = async (
     const result = await pool.query(`
           SELECT ROUND(SUM(quantity_in)) as units, count(distinct iditem) as items
           from inventory
-          left join items on inventory.iditem_in = items.iditem `);
+          left join items on inventory.iditem_in = items.iditem 
+          WHERE inventory.status_in = 1`);
 
     const result2 = await pool.query(`
           SELECT name_item, name_warehouse, sum(quantity_in) as quantity
           FROM inventory
           left join items on inventory.iditem_in = items.iditem
           left join warehouses on inventory.idwarehouse_in = warehouses.idwarehouse
-
+          WHERE inventory.status_in = 1
           group by iditem, name_warehouse
           order by name_warehouse, name_item
           `);

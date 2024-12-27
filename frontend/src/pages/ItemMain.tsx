@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { Heading } from "../components/index";
 import { ItemType } from "../types/typesBackend";
 import { toast } from "react-toastify";

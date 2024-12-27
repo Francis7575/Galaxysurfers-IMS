@@ -71,3 +71,14 @@ export type InventoryLogType = {
   quantity_inlog: number,
   createdat_inlog: string
 };
+
+export type InventoryData = {
+  idinventory: number
+  iditem_in: number
+  idbatch_in: number
+  idwarehouse_in: number
+  idlocation_in: number
+  quantity_in: number
+  status_in: number
+  createdat_bc: string
+}

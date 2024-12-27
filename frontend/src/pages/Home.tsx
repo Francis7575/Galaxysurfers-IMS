@@ -63,7 +63,7 @@ const Home = () => {
         `${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/dashboard`
       );
       const data = await response.json();
-
+    
       setInventoryIndicators(data.indicators);
       if (data.ocupancy.length > 0) {
         const treemapData = data.ocupancy.reduce(
@@ -124,13 +124,13 @@ const Home = () => {
             <div className="flex flex-col gap-10 items-center mt-10">
               <div className="text-center">
                 <h3 className="text-3xl font-bold text-purple-600">
-                  {inventoryIndicators.units.toLocaleString()}
+                  {inventoryIndicators.units ?? (0).toLocaleString()}
                 </h3>
                 <p className="text-lg text-gray-600">Total Units</p>
               </div>
               <div className="text-center">
                 <h3 className="text-3xl font-bold text-purple-600">
-                  {inventoryIndicators.items.toLocaleString()}
+                  {inventoryIndicators.items ?? (0).toLocaleString()}
                 </h3>
                 <p className="text-lg text-gray-600">Item Quantity</p>
               </div>
