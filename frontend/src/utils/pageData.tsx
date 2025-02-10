@@ -11,22 +11,26 @@ const EditUser = lazy(() => import("@/pages/user/components/EditUser"));
 const UserPermissions = lazy(
   () => import("../pages/user/components/UserPermissions")
 );
-const WarehouseMain = lazy(() => import("@/pages/warehouse/WarehouseMain"));
 const CreateWarehouse = lazy(
   () => import("@/pages/warehouse/components/CreateWarehouse")
 );
 const EditWarehouse = lazy(
   () => import("@/pages/warehouse/components/EditWarehouse")
 );
-const ItemMain = lazy(() => import("../pages/item/ItemMain"));
 const AddItem = lazy(() => import("@/pages/item/components/AddItem"));
 const EditItem = lazy(() => import("@/pages/item/components/EditItem"));
-const InventoryMain = lazy(() => import("../pages/InventoryMain"));
-const Inventory = lazy(() => import("../pages/inventory/Inventory"));
-const InventoryIn = lazy(() => import("@/pages/inventory/InventoryIn"));
-const InventoryOut = lazy(() => import("@/pages/inventory/InventoryOut"));
+const InventoryMain = lazy(() => import("../pages/inventory/InventoryMain"));
+const Inventory = lazy(() => import("../pages/inventory/components/Inventory"));
+const InventoryIn = lazy(
+  () => import("@/pages/inventory/components/InventoryIn")
+);
+const InventoryOut = lazy(
+  () => import("@/pages/inventory/components/InventoryOut")
+);
 const ThreeJs = lazy(() => import("../pages/warehouse/components/Threejs"));
-const ThreeJsTwo = lazy(() => import("../pages/warehouse/components/ThreejsTwo"));
+const ThreeJsTwo = lazy(
+  () => import("../pages/warehouse/components/ThreejsTwo")
+);
 
 const routes: IRouterType[] = [
   {

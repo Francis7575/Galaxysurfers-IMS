@@ -2,8 +2,8 @@ import { ChangeEvent, FormEvent, useState, FocusEvent, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Heading  from '@/components/common/Heading'
 import { toast } from 'react-toastify';
-import { InventoryData } from '../../types/types';
-import { ItemType, LocationsType, WarehouseType } from '../../types/typesBackend';
+import { InventoryData } from '../../../types/types';
+import { ItemType, LocationsType, WarehouseType } from '../../../types/typesBackend';
 import { Link } from "react-router-dom";
 
 type InventoryInErrors = {

@@ -115,9 +115,11 @@ const Navbar = () => {
 
   if (isLoading) {
     return (
-      <div className="text-[1em] flex flex-col justify-center items-center">
-        <p className="mb-10">Loading, please wait...</p>
-        <img src={LoadingIcon} alt="Loading..." className="w-[50px]" />
+      <div className="hidden md:block">
+        <div className="text-[1em]  flex flex-col justify-center items-center">
+          <p className="mb-10">Loading, please wait...</p>
+          <img src={LoadingIcon} alt="Loading..." className="w-[50px]" />
+        </div>
       </div>
     );
   }
@@ -126,7 +128,7 @@ const Navbar = () => {
     <div className="font-manrope flex justify-between px-[12px] py-[19px] md:px-0 md:py-0 w-full">
       <nav className="z-20 top-[25px] right-[15px] md:static w-full">
         <div
-          className={`pt-8 md:pt-0 pl-[30px] md:pl-0 930:pl-0 md:static fixed bg-sixth-lightblue md:bg-transparent z-10 bottom-0 md:w-full sm:w-[30%] transition-transform duration-300 ease-in-out md:transform-none
+          className={`pt-8 md:pt-0 pl-[30px] md:pl-0 md:static top-0 right-0 fixed bg-sixth-lightblue md:bg-transparent z-10 bottom-0 md:w-full w-[70%] transition-transform duration-300 ease-in-out md:transform-none
 					${isMenuOpened ? "translate-x-0" : "translate-x-full"}`}
         >
           <h2 className="mb-[1.5rem] text-[.75rem] md:hidden text-gray font-medium uppercase 930:pl-12">
@@ -150,7 +152,7 @@ const Navbar = () => {
             </h2>
             <button
               onClick={handleLogout}
-              className="flex w-full items-center justify-end gap-[8px] pl-4 md:pl-0 hover:opacity-60"
+              className="flex w-full items-center md:justify-end gap-[8px] pl-4 md:pl-0 hover:opacity-60"
             >
               <LogOut className="w-4" />
               <span className="text-[.85rem]">Log Out</span>

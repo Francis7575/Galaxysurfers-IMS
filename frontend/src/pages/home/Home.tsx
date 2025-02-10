@@ -7,7 +7,7 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ children }) => (
-  <div className="bg-white mx-auto w-full max-w-[550px] rounded-md py-6 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_4px_6px_-1px_rgba(0,0,0,0.1)] px-8 h-full">
+  <div className="bg-white mx-auto w-full max-w-[550px] 930:max-w-none rounded-md py-6 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_4px_6px_-1px_rgba(0,0,0,0.1)] px-8 h-full">
     {children}
   </div>
 );
@@ -98,9 +98,9 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="w-full mx-auto 930:px-8 mt-8 pb-8">
-      <div className="flex flex-col gap-8 930:flex-row">
-        <div className="w-full 930:w-2/3 flex flex-col gap-4 mb-4">
+    <div className="w-full mx-auto 930:px-8 mt-8 930:mt-12 pb-8 max-w-[1200px] ">
+      <div className="flex flex-col gap-8 930:gap-16 930:flex-row">
+        <div className="w-full 930:w-3/5 flex flex-col gap-4 mb-4">
           <Card>
             <CardHeader>Inventory details</CardHeader>
             <CardContent>

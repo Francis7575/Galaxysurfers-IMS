@@ -10,19 +10,19 @@ const InventoryMain = () => {
           <div className="flex justify-center 930:justify-start 930:pl-[29px] mt-[27px] mb-[17px] md:mb-[40px] 930:mt-[29px] 930:mb-[21px]">
             <Link
               to="/inventory"
-              className="btn-styles relative hover:opacity-80 pl-6 rounded-lg bg-deep-blue text-white py-[10px] max-w-[222px] w-full font-medium  mr-6"
+              className="relative hover:opacity-80 pl-6 rounded-lg bg-deep-blue text-white py-[10px] max-w-[222px] w-full font-medium  mr-6"
             >
               Inventory
             </Link>
             <Link
               to="/inventory-in"
-              className="btn-styles relative hover:opacity-80 pl-6 rounded-lg bg-deep-blue text-white py-[10px] max-w-[222px] w-full font-medium mr-6"
+              className="relative hover:opacity-80 pl-6 rounded-lg bg-deep-blue text-white py-[10px] max-w-[222px] w-full font-medium mr-6"
             >
               In
             </Link>
             <Link
               to="/inventory-out"
-              className="btn-styles relative hover:opacity-80 pl-6 rounded-lg bg-deep-blue text-white py-[10px] max-w-[222px] w-full font-medium mr-6"
+              className="relative hover:opacity-80 pl-6 rounded-lg bg-deep-blue text-white py-[10px] max-w-[222px] w-full font-medium mr-6"
             >
               Out
             </Link>

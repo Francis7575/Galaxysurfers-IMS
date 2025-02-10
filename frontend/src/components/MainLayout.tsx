@@ -32,7 +32,6 @@ const MainLayout = () => {
           <Outlet />
         </ResizablePanel>
       </ResizablePanelGroup>
-      <Outlet />
     </>
   );
 };

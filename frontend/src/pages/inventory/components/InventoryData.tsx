@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { InventoryType } from "../../types/typesBackend";
+import { InventoryType } from "../../../types/typesBackend";
 import { useNavigate } from "react-router-dom";
 import DeleteModal from "@/components/common/DeleteModal";
 import { toast } from "react-toastify";

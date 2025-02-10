@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Heading from '../../components/common/Heading';
+import Heading from '../../../components/common/Heading';
 import Filters from './Filter';
 import InventoryData from './InventoryData';
-import { WarehouseType } from '../../types/typesBackend';
+import { WarehouseType } from '../../../types/typesBackend';
 import { Link } from 'react-router-dom';
 
 const InventoryMenu = () => {
