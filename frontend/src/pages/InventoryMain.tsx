@@ -1,4 +1,4 @@
-import { Heading } from "../components";
+import Heading from "@/components/common/Heading";
 import { Link } from "react-router-dom";
 
 const InventoryMain = () => {

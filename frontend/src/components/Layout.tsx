@@ -1,19 +1,13 @@
 import { Outlet } from "react-router-dom";
-import { Header, Navbar } from './index';
+import Header  from "@/components/common/Header";
 
 const Layout = () => {
-
-	return (
-		<>
-			<Header />
-			<div className='930:flex'>
-				<Navbar />
-				<div className='flex-grow'>
-					<Outlet />
-				</div>
-			</div>
-		</>
-	);
+  return (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  );
 };
 
 export default Layout;

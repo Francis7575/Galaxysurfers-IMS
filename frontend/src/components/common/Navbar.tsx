@@ -15,18 +15,18 @@ import { SubMenuItem } from "../../types/types";
 import LoadingIcon from "/assets/icon-loading.gif";
 
 export const userLocations = [
-  "/userMain",
-  "/createuser",
-  "/edituser",
+  "/user",
+  "/user/create",
+  "/user/edit",
   "/user-permissions",
 ];
 export const warehousesLocations = [
-  "/warehouseMain",
-  "/createwarehouse",
-  "/editwarehouse",
+  "/warehouse",
+  "/warehouse/create",
+  "/warehouse/edit",
   "/locations",
 ];
-export const itemsLocations = ["/itemMain", "/addItem", "/editItem"];
+export const itemsLocations = ["/item", "/item/add", "/item/edit"];
 export const inventoryLocations = [
   "/inventoryMain",
   "/inventory",
@@ -35,13 +35,13 @@ export const inventoryLocations = [
 ];
 
 const icons = [
-  { link: "/userMain", icon: <User />, relatedPaths: userLocations },
+  { link: "/user", icon: <User />, relatedPaths: userLocations },
   {
-    link: "/warehouseMain",
+    link: "/warehouse",
     icon: <Warehouse />,
     relatedPaths: warehousesLocations,
   },
-  { link: "/itemMain", icon: <Book />, relatedPaths: itemsLocations },
+  { link: "/item", icon: <Book />, relatedPaths: itemsLocations },
   { link: "/inventoryMain", icon: <Boxes />, relatedPaths: inventoryLocations },
 ];
 
@@ -115,7 +115,7 @@ const Navbar = () => {
 
   if (isLoading) {
     return (
-      <div className="text-[1em] flex flex-col justify-center items-center min-h-screen">
+      <div className="text-[1em] flex flex-col justify-center items-center">
         <p className="mb-10">Loading, please wait...</p>
         <img src={LoadingIcon} alt="Loading..." className="w-[50px]" />
       </div>
@@ -123,16 +123,16 @@ const Navbar = () => {
   }
 
   return (
-    <div className="font-manrope border-b border-lightgray flex justify-between 930:bg-sixth-lightblue 930:min-h-screen px-[12px] md:px-[55px] py-[19px] 930:pl-0 930:px-0 930:py-0 md:py-[27px] w-full 930:max-w-[270px]">
-      <nav className="z-20 930:z-0 fixed top-[25px] right-[15px] 930:static 930:max-w-[270px] 930:w-full ">
+    <div className="font-manrope flex justify-between px-[12px] py-[19px] md:px-0 md:py-0 w-full">
+      <nav className="z-20 top-[25px] right-[15px] md:static w-full">
         <div
-          className={`pt-8 930:pt-12 pl-[30px] 930:pl-0  930:static fixed bg-sixth-lightblue 930:bg-none 930:w-full right-0 top-0 z-10 bottom-0 w-[75%] sm:w-[30%]  transition-transform duration-300 ease-in-out 930:transform-none
+          className={`pt-8 md:pt-0 pl-[30px] md:pl-0 930:pl-0 md:static fixed bg-sixth-lightblue md:bg-transparent z-10 bottom-0 md:w-full sm:w-[30%] transition-transform duration-300 ease-in-out md:transform-none
 					${isMenuOpened ? "translate-x-0" : "translate-x-full"}`}
         >
-          <h2 className="mb-[1.5rem] text-[.75rem] text-gray font-medium uppercase 930:pl-12">
+          <h2 className="mb-[1.5rem] text-[.75rem] md:hidden text-gray font-medium uppercase 930:pl-12">
             General
           </h2>
-          <div className="flex flex-col items-center gap-3 930:gap-5 w-full pr-4 930:pr-0">
+          <div className="flex flex-col md:flex-row items-center gap-3 md:gap-6 930:gap-5 w-full pr-4 md:pr-0">
             <Link
               onClick={closeMenu}
               to="/home"
@@ -144,13 +144,13 @@ const Navbar = () => {
             </Link>
             {renderMenuItems()}
           </div>
-          <div className="mt-[50px] 930:pl-12">
-            <h2 className="text-[.75rem] text-gray font-medium uppercase my-4">
+          <div className="mt-[50px] md:mt-4 w-full">
+            <h2 className="text-[.75rem] text-gray font-medium uppercase my-4 md:hidden">
               Support
             </h2>
             <button
               onClick={handleLogout}
-              className="flex items-center gap-[8px] pl-4 hover:opacity-60"
+              className="flex w-full items-center justify-end gap-[8px] pl-4 md:pl-0 hover:opacity-60"
             >
               <LogOut className="w-4" />
               <span className="text-[.85rem]">Log Out</span>
@@ -161,7 +161,7 @@ const Navbar = () => {
           <img
             src={isMenuOpened ? CloseMenu : OpenMenu}
             alt="Menu Icon"
-            className={`transition-all 930:hidden z-50 relative ${
+            className={`transition-all  z-50 relative md:hidden ${
               isMenuOpened ? "w-[1.2rem] " : "w-[2rem] "
             }`}
           />

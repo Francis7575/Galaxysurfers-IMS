@@ -150,9 +150,9 @@ exports.up = async (pgm) => {
 	}
 	// Data to insert into navbar_menu
 	const navbarMenuItems = [
-		{ idmm_mm2: 1, name_mm2: 'Users', link_mm2: '/userMain', order_mm2: 1, status_mm2: 1 },
-		{ idmm_mm2: 1, name_mm2: 'Warehouses', link_mm2: '/warehouseMain', order_mm2: 1, status_mm2: 1 },
-		{ idmm_mm2: 1, name_mm2: 'Items', link_mm2: '/itemMain', order_mm2: 1, status_mm2: 1 },
+		{ idmm_mm2: 1, name_mm2: 'Users', link_mm2: '/user', order_mm2: 1, status_mm2: 1 },
+		{ idmm_mm2: 1, name_mm2: 'Warehouses', link_mm2: '/warehouse', order_mm2: 1, status_mm2: 1 },
+		{ idmm_mm2: 1, name_mm2: 'Items', link_mm2: '/item', order_mm2: 1, status_mm2: 1 },
 		{ idmm_mm2: 1, name_mm2: 'Inventory', link_mm2: '/inventoryMain', order_mm2: 1, status_mm2: 1 },
 	];
 

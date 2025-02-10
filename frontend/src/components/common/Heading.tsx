@@ -9,7 +9,7 @@ const Heading = ({ title, showBackBtn = true }: UserHeading) => {
   return (
     <div className="px-[40px] 930:px-0 w-full">
       <div className="pt-[25px] 930:text-left border-b border-lightgray pb-[17px]
-          930:pl-[29px] 930:py-[30px] lg:py-[40px] 930:w-full 930:underline flex items-center 
+          930:pl-[29px] lg:pl-[40px] 930:py-[20px] 930:w-full flex items-center 
           930:gap-[.35rem] w-full">
         {showBackBtn && (
           <button className='max-w-[18px] hover:opacity-50'>
