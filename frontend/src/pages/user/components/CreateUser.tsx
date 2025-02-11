@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent, useState, FocusEvent } from "react";
-import { useNavigate } from "react-router-dom";
 import { CreateUserData, CreateUserErrors } from "../../../types/types";
 import { z } from "zod";
 import { toast } from "react-toastify";
@@ -8,8 +7,6 @@ const userSchema = z.string().min(6).max(14);
 const nameSchema = z.string().min(2).max(20);
 
 const CreateUser = () => {
-  const navigate = useNavigate();
-
   const [formData, setFormData] = useState<CreateUserData>({
     user: "",
     name: "",
@@ -110,8 +107,14 @@ const CreateUser = () => {
     );
 
     if (response.ok) {
-      navigate("/user");
       toast.success("User Created!");
+      setFormData({
+        user: "",
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
     } else if (response.status == 401) {
       toast.error("User already exists");
     } else {
@@ -130,15 +133,12 @@ const CreateUser = () => {
 
   return (
     <div className="pb-[40px] 930:flex-1 font-manrope">
-      <div className="hidden 930:block">
-      
-      </div>
+      <div className="hidden 930:block"></div>
       <div className="px-[40px] 930:px-0 mb-[27px] 930:mb-[34px]">
         <div
           className="pt-[25px] 930:text-left border-b border-lightgray pb-[17px]
 					930:pl-[29px] 930:py-[20px] 930:w-full 930:border-none 930:pb-0 flex items-center"
         >
-         
           <div className="flex-grow flex justify-center 930:justify-start text-[1.15rem]">
             <h2 className="font-medium">Create New User</h2>
           </div>

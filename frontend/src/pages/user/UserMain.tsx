@@ -4,29 +4,27 @@ import { UserType } from "../../types/typesBackend";
 import { toast } from "react-toastify";
 import DeleteModal from "../../components/common/DeleteModal";
 import Heading from "@/components/common/Heading";
+import { useRefresh } from "@/context/RefreshContext";
 
 const UserMain = () => {
   const navigate = useNavigate();
   const tableHeading = ["User", "Name", "Mail"];
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { refresh } = useRefresh();
   const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
   const [usersList, setUsersList] = useState<UserType[]>([]);
 
-  const navToNewUser = () => {
-    navigate("/user/create");
-  };
-  
-  const navToEditUser = (user: UserType) => {
-    navigate("/edituser", { state: user });
-  };
-  const navToAccessUser = (user: UserType) => {
-    navigate("/user-permissions", { state: user });
-  };
+  // const navToEditUser = (user: UserType) => {
+  //   navigate("/edituser", { state: user });
+  // };
+  // const navToAccessUser = (user: UserType) => {
+  //   navigate("/user-permissions", { state: user });
+  // };
 
-  const handleOpenModal = (user: UserType) => {
-    setSelectedUser(user);
-    setIsModalOpen(true);
-  };
+  // const handleOpenModal = (user: UserType) => {
+  //   setSelectedUser(user);
+  //   setIsModalOpen(true);
+  // };
 
   const cancelDelete = () => {
     setIsModalOpen(false);
@@ -60,17 +58,19 @@ const UserMain = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_BACKEND_URL}/users/user-list`
-      );
-      const data = await response.json();
+  const fetchItems = async () => {
+    const response = await fetch(
+      `${import.meta.env.VITE_REACT_BACKEND_URL}/users/user-list`
+    );
+    const data = await response.json();
 
-      setUsersList(data);
-    };
+    setUsersList(data);
+  };
+  fetchItems();
+
+  useEffect(() => {
     fetchItems();
-  }, []);
+  }, [refresh]);
 
   return (
     <div className="font-manrope flex-1 w-full pb-8">
@@ -78,7 +78,7 @@ const UserMain = () => {
       <div className="flex justify-center 930:justify-start 930:pl-[29px] mt-[27px] mb-[17px] md:mb-[40px] 930:mt-[29px] 930:mb-[21px]">
         <button
           className="text-center relative bg-deep-blue rounded-lg hover:opacity-80 py-[10px] max-w-[222px] w-full font-medium text-white"
-          onClick={navToNewUser}
+          onClick={() => navigate('/user/create')}
         >
           Add New Member
         </button>

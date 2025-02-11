@@ -1,10 +1,9 @@
-import Heading from "@/components/common/Heading";
 import { NewItem } from "@/types/types";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useRefresh } from "@/context/RefreshContext";
 
 // Function to handle file upload to Cloudinary
 const uploadToCloudinary = async (file: File) => {
@@ -30,13 +29,9 @@ const uploadToCloudinary = async (file: File) => {
 };
 
 const AddItem = () => {
-  const navigate = useNavigate();
   const [file, setFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-
-  const navigateToItem = () => {
-    navigate("/itemMain");
-  };
+  const { setRefresh } = useRefresh();
 
   const initialValues: NewItem = {
     productCode: "",
@@ -112,7 +107,7 @@ const AddItem = () => {
     }
   };
 
-  const handleSubmit = async (values: NewItem) => {
+  const handleSubmit = async (values: NewItem, { resetForm }: { resetForm: () => void }) => {
     try {
       let imageUrl = "";
       if (file) {
@@ -147,7 +142,10 @@ const AddItem = () => {
 
       if (response.ok) {
         toast.success("Item Created!");
-        navigate("/itemMain");
+        resetForm(); // Reset form fields
+        setFile(null); // Reset file state
+        setImagePreview(null); // Reset image preview
+        setRefresh((prev) => !prev);
       } else {
         toast.error("Something went wrong!");
         console.error("Form submission failed", response.statusText);
@@ -160,7 +158,7 @@ const AddItem = () => {
   return (
     <section className="pb-10">
       <div className="mt-[20px] px-[22px] max-w-[1100px]">
-        <h2 className="mb-[18px] font-medium text-[1.2rem]">New Item</h2>
+        <h2 className="mb-[18px] font-medium text-[1.2rem]">Add New Item</h2>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}

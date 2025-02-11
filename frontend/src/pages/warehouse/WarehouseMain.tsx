@@ -4,32 +4,30 @@ import Heading from "@/components/common/Heading";
 import { WarehouseType } from "@/types/typesBackend";
 import { toast } from "react-toastify";
 import DeleteModal from "@/components/common/DeleteModal";
+import { useRefresh } from "@/context/RefreshContext";
 
 const WarehouseMain = () => {
   const navigate = useNavigate();
   const [warehouses, setWarehouseList] = useState<WarehouseType[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const { refresh } = useRefresh();
   const [selectedWarehouse, setselectedWarehouse] =
     useState<WarehouseType | null>(null);
 
   const tableHeading = ["#", "Code", "Name"];
 
-  const navToNewWarehouse = () => {
-    navigate("/warehouse/create");
-  };
+  // const navToEditWarehouse = (warehouse: WarehouseType) => {
+  //   navigate("/editwarehouse", { state: warehouse });
+  // };
 
-  const navToEditWarehouse = (warehouse: WarehouseType) => {
-    navigate("/editwarehouse", { state: warehouse });
-  };
+  // const navToLocations = (warehouse: WarehouseType) => {
+  //   navigate("/locations", { state: warehouse });
+  // };
 
-  const navToLocations = (warehouse: WarehouseType) => {
-    navigate("/locations", { state: warehouse });
-  };
-
-  const handleOpenModal = (user: WarehouseType) => {
-    setselectedWarehouse(user);
-    setIsModalOpen(true);
-  };
+  // const handleOpenModal = (user: WarehouseType) => {
+  //   setselectedWarehouse(user);
+  //   setIsModalOpen(true);
+  // };
 
   const cancelDelete = () => {
     setIsModalOpen(false);
@@ -61,17 +59,19 @@ const WarehouseMain = () => {
     setselectedWarehouse(null);
   };
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/warehouses-list`
-      );
-      const data = await response.json();
+  const fetchItems = async () => {
+    const response = await fetch(
+      `${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/warehouses-list`
+    );
+    const data = await response.json();
 
-      setWarehouseList(data);
-    };
+    setWarehouseList(data);
+  };
+  fetchItems();
+
+  useEffect(() => {
     fetchItems();
-  }, []);
+  }, [refresh]);
 
   return (
     <div className="font-manrope flex-1 w-full pb-8">
@@ -79,7 +79,7 @@ const WarehouseMain = () => {
       <div className="flex justify-center 930:justify-start 930:pl-[29px] mt-[27px] mb-[17px] md:mb-[40px] 930:mt-[29px] 930:mb-[21px]">
         <button
           className="bg-deep-blue text-white text-center relative hover:opacity-80 rounded-lg py-[10px] max-w-[222px] w-full font-medium"
-          onClick={navToNewWarehouse}
+          onClick={() => navigate("/warehouse/create")}
         >
           Add New Warehouse
         </button>

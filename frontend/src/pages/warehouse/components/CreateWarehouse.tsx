@@ -1,79 +1,78 @@
-import { ChangeEvent, FormEvent, useState, FocusEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Heading from "@/components/common/Heading";
-import BackBtn from '/assets/back-button.svg'
-import { CreateWarehouseErrors, CreateWarehouseData } from '@/types/types'
-import { Link } from 'react-router-dom'
-import { toast } from 'react-toastify';
+import { ChangeEvent, FormEvent, useState, FocusEvent } from "react";
+import BackBtn from "/assets/back-button.svg";
+import { CreateWarehouseErrors, CreateWarehouseData } from "@/types/types";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CreateWarehouse = () => {
-  const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
-    code: '',
-    name: '',
-  })
+    code: "",
+    name: "",
+  });
   const [errors, setErrors] = useState<CreateWarehouseErrors>({});
 
   const InputFields = [
-    { type: 'text', name: 'code', id: 'code', label: 'Code' },
-    { type: 'text', name: 'name', id: 'name', label: 'Name' },
-  ]
+    { type: "text", name: "code", id: "code", label: "Code" },
+    { type: "text", name: "name", id: "name", label: "Name" },
+  ];
 
   const formValidation = () => {
     const { code, name } = formData;
     const newErrors: CreateWarehouseErrors = {};
 
     if (!code) {
-      newErrors.code = 'Code cannot be empty';
+      newErrors.code = "Code cannot be empty";
     }
 
     if (!name) {
-      newErrors.name = 'Name Code cannot be empty';
+      newErrors.name = "Name Code cannot be empty";
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  }
+  };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
-  }
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formResult = formValidation()
+    const formResult = formValidation();
 
     if (!formResult) {
       return;
     }
 
-    const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/warehouse-new`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        code_warehouse: formData.code,
-        name_warehouse: formData.name,
-      })
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_REACT_BACKEND_URL}/warehouses/warehouse-new`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          code_warehouse: formData.code,
+          name_warehouse: formData.name,
+        }),
+      }
+    );
 
     if (response.ok) {
-      navigate('/warehouseMain');
-      toast.success('Warehouse Created!');
+      toast.success("Warehouse Created!");
+      setFormData({ name: "", code: "" });
     } else {
-      toast.error('Something went wrong!');
+      toast.error("Something went wrong!");
     }
-  }
+  };
 
   const handleInputFocus = (e: FocusEvent<HTMLInputElement>) => {
     const { name } = e.target;
-    setErrors(prevErrors => {
+    setErrors((prevErrors) => {
       const newErrors = { ...prevErrors };
       delete newErrors[name as keyof CreateWarehouseErrors];
       return newErrors;
@@ -81,29 +80,32 @@ const CreateWarehouse = () => {
   };
 
   return (
-    <div className='pb-[40px] 930:flex-1 font-manrope'>
+    <div className="pb-[40px] 930:flex-1 font-manrope">
       <div className="px-[40px] 930:px-0 mb-[27px] 930:mb-[34px]">
-        <div className="pt-[25px] 930:text-left border-b border-lightgray pb-[17px]
-          930:pl-[29px] 930:py-[20px] 930:w-full 930:border-none 930:pb-0 flex items-center">
-          <Link to="/warehouseMain" className='930:hidden max-w-[18px]'>
+        <div
+          className="pt-[25px] 930:text-left border-b border-lightgray pb-[17px]
+          930:pl-[29px] 930:py-[20px] 930:w-full 930:border-none 930:pb-0 flex items-center"
+        >
+          <Link to="/warehouseMain" className="930:hidden max-w-[18px]">
             <img src={BackBtn} alt="Back button" />
           </Link>
           <div className="flex-grow flex justify-center 930:justify-start text-[1.15rem]">
-            <h2 className="font-medium">
-              Create New Warehouse
-            </h2>
+            <h2 className="font-medium">Create New Warehouse</h2>
           </div>
         </div>
       </div>
-      <form onSubmit={handleSubmit} className='max-w-[300px] w-full md:max-w-[500px] 930:max-w-none mx-auto 930:mx-0 930:px-[29px]'>
-        <div className='flex flex-col gap-4 930:flex-row 930:flex-wrap'>
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-[300px] w-full md:max-w-[500px] 930:max-w-none mx-auto 930:mx-0 930:px-[29px]"
+      >
+        <div className="flex flex-col gap-4 930:flex-row 930:flex-wrap">
           {InputFields.map((field, idx) => (
-            <div key={idx} className='flex flex-col gap-4 930:flex-grow'>
-              <label htmlFor={field.id} className='text-grayish-gray'>
+            <div key={idx} className="flex flex-col 930:flex-grow">
+              <label htmlFor={field.id} className="text-grayish-gray mb-4">
                 {field.label}
               </label>
               <input
-                className='border border-blue-500 rounded-[7px] py-[10px] pl-[10px] outline-none'
+                className="border border-blue-500 rounded-[7px] py-[10px] pl-[10px] outline-none"
                 value={formData[field.name as keyof CreateWarehouseData]}
                 onFocus={handleInputFocus}
                 onChange={handleInputChange}
@@ -111,20 +113,23 @@ const CreateWarehouse = () => {
                 type={field.type}
                 name={field.name}
               />
-              <p className='text-red text-[.85rem]'>
+              <p className="text-red text-[.85rem] mb-2">
                 {errors[field.name as keyof CreateWarehouseErrors]}
               </p>
             </div>
           ))}
         </div>
-        <div className='flex justify-center mt-4 930:justify-start 930:mt-0'> 
-          <button type="submit" className='hover:opacity-70 bg-second-blue py-[8px] max-w-[232px] w-full text-white font-medium rounded-[.625rem]'>
+        <div className="flex justify-center mt-4 930:mt-2 930:justify-start">
+          <button
+            type="submit"
+            className="hover:opacity-70 bg-second-blue py-[8px] max-w-[232px] w-full text-white font-medium rounded-[.625rem]"
+          >
             Create Warehouse
           </button>
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default CreateWarehouse
+export default CreateWarehouse;

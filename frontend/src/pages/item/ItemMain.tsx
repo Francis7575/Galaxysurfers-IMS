@@ -4,9 +4,11 @@ import Heading from "@/components/common/Heading";
 import { ItemType } from "../../types/typesBackend";
 import { toast } from "react-toastify";
 import DeleteModal from "../../components/common/DeleteModal";
+import { useRefresh } from "@/context/RefreshContext";
 
 const ItemMain = () => {
   const navigate = useNavigate();
+  const { refresh } = useRefresh();
   const tableHeading = [
     "Code",
     "Name",
@@ -19,13 +21,9 @@ const ItemMain = () => {
   const [itemsList, setItemsList] = useState<ItemType[]>([]);
   const [selectedItem, setSelectedItem] = useState<ItemType | null>(null);
 
-  const navToNewItem = () => {
-    navigate("/item/add");
-  };
-
-  const navToEditItem = (item: ItemType) => {
-    navigate("/editItem", { state: item });
-  };
+  // const navToEditItem = (item: ItemType) => {
+  //   navigate("/editItem", { state: item });
+  // };
 
   const deleteItem = async (iditem: number) => {
     const response = await fetch(
@@ -47,26 +45,27 @@ const ItemMain = () => {
     }
   };
 
+  const fetchItems = async () => {
+    const response = await fetch(
+      `${import.meta.env.VITE_REACT_BACKEND_URL}/items/items-list`
+    );
+    const data = await response.json();
+    setItemsList(data);
+  };
+
   useEffect(() => {
-    const fetchItems = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_REACT_BACKEND_URL}/items/items-list`
-      );
-      const data = await response.json();
-      setItemsList(data);
-    };
     fetchItems();
-  }, []);
+  }, [refresh]);
 
   const cancelDelete = () => {
     setIsModalOpen(false);
     setSelectedItem(null);
   };
 
-  const handleDeleteClick = (item: ItemType) => {
-    setSelectedItem(item); // Set the selected item to be deleted
-    setIsModalOpen(true); // Open the modal
-  };
+  // const handleDeleteClick = (item: ItemType) => {
+  //   setSelectedItem(item); // Set the selected item to be deleted
+  //   setIsModalOpen(true); // Open the modal
+  // };
 
   return (
     <div className="font-manrope flex-1 w-full pb-8">
@@ -74,7 +73,7 @@ const ItemMain = () => {
       <div className="flex justify-center 930:justify-start 930:pl-[29px] mt-[27px] mb-[17px] md:mb-[40px] 930:mt-[29px] 930:mb-[21px]">
         <button
           className=" relative text-white text-center hover:opacity-80 rounded-lg bg-deep-blue py-[10px] max-w-[222px] w-full font-medium"
-          onClick={navToNewItem}
+          onClick={() => navigate("/item/add")}
         >
           Add New Item
         </button>
