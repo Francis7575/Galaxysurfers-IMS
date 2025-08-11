@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { LoginForm } from "../types/types";
 
-const BACKEND_URL = import.meta.env.VITE_REACT_BACKEND_URL
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 const useAuth = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [userId, setUserId] = useState<number | null>(null);

@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState<LoginForm>({
-    username: '',
-    password: ''
+    username: 'admin',
+    password: '12345678'
   })
   const [errors, setErrors] = useState<LoginForm>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -82,7 +82,8 @@ const Login = () => {
                 <label htmlFor={field.id} className='text-blue mb-[8px] text-[1.5rem]'>
                   {field.label}
                 </label>
-                <input className='border border-blue outline-none pl-4 bg-second-lightblue py-[7px] lg:w-full'
+                <input value={formData[field.name as keyof LoginForm]}
+                className='border border-blue outline-none pl-4 bg-second-lightblue py-[7px] lg:w-full'
                   onFocus={handleInputFocus}
                   onChange={handleInputChange}
                   type={field.type} id={field.id} name={field.name} />
